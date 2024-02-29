@@ -5,7 +5,7 @@ export const AdminContext = createContext('');
 // @ts-ignore
 // eslint-disable-next-line react/function-component-definition
 const AdminContextProvider: React.FC<React.ReactNode> = ({children}) => {
-    const [adminStat, setAdminStat] = useState(false);
+    const [adminStat, setAdminStat] = useState<boolean>(false);
     const values = {adminStat, setAdminStat};
 
     return (

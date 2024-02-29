@@ -17,14 +17,17 @@ import {
 
 const DiveSiteVetting = React.memo(() => {
 
-  const [diveSiteWait, setDiveSiteWait] = useState([]);
+  const [diveSiteWait, setDiveSiteWait] = useState<any[]>([]);
   let diveSitesToVett;
   let diveSiteById;
 
-  useEffect(async () => {
-    diveSitesToVett = await diveSiteWaits();
-    diveSitesToVett ? setDiveSiteWait(diveSitesToVett) : [];
-  }, []);
+  useEffect(() => {
+    const getDiveSiteWaits = async() => {
+      diveSitesToVett = await diveSiteWaits();
+      diveSitesToVett ? setDiveSiteWait(diveSitesToVett) : [];
+    }
+    getDiveSiteWaits()
+  }, [])
 
   const ValidateDiveSite = async (id: number) => {
     diveSiteById = await grabDiveSiteWaitById(id);

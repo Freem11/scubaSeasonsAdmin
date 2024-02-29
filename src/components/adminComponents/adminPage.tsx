@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useContext } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -7,14 +7,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DiveSiteVetting from "./diveSiteVetting"
 import PhotoVettingTable from "./photoVettingTable"
-import { AdminContext } from "../contexts/adminContext";
 
 const AdminPage = React.memo(() => {
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
-
-  const { adminStat } = useContext(AdminContext);
 
   return (
     <div
@@ -47,9 +44,9 @@ function a11yProps(index: any) {
 }
 
  function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event: any, newValue: any) => {
+  const handleChange = (newValue: any) => {
     setValue(newValue);
   };
 

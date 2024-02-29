@@ -91,7 +91,7 @@ const PhotoListItem = (props: any) => {
         <Form id="photoValidator">
           <div className="imageBox">
             <Gallery>
-              <div>
+              <div style={{borderRadius: "10px"}}>
                 <Item
                   original={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
                   thumbnail={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
@@ -99,7 +99,6 @@ const PhotoListItem = (props: any) => {
                   // thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
                   width="992"
                   height="558"
-                  style={{ borderRadius: "10px" }}
                 >
                   {({ ref, open }) => (
                     <img
@@ -141,7 +140,7 @@ const PhotoListItem = (props: any) => {
                 onBlur={handleSubmit}
                 name="date"
                 type="date"
-                disabled={"disabled"}
+                disabled={true}
                 value={formVals.date && formVals.date.substring(0, 10)}
               ></Input>
             </div>
@@ -153,7 +152,7 @@ const PhotoListItem = (props: any) => {
                 onBlur={handleSubmit}
                 name="lat"
                 type="number"
-                disabled={"disabled"}
+                disabled={true}
                 value={formVals.lat}
               ></Input>
             </div>
@@ -165,7 +164,7 @@ const PhotoListItem = (props: any) => {
                 onBlur={handleSubmit}
                 name="lng"
                 type="number"
-                disabled={"disabled"}
+                disabled={true}
                 value={formVals.lng}
               ></Input>
             </div>
