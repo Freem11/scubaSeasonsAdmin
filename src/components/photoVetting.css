@@ -1,22 +1,43 @@
 
 #photoList {
     border: 1px solid gray;
-    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     /* min-width: 700px; */
     border-radius: 10px;
     box-shadow: 3px 4px 5px 1px rgb(99, 99, 99);
     margin: auto;
     /* height: 100%; */
-    overflow: scroll;
-    background-color: aqua;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: lightgray;
+}
+
+.listItemBody {
+    display: flex;
+    width: 98%;
+    border-radius: 1vw;
+    background-color: blue;
+    margin-bottom: 5%;
+}
+
+.photoContainer{
+    align-self: center;
+    justify-self: center
+    width: 25%;
 }
 
 .listHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 96%;
-    min-width: 550px;
+    align-items: center;
+    justify-content: space-around;
+    width: 98%;
+    margin-left: -2vw;
+    /* background-color: greenyellow; */
 }
 
 .photoLI {
@@ -27,11 +48,13 @@
 #photoContainer {
     display: flex;
     flex-direction: row;
-    height: 100px;
+    vertical-align: middle;
+    height: 100%;
     width: 95%;
     border: 1px solid black;
-    margin-left: 10px;
+    margin-left: 10%;
     border-radius: 10px;
+    background-color: blue;
 }
 
 #photoValidator {
@@ -54,36 +77,52 @@
 .infoBox {
     display: flex;
     flex-direction: column;
-    width: 260px;
-    height: 100px;
-    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blueviolet; */
 }
 
 .labelInputCombo {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-left: 2vw;
+    /* background-color: brown; */
 }
 
 .labels {
-    width: 100px;
+    width: 100%;
     text-align: left;
+    justify-self: left;
+    font-size: 1.5vw;
+    /* background-color: green; */
 }
 
 #inpt {
-    width: 150px;
     border: none;
     text-align: right;
-    font-style: oblique;
+    font-size: 1.5vw;
+    width: 150%;
+    height: 100%;
+    background-color: white;
+    color: #000;
     
 }
 
 .FABbox {
     display: flex;
-    height: 110px;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 2vw;
+    /* padding-right: 2vw; */
+    width: 25%;
+    /* padding: 1vw; */
+    /* background-color: greenyellow; */
 }
 
 .FAB {
- width: 100px;
- margin-left: 12px;
- margin-top: 20px;
+    cursor: pointer;
 }
