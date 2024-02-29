@@ -18,7 +18,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-photoswipe-gallery": "^3.0.1",
-    "reactstrap": "^9.1.1"
+    "reactstrap": "^9.1.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
