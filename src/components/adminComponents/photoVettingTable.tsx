@@ -55,7 +55,7 @@ const PhotoVettingTable = React.memo(() => {
         </h3>
         </div>
       </div>
-      <p>{list}</p>
+      <div>{list}</div>
     </ul>
   );
 });
