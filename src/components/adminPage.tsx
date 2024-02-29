@@ -3,7 +3,6 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DiveSiteVetting from "./diveSiteVetting"
 import PhotoVettingTable from "./photoVettingTable"
@@ -13,7 +12,6 @@ const AdminPage = React.memo(() => {
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
 
-  console.log("me", value)
   return (
     <div
       role="tabpanel"

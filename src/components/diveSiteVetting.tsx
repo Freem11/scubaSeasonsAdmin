@@ -8,12 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { insertDiveSite } from "../supabaseCalls/diveSiteSupabaseCalls";
+import { insertDiveSite } from "../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import {
   diveSiteWaits,
   grabDiveSiteWaitById,
   deleteDiveSiteWait,
-} from "../supabaseCalls/diveSiteWaitSupabaseCalls";
+} from "../apicalls/supabaseCalls/diveSiteWaitSupabaseCalls";
 
 const DiveSiteVetting = React.memo(() => {
 
@@ -93,7 +93,11 @@ const DiveSiteVetting = React.memo(() => {
           {diveSiteWait &&
             diveSiteWait.map((site: any) => (
               <TableRow key={site.id} style={{ padding: 0 }}>
-                <TableCell sx={{ color: "#2B2D42", paddingLeft: 5 }}contentEditable={true}>
+                <TableCell 
+                  sx={{ color: "#2B2D42", paddingLeft: 5 }}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                >
                   <strong>{site.name}</strong>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "#2B2D42" }}>

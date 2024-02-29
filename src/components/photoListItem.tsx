@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Form, Input, Label } from "reactstrap";
-import { photoWaits } from "../supabaseCalls/photoWaitSupabaseCalls";
-import { insertphoto } from "../supabaseCalls/photoSupabaseCalls";
-import { removePhoto } from "../cloudflareBucketCalls/cloudflareAWSCalls";
+import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
+import { insertphoto } from "../apicalls/supabaseCalls/photoSupabaseCalls";
+import { removePhoto } from "../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
 import {
   grabPhotoWaitById,
   deletePhotoWait,
-} from "../supabaseCalls/photoWaitSupabaseCalls";
+} from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import {
   insertHeatPoint,
-} from "../supabaseCalls/heatPointSupabaseCalls";
+} from "../apicalls/supabaseCalls/heatPointSupabaseCalls";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -95,8 +95,6 @@ const PhotoListItem = (props: any) => {
                 <Item
                   original={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
                   thumbnail={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
-                  // original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
-                  // thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
                   width="992"
                   height="558"
                 >
@@ -112,7 +110,6 @@ const PhotoListItem = (props: any) => {
                       ref={ref}
                       onClick={open}
                       src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
-                      // src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
                     />
                   )}
                 </Item>
