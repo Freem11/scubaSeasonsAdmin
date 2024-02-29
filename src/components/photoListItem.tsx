@@ -105,11 +105,16 @@ const PhotoListItem = (props: any) => {
 
   getImageDimensions()
 
+  const handleModalOpen = (picture) => {
+    // setSelectedPic(picture)
+    // animateFullScreenModal()
+  }
 
   return (
     <div className="listItemBody">
       <div
       className="photoContainer"
+      onClick={() => handleModalOpen(photoName)}
         style={{
           backgroundImage: `url(https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName})`,
           backgroundRepeat: "no-repeat",
