@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import AdminPage from './components/adminComponents/adminPage';
+import AdminPage from './components/adminPage';
 import './App.css'
 
 function App() {

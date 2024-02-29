@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import PhotoListItem from "./photoListItem";
-import { photoWaits } from "../supabaseCalls/photoWaitSupabaseCalls";
+import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import "./photoVetting.css"
 
 const PhotoVettingTable = React.memo(() => {

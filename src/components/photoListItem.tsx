@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Form, Input, Label } from "reactstrap";
-import { photoWaits } from "../supabaseCalls/photoWaitSupabaseCalls";
-import { insertphoto } from "../supabaseCalls/photoSupabaseCalls";
-import { removePhoto } from "../cloudflareBucketCalls/cloudflareAWSCalls";
+import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
+import { insertphoto } from "../apicalls/supabaseCalls/photoSupabaseCalls";
+import { removePhoto } from "../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
 import {
   grabPhotoWaitById,
   deletePhotoWait,
-} from "../supabaseCalls/photoWaitSupabaseCalls";
+} from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import {
   insertHeatPoint,
-} from "../supabaseCalls/heatPointSupabaseCalls";
+} from "../apicalls/supabaseCalls/heatPointSupabaseCalls";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
