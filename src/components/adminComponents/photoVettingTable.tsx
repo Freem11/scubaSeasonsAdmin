@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import PhotoListItem from "./photoListItem";
-import { photoWaits } from "../../supabaseCalls/photoWaitSupabaseCalls";
+import { photoWaits } from "../supabaseCalls/photoWaitSupabaseCalls";
 import "./photoVetting.css"
 
 const PhotoVettingTable = React.memo(() => {
-  const [photoWait, setPhotoWait] = useState([]);
+  const [photoWait, setPhotoWait] = useState<any[]>([]);
   let photosToVett;
 
-  useEffect(async () => {
-    photosToVett = await photoWaits();
-    photosToVett ? setPhotoWait(photosToVett) : [];
+  useEffect(() => {
+    const getPhotoWaits = async() => {
+      photosToVett = await photoWaits();
+      photosToVett ? setPhotoWait(photosToVett) : [];
+    };
 
+    getPhotoWaits();
   }, []);
 
   let list;
