@@ -56,7 +56,7 @@ function a11yProps(index: any) {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', height: "100vh" , backgroundColor: "pink"}}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Animal Photo Validation" {...a11yProps(0)} />

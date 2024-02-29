@@ -1,13 +1,14 @@
 
 #photoList {
     border: 1px solid gray;
-    width: 80%;
-    min-width: 700px;
+    width: 80vw;
+    /* min-width: 700px; */
     border-radius: 10px;
     box-shadow: 3px 4px 5px 1px rgb(99, 99, 99);
     margin: auto;
-    height: 800px;
+    /* height: 100%; */
     overflow: scroll;
+    background-color: aqua;
 }
 
 .listHeader {
