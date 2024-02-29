@@ -93,7 +93,11 @@ const DiveSiteVetting = React.memo(() => {
           {diveSiteWait &&
             diveSiteWait.map((site: any) => (
               <TableRow key={site.id} style={{ padding: 0 }}>
-                <TableCell sx={{ color: "#2B2D42", paddingLeft: 5 }}contentEditable={true}>
+                <TableCell 
+                  sx={{ color: "#2B2D42", paddingLeft: 5 }}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                >
                   <strong>{site.name}</strong>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "#2B2D42" }}>
