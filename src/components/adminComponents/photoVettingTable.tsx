@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import PhotoListItem from "./photoListItem";
 import { photoWaits } from "../supabaseCalls/photoWaitSupabaseCalls";
 import "./photoVetting.css"
@@ -21,16 +21,17 @@ const PhotoVettingTable = React.memo(() => {
     list = photoWait && photoWait.map((photo) => {
 
       return (
-        <PhotoListItem
-          key={photo.id}
-          id={photo.id}
-          photoFile={photo.photoFile}
-          animal={photo.label}
-          date={photo.dateTaken}
-          lat={photo.latitude}
-          lng={photo.longitude}
-          setPhotoWait={setPhotoWait}
-        />
+        <Fragment key={photo.id}>
+          <PhotoListItem
+            id={photo.id}
+            photoFile={photo.photoFile}
+            animal={photo.label}
+            date={photo.dateTaken}
+            lat={photo.latitude}
+            lng={photo.longitude}
+            setPhotoWait={setPhotoWait}
+          />
+        </Fragment>
       );
     });
   } else {
