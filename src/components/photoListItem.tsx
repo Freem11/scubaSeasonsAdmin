@@ -95,8 +95,6 @@ const PhotoListItem = (props: any) => {
                 <Item
                   original={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
                   thumbnail={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
-                  // original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
-                  // thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
                   width="992"
                   height="558"
                 >
@@ -112,7 +110,6 @@ const PhotoListItem = (props: any) => {
                       ref={ref}
                       onClick={open}
                       src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
-                      // src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
                     />
                   )}
                 </Item>
