@@ -13,6 +13,7 @@ const AdminPage = React.memo(() => {
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
 
+  console.log("me", value)
   return (
     <div
       role="tabpanel"
@@ -46,8 +47,12 @@ function a11yProps(index: any) {
  function BasicTabs() {
   const [value, setValue] = useState(0);
 
-  const handleChange = (newValue: any) => {
-    setValue(newValue);
+  const handleChange = () => {
+    if(value === 0){
+      setValue(1)
+    } else {
+      setValue(0)
+    }
   };
 
   return (

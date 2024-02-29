@@ -17,7 +17,7 @@ import "./photoVetting.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 const PhotoListItem = (props: any) => {
-  const { key, id, photoFile, animal, date, lat, lng, setPhotoWait } = props;
+  const { id, photoFile, animal, date, lat, lng, setPhotoWait } = props;
 
   let photoById: any;
 
