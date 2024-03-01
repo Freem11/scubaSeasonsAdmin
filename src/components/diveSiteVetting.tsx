@@ -43,19 +43,18 @@ const DiveSiteVetting = React.memo(() => {
   return (
     <TableContainer
       style={{
-        width: "90%",
+        width: "100%",
         margin: "auto",
         borderRadius: "5px",
-        marginTop: 30,
         boxShadow: "3px 4px 5px 1px rgb(99, 99, 99)",
       }}
     >
       <Table>
-        <TableHead style={{ backgroundColor: "#102E4A" }}>
+        <TableHead style={{ backgroundColor: "#538bdb" }}>
           <TableRow>
             <TableCell
               style={{
-                color: "black",
+                color: "white",
                 width: 200,
                 fontSize: 16,
                 paddingLeft: 39,
@@ -65,25 +64,25 @@ const DiveSiteVetting = React.memo(() => {
             </TableCell>
             <TableCell
               align="center"
-              style={{ color: "black", width: 100, fontSize: 16 }}
+              style={{ color: "white", width: 100, fontSize: 16 }}
             >
               <strong>Latitude</strong>
             </TableCell>
             <TableCell
               align="center"
-              style={{ color: "black", width: 100, fontSize: 16 }}
+              style={{ color: "white", width: 100, fontSize: 16 }}
             >
               <strong>Longitude</strong>
             </TableCell>
             <TableCell
               align="center"
-              style={{ color: "black", width: 50, fontSize: 16 }}
+              style={{ color: "white", width: 50, fontSize: 16 }}
             >
               <strong>Validate</strong>
             </TableCell>
             <TableCell
               align="center"
-              style={{ color: "black", width: 50, fontSize: 16 }}
+              style={{ color: "white", width: 50, fontSize: 16 }}
             >
               <strong>Reject</strong>
             </TableCell>

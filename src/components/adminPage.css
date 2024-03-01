@@ -3,6 +3,9 @@ body {
     background-color: white;
 }
 
+#root{
+    width: 80vw;
+}
 
 .fullScreenModalDiv {
     z-index: 200;
