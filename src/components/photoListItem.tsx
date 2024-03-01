@@ -90,107 +90,87 @@ const PhotoListItem = React.memo((props: any) => {
     e.preventDefault();
   };
 
-  const [imgHeigth, setImgHeigth] = useState<number>(0);
-  const [imgWidth, setImgWidth] = useState<number>(0);
-
-  const getImageDimensions = async () => {
-    let containerWidth = document.getElementsByClassName("listItemBody")[0].clientWidth / 4;
-
-    const img = new Image();
-    img.src = `https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`
-    const imageBitmap = await createImageBitmap(img)
-    let ratio = imageBitmap.height/imageBitmap.width
-    setImgWidth(containerWidth)
-    setImgHeigth(containerWidth*ratio)
-    
-  };
-
-  getImageDimensions()
-
   const handleModalOpen = (picture: string) => {
     setSelectedPic(picture)
-    console.log(animateFullScreenModal)
     animateFullScreenModal()
   }
 
   return (
     <div className="listItemBody">
-      <div
-      className="photoContainer"
-      onClick={() => handleModalOpen(photoName)}
-        style={{
-          backgroundImage: `url(https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          width: imgWidth,
-          height: imgHeigth,
-          borderRadius: "1vw",
-          border: "1px, solid grey",
-          cursor: "pointer"
-        }}
-      ></div>
+      <div className="photoContainer">
+        <img 
+          src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
+          onClick={() => handleModalOpen(photoName)}
+          width={"90%"}
+          style={{
+            borderRadius: "1vw",
+            border: "1px solid grey",
+            cursor: "pointer"
+          }}
+        />
+      </div>
       <div className="infoBox">
-            <div className="labelInputCombo">
-               <Label className="labels">Animal: </Label>
-               <Input
-                id="inpt"
-                onChange={handleChange}
-                onBlur={handleSubmit}
-                name="animal"
-                type="text"
-                value={formVals.animal}
-                style={{ textAlign: "center" }}
-              ></Input>
-            </div>
-            <div className="labelInputCombo">
-              <Label className="labels" style={{marginLeft: "-2px"}}>Date Taken: </Label>
-              <Input
-                id="inpt"
-                onChange={handleChange}
-                onBlur={handleSubmit}
-                name="date"
-                type="date"
-                // disabled={true}
-                value={formVals.date && formVals.date.substring(0, 10)}
-              ></Input>
-            </div>
-            <div className="labelInputCombo">
-              <Label className="labels">Latitude: </Label>
-              <Input
-                id="inpt"
-                onChange={handleChange}
-                onBlur={handleSubmit}
-                name="lat"
-                type="number"
-                // disabled={true}
-                value={formVals.lat}
-              ></Input>
-            </div>
-            <div className="labelInputCombo">
-              <Label className="labels">Longitude: </Label>
-              <Input
-                id="inpt"
-                onChange={handleChange}
-                onBlur={handleSubmit}
-                name="lng"
-                type="number"
-                // disabled={true}
-                value={formVals.lng}
-              ></Input>
-            </div>
-          </div>
-          <div className="FABbox">
-             <div className="FAB">
-               <Fab color="primary" aria-label="add">
-                 <TaskAltIcon onClick={() => ValidatePhoto(id)} />
-               </Fab>
-             </div>
-             <div className="FAB">
-               <Fab color="secondary" aria-label="add">
-                 <HighlightOffIcon onClick={() => RejectPhoto(id)} />
-               </Fab>
-             </div>
-           </div>
+        <div className="labelInputCombo">
+          <Label className="labels">Animal: </Label>
+          <Input
+            id="inpt"
+            onChange={handleChange}
+            onBlur={handleSubmit}
+            name="animal"
+            type="text"
+            value={formVals.animal}
+            style={{ textAlign: "center" }}
+          ></Input>
+        </div>
+        <div className="labelInputCombo">
+          <Label className="labels" style={{marginLeft: "-2px"}}>Date Taken: </Label>
+          <Input
+            id="inpt"
+            onChange={handleChange}
+            onBlur={handleSubmit}
+            name="date"
+            type="date"
+            // disabled={true}
+            value={formVals.date && formVals.date.substring(0, 10)}
+          ></Input>
+        </div>
+        <div className="labelInputCombo">
+          <Label className="labels">Latitude: </Label>
+          <Input
+            id="inpt"
+            onChange={handleChange}
+            onBlur={handleSubmit}
+            name="lat"
+            type="number"
+            // disabled={true}
+            value={formVals.lat}
+          ></Input>
+        </div>
+        <div className="labelInputCombo">
+          <Label className="labels">Longitude: </Label>
+          <Input
+            id="inpt"
+            onChange={handleChange}
+            onBlur={handleSubmit}
+            name="lng"
+            type="number"
+            // disabled={true}
+            value={formVals.lng}
+          ></Input>
+        </div>
+      </div>
+      <div className="FABbox">
+        <div className="FAB">
+          <Fab color="primary" aria-label="add">
+            <TaskAltIcon onClick={() => ValidatePhoto(id)} />
+          </Fab>
+        </div>
+        <div className="FAB">
+          <Fab color="secondary" aria-label="add">
+            <HighlightOffIcon onClick={() => RejectPhoto(id)} />
+          </Fab>
+        </div>
+      </div>
     </div>
   );
 });
