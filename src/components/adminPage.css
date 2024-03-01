@@ -1,5 +1,6 @@
 body {
     overflow: hidden;
+    background-color: white;
 }
 
 
@@ -15,5 +16,5 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    /* background-color: lightgray; */
+    /* background-color: blue; */
 }

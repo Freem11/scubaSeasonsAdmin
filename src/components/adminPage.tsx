@@ -11,7 +11,7 @@ import SelectedPicContext from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
 
-const AdminPage = React.memo(() => {
+const AdminPage = () => {
   function TabPanel(props: any) {
     const { children, value, index, ...other } = props;
 
@@ -56,7 +56,7 @@ const AdminPage = React.memo(() => {
 
     return (
       <Box sx={{ width: "100%", height: "100vh"}}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -125,6 +125,6 @@ const AdminPage = React.memo(() => {
       </animated.div>
     </SelectedPicContext.Provider>
   );
-});
+};
 
 export default AdminPage;

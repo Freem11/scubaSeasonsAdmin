@@ -3,7 +3,7 @@ import PhotoListItem from "./photoListItem";
 import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import "./photoVetting.css"
 
-const PhotoVettingTable = (props : any) => {
+const PhotoVettingTable = (props: any) => {
   const { animateFullScreenModal } = props;
   const [photoWait, setPhotoWait] = useState<any[]>([]);
   let photosToVett;
@@ -43,17 +43,17 @@ const PhotoVettingTable = (props : any) => {
   return (
     <ul id="photoList">
       <div className="listHeader">
-        <h3 style={{ width: "25%",  color: "#3B747D" }}>
+        <h3 style={{ width: "25%",  color: "white", fontSize: "2vw" }}>
           <strong>Photo</strong>
         </h3>
-        <h3 style={{ width: "50%",  color: "#3B747D" }}>
+        <h3 style={{ width: "60%",  color: "white", fontSize: "2vw" }}>
           <strong>Information</strong>
         </h3>
         {/* <div style={{display: 'flex'}}> */}
-        <h3 style={{ width: "12.5%",  color: "#3B747D" }}>
+        <h3 style={{ width: "12.5%",  color: "white", fontSize: "2vw" }}>
           <strong>Validate</strong>
         </h3>
-        <h3 style={{ width: "12.5%", color: "#3B747D" }}>
+        <h3 style={{ width: "12.5%", color: "white", fontSize: "2vw" }}>
           <strong>Reject</strong>
         </h3>
         {/* </div> */}

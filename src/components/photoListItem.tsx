@@ -14,7 +14,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
 import SelectedPicContext from "../contexts/selectPicContext";
 
-const PhotoListItem = React.memo((props: any) => {
+const PhotoListItem = (props: any) => {
   const { id, photoFile, animal, date, lat, lng, setPhotoWait, animateFullScreenModal } = props;
   const { setSelectedPic } = useContext(SelectedPicContext);
 
@@ -82,7 +82,7 @@ const PhotoListItem = React.memo((props: any) => {
     });
   }, [props]);
 
-  const handleChange = (e: any) => {
+  const handleEdit = (e: any) => {
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
   };
 
@@ -114,19 +114,19 @@ const PhotoListItem = React.memo((props: any) => {
           <Label className="labels">Animal: </Label>
           <Input
             id="inpt"
-            onChange={handleChange}
+            onChange={handleEdit}
             onBlur={handleSubmit}
             name="animal"
             type="text"
             value={formVals.animal}
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center", borderTopLeftRadius: "0.7vw", borderTopRightRadius: "0.7vw"  }}
           ></Input>
         </div>
         <div className="labelInputCombo">
           <Label className="labels" style={{marginLeft: "-2px"}}>Date Taken: </Label>
           <Input
             id="inpt"
-            onChange={handleChange}
+            onChange={handleEdit}
             onBlur={handleSubmit}
             name="date"
             type="date"
@@ -138,7 +138,7 @@ const PhotoListItem = React.memo((props: any) => {
           <Label className="labels">Latitude: </Label>
           <Input
             id="inpt"
-            onChange={handleChange}
+            onChange={handleEdit}
             onBlur={handleSubmit}
             name="lat"
             type="number"
@@ -150,29 +150,30 @@ const PhotoListItem = React.memo((props: any) => {
           <Label className="labels">Longitude: </Label>
           <Input
             id="inpt"
-            onChange={handleChange}
+            onChange={handleEdit}
             onBlur={handleSubmit}
             name="lng"
             type="number"
             // disabled={true}
             value={formVals.lng}
+            style={{ borderBottomLeftRadius: "0.7vw", borderBottomRightRadius: "0.7vw"  }}
           ></Input>
         </div>
       </div>
       <div className="FABbox">
         <div className="FAB">
-          <Fab color="primary" aria-label="add">
-            <TaskAltIcon onClick={() => ValidatePhoto(id)} />
+          <Fab color="primary" aria-label="add" style={{width: "5vw", height: "5vw"}}>
+            <TaskAltIcon onClick={() => ValidatePhoto(id)} style={{width: "3vw", height: "3vw"}}/>
           </Fab>
         </div>
         <div className="FAB">
-          <Fab color="secondary" aria-label="add">
-            <HighlightOffIcon onClick={() => RejectPhoto(id)} />
+          <Fab color="secondary" aria-label="add" style={{width: "5vw", height: "5vw"}}>
+            <HighlightOffIcon onClick={() => RejectPhoto(id)} style={{width: "3vw", height: "3vw"}}/>
           </Fab>
         </div>
       </div>
     </div>
   );
-});
+};
 
 export default PhotoListItem;
