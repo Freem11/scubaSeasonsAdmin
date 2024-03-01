@@ -1,0 +1,13 @@
+.fullScreenModalDiv {
+    z-index: 200;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    top: 100vh;
+    left: 0vw;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: lightgray; */
+}

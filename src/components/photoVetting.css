@@ -125,4 +125,5 @@
 
 .FAB {
     cursor: pointer;
+    z-index: 10;
 }

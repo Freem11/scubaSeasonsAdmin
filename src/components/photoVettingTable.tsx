@@ -3,7 +3,8 @@ import PhotoListItem from "./photoListItem";
 import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import "./photoVetting.css"
 
-const PhotoVettingTable = React.memo(() => {
+const PhotoVettingTable = (props : any) => {
+  const { animateFullScreenModal } = props;
   const [photoWait, setPhotoWait] = useState<any[]>([]);
   let photosToVett;
 
@@ -30,6 +31,7 @@ const PhotoVettingTable = React.memo(() => {
             lat={photo.latitude}
             lng={photo.longitude}
             setPhotoWait={setPhotoWait}
+            animateFullScreenModal={animateFullScreenModal}
           />
         </Fragment>
       );
@@ -59,6 +61,6 @@ const PhotoVettingTable = React.memo(() => {
       <div>{list}</div>
     </ul>
   );
-});
+};
 
 export default PhotoVettingTable;

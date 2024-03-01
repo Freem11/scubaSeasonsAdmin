@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { FormGroup, Button } from "reactstrap";
 import "./fullScreenModal.css";
-import { SelectedPicContext } from "../contexts/selectPicContext";
+import SelectedPicContext from "../contexts/selectPicContext";
 import CloseIcon from "@mui/icons-material/Close";
 
 const FullScreenModal = (props: any) => {
   const { animateFullScreenModal } = props;
-  const { selectedPic, setSelectedPic } = useContext(SelectedPicContext);
+  const { selectedPic } = useContext(SelectedPicContext);
   const [imgHeigth, setImgHeigth] = useState(0);
   const [imgWidth, setImgWidth] = useState(0);
 

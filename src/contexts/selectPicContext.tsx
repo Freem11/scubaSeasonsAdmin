@@ -1,15 +1,17 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
 type SelectedPicContextType = {
-  selectedPic: string | null,
-  setSelectedPic: React.Dispatch<React.SetStateAction<string | null>>
-}
+  selectedPic: string | null;
+  setSelectedPic: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
 const SelectedPicContextState = {
   selectedPic: null,
- setSelectedPic: () => {}
-}
+  setSelectedPic: () => {},
+};
 
-const SelectedPicContext = createContext<SelectedPicContextType>(SelectedPicContextState)
+const SelectedPicContext = createContext<SelectedPicContextType>(
+  SelectedPicContextState
+);
 
-export default SelectedPicContext
+export default SelectedPicContext;

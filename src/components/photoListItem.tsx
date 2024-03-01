@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Input, Label } from "reactstrap";
 import { photoWaits } from "../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import { insertphoto } from "../apicalls/supabaseCalls/photoSupabaseCalls";
@@ -12,9 +12,11 @@ import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
+import SelectedPicContext from "../contexts/selectPicContext";
 
 const PhotoListItem = (props: any) => {
-  const { id, photoFile, animal, date, lat, lng, setPhotoWait } = props;
+  const { id, photoFile, animal, date, lat, lng, setPhotoWait, animateFullScreenModal } = props;
+  const { setSelectedPic } = useContext(SelectedPicContext);
 
   let photoById: any;
 
@@ -105,9 +107,10 @@ const PhotoListItem = (props: any) => {
 
   getImageDimensions()
 
-  const handleModalOpen = (picture) => {
-    // setSelectedPic(picture)
-    // animateFullScreenModal()
+  const handleModalOpen = (picture: string) => {
+    setSelectedPic(picture)
+    console.log(animateFullScreenModal)
+    animateFullScreenModal()
   }
 
   return (
