@@ -11,6 +11,10 @@ const FullScreenModal = (props: any) => {
   const [imgWidth, setImgWidth] = useState(0);
 
   const getImageDimensions = async () => {
+    if (!selectedPic) {
+      return;
+    }
+
     let screenWidthInital = window.innerWidth;
     let screenHeitghInital = window.innerHeight;
 
@@ -20,11 +24,8 @@ const FullScreenModal = (props: any) => {
     let ratio = imageBitmap.height/imageBitmap.width
     let inverseRatio = imageBitmap.width/imageBitmap.height
 
-    console.log(screenHeitghInital)
-    console.log(imageBitmap.height, imageBitmap.width)
-
-  let newWidth
-  let newHeigth
+    let newWidth;
+    let newHeigth;
 
     if (imageBitmap.height > imageBitmap.width) {
        newHeigth = screenHeitghInital * 0.96
@@ -37,7 +38,6 @@ const FullScreenModal = (props: any) => {
     if(newHeigth > screenHeitghInital){
       setImgHeigth(screenHeitghInital*0.96)
       setImgWidth((screenHeitghInital*0.96)*inverseRatio)
-
     } else if (newWidth > screenWidthInital){
       setImgWidth(screenWidthInital*0.96)
       setImgHeigth((screenWidthInital*0.96)*ratio)
@@ -45,7 +45,6 @@ const FullScreenModal = (props: any) => {
       setImgWidth(newWidth)
       setImgHeigth(newHeigth)
     }
-
   };
 
   getImageDimensions()
@@ -55,7 +54,7 @@ const FullScreenModal = (props: any) => {
       className="bodyDiv"
       onClick={(e) => e.stopPropagation()}
       style={{
-        backgroundImage: `url(https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${selectedPic})`,
+        backgroundImage: selectedPic ? `url(https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${selectedPic})` : "",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: imgWidth,
