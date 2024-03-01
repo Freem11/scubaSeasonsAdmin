@@ -1,3 +1,8 @@
+body {
+    overflow: hidden;
+}
+
+
 .fullScreenModalDiv {
     z-index: 200;
     position: absolute;
@@ -9,5 +14,6 @@
     left: 0vw;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     /* background-color: lightgray; */
 }
