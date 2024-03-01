@@ -96,8 +96,11 @@ const AdminPage = React.memo(() => {
   });
 
   const animateFullScreenModal = () => {
-    let modalHeigth =
-      document.getElementsByClassName("fullScreenModalDiv")[0].clientHeight;
+    let elements = document.getElementsByClassName("fullScreenModalDiv");
+    if (elements.length === 0) {
+      return;
+    }
+    let modalHeigth = elements[0].clientHeight;
 
     if (fullScreenModalYCoord === 0) {
       setFullScreenModalYCoord(
@@ -111,16 +114,15 @@ const AdminPage = React.memo(() => {
   return (
     <SelectedPicContext.Provider value={{ selectedPic, setSelectedPic }}>
       <BasicTabs animateFullScreenModal={animateFullScreenModal}/>
-
       <animated.div
-          className="fullScreenModalDiv"
-          style={moveFullScreenModal}
-          ref={fullScreenModalRef}
-          onClick={() => setFullScreenModalYCoord(0)}
-        >
-          <FullScreenModal animateFullScreenModal={animateFullScreenModal} />
-        </animated.div>
-
+        hidden={!(selectedPic && selectedPic !== "")}
+        className="fullScreenModalDiv"
+        style={moveFullScreenModal}
+        ref={fullScreenModalRef}
+        onClick={() => setFullScreenModalYCoord(0)}
+      >
+        <FullScreenModal animateFullScreenModal={animateFullScreenModal} />
+      </animated.div>
     </SelectedPicContext.Provider>
   );
 });
