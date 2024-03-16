@@ -25,8 +25,7 @@ export const insertDiveSiteWaits = async (values: any) => {
       name: values.Site,
       lat: values.Latitude,
       lng: values.Longitude,
-      UserID: values.UserID,
-      userName: values.UserName
+      UserID: values.UserID
     },
   ]);
 

@@ -22,8 +22,7 @@ export const insertphoto = async (values: any, monthID: number) => {
       latitude: values.latitude,
       longitude: values.longitude,
       month: monthID,
-      UserID: values.UserID,
-      userName: values.userName,
+      UserID: values.UserID
     },
   ]);
 
@@ -225,3 +224,17 @@ export const getMostRecentPhoto = async () => {
     return data;
   }
 };
+
+
+export const getUpdatePhotos= async () => {
+  const { error } = await supabase
+  .from('photos')
+  .update({ userName: 'Evgeniy' })
+  .eq('UserID', 'cd2a4c7f-28bc-4370-9a9c-1fb0717782ca')
+
+  if (error) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
+};
+

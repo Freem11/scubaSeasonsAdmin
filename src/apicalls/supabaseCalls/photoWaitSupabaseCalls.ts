@@ -25,8 +25,7 @@ export const insertPhotoWaits = async (values: any) => {
       dateTaken: values.PicDate,
       latitude: values.Latitude,
       longitude: values.Longitude,
-      UserID: values.UserID,
-      userName: values.UserName
+      UserID: values.UserID
     },
   ]);
 

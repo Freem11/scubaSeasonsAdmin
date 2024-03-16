@@ -83,8 +83,7 @@ export const insertDiveSite = async (values: any) => {
       name: values.name,
       lat: values.lat,
       lng: values.lng,
-      UserID: values.UserID,
-      userName: values.userName
+      UserID: values.UserID
     },
   ]);
 

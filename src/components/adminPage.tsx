@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -10,10 +10,15 @@ import PhotoVettingTable from "./photoVettingTable";
 import SelectedPicContext from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
+import { getUpdatePhotos } from "../apicalls/supabaseCalls/photoSupabaseCalls";
 
 const AdminPage = () => {
   function TabPanel(props: any) {
     const { children, value, index, ...other } = props;
+
+    // useEffect(() => {
+    //   getUpdatePhotos()
+    // }, [])
 
     return (
       <div
