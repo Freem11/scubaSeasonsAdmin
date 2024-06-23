@@ -58,7 +58,7 @@ const PhotoVettingTable = (props: any) => {
         </h3>
         {/* </div> */}
       </div>
-      <div>{list}</div>
+      <div className="listZone">{list}</div>
     </ul>
   );
 };

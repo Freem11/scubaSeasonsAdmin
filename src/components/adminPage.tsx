@@ -11,6 +11,7 @@ import SelectedPicContext from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
 import { getUpdatePhotos } from "../apicalls/supabaseCalls/photoSupabaseCalls";
+import { getUpdateHeatPoints } from "../apicalls/supabaseCalls/heatPointSupabaseCalls";
 
 const AdminPage = () => {
   function TabPanel(props: any) {
@@ -18,6 +19,10 @@ const AdminPage = () => {
 
     // useEffect(() => {
     //   getUpdatePhotos()
+    // }, [])
+
+    //   useEffect(() => {
+    //   getUpdateHeatPoints()
     // }, [])
 
     return (

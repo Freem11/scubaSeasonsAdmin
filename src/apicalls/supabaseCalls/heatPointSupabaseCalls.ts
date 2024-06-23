@@ -191,3 +191,15 @@ export const picClickheatPoints = async (GPSBubble: any, animal: string) => {
     return data;
   }
 };
+
+export const getUpdateHeatPoints= async () => {
+  const { error } = await supabase
+  .from('heatPoints')
+  .update({ UserID: 'dfc898dc-c02a-4f7e-b81f-48692ae6509a'})
+  .eq('userName', 'Freem11')
+
+  if (error) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
+};
