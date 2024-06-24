@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -7,23 +7,15 @@ import Box from "@mui/material/Box";
 import { animated, useSpring } from "react-spring";
 import DiveSiteVetting from "./diveSiteVetting";
 import PhotoVettingTable from "./photoVettingTable";
+import PartnerRequestTable from "./partnerRequestList";
 import SelectedPicContext from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
-import { getUpdatePhotos } from "../apicalls/supabaseCalls/photoSupabaseCalls";
-import { getUpdateHeatPoints } from "../apicalls/supabaseCalls/heatPointSupabaseCalls";
 
 const AdminPage = () => {
+
   function TabPanel(props: any) {
     const { children, value, index, ...other } = props;
-
-    // useEffect(() => {
-    //   getUpdatePhotos()
-    // }, [])
-
-    //   useEffect(() => {
-    //   getUpdateHeatPoints()
-    // }, [])
 
     return (
       <div
@@ -55,12 +47,8 @@ const AdminPage = () => {
     const { animateFullScreenModal } = props;
     const [value, setValue] = useState<number>(0);
 
-    const handleChange = () => {
-      if (value === 0) {
-        setValue(1);
-      } else {
-        setValue(0);
-      }
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue);
     };
 
 
@@ -74,6 +62,7 @@ const AdminPage = () => {
           >
             <Tab label="Animal Photo Validation" {...a11yProps(0)} />
             <Tab label="Dive Site Validation" {...a11yProps(1)} />
+            <Tab label="Partner Request Validation" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -81,6 +70,9 @@ const AdminPage = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <DiveSiteVetting />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <PartnerRequestTable />
         </TabPanel>
       </Box>
     );
