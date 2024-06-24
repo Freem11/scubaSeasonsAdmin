@@ -1,13 +1,26 @@
 import { supabase } from "../supabase";
 
+// export const partnerRequests = async () => {
+//   const { data, error } = await supabase
+//   .from("partnerAccountRequests")
+//   .select()
+//   .is('validated', null)
+
+//   if (error) {
+//     console.log("couldn't do it 1,", error);
+//     return [];
+//   }
+
+//   if (data) {
+//     return data;
+//   }
+// };
+
 export const partnerRequests = async () => {
-  const { data, error } = await supabase
-  .from("partnerAccountRequests")
-  .select()
-  .is('validated', null)
+  const { data, error } = await supabase.rpc("get_partnerrequests_with_useremail");
 
   if (error) {
-    console.log("couldn't do it 1,", error);
+    console.log("couldn't do it 52,", error);
     return [];
   }
 
@@ -15,6 +28,7 @@ export const partnerRequests = async () => {
     return data;
   }
 };
+
 
 export const updatePartnerRequestByUserId= async (userID : string, decision : boolean) => {
   const { error } = await supabase

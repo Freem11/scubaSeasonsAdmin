@@ -23,6 +23,7 @@ const PartnerRequestTable = React.memo(() => {
   useEffect(() => {
     const getPartnerRequests = async () => {
       partnerRequestsToVett = await partnerRequests();
+      console.log("???", partnerRequestsToVett)
       partnerRequestsToVett ? setPartnerReqs(partnerRequestsToVett) : [];
     };
 
@@ -95,25 +96,25 @@ const PartnerRequestTable = React.memo(() => {
               align="center"
               style={{ color: "white", width: 50, fontSize: 16 }}
             >
-              <strong>Validate</strong>
-            </TableCell>
-            <TableCell
-              align="center"
-              style={{ color: "white", width: 50, fontSize: 16 }}
-            >
               <strong>Congrats Email</strong>
             </TableCell>
             <TableCell
               align="center"
               style={{ color: "white", width: 50, fontSize: 16 }}
             >
-              <strong>Reject</strong>
+              <strong>Validate</strong>
             </TableCell>
             <TableCell
               align="center"
               style={{ color: "white", width: 50, fontSize: 16 }}
             >
               <strong>Sorry Email</strong>
+            </TableCell>
+            <TableCell
+              align="center"
+              style={{ color: "white", width: 50, fontSize: 16 }}
+            >
+              <strong>Reject</strong>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -141,6 +142,18 @@ const PartnerRequestTable = React.memo(() => {
                 <TableCell align="center" style={{ height: 10 }}>
                   <strong>{req.longitude}</strong>
                 </TableCell>
+
+                {/* need email of user who applied  */}
+                <TableCell align="center" style={{ height: 10 }}>
+                  <a
+                    href={`mailto:${req.userEmail}?subject=Update%20Regarding%20Your%20Scuba%20SEAsons%20Partner%20Account%20Application&body=Congrats!%20Your%20Scuba%20SEAsons%20partner%20account%20upgrade%20account%20application%20has%20been%20approved!%0D%0A%0D%0A%0D%0A%0D%0AOn%20your%20next%20login%20you%20will%20see%20that%20you%20now%20have%20access%20to%20our%20partner%20features%20including%20the%20Trip%20creator!%0D%0A%0D%0A%0D%0A%0D%0AThis%20feature%20let's%20you%20register%20trips%20you%20are%20offering%20to%20divers,%20showing%20what%20dive%20sites%20are%20potenitally%20part%20of%20it%20and%20let%20divers%20see%20what%20sea%20creatues%20have%20been%20spotted%20on%20those%20sites%20recently!
+                    %0D%0A%0D%0A%0D%0A%0D%0AThanks%20you%20for%20being%20a%20valued%20memeber%20of%20the%20Scuba%20SEAsons%20community%20we%20hope%20that%20%20the%20partner%20features%20will%20help%20to%20grow%20your%20busines
+                    %0D%0A%0D%0A%0D%0A%0D%0ASincerely,%20the%20Scuba%20SEAsons%20team
+                   `}
+                  >
+                    Send Congrats Email
+                  </a>
+                </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
                   <Fab color="primary" aria-label="add">
                     <TaskAltIcon
@@ -155,14 +168,15 @@ const PartnerRequestTable = React.memo(() => {
                     />
                   </Fab>
                 </TableCell>
+
+                 {/* need email of user who applied  */}
                 <TableCell align="center" style={{ height: 10 }}>
                   <a
-                    href={`mailto:scubaseasons@gmail.com?subject=Update%20Regarding%20Your%20Scuba%20SEAsons%20Partner%20Account%20Application&body=Congrats!%20Your%20Scuba%20SEAsons%20partner%20account%20upgrade%20account%20application%20has%20been%20approved!%0D%0A%0D%0A%0D%0A%0D%0AOn%20your%20next%20login%20you%20will%20see%20that%20you%20now%20have%20access%20to%20our%20partner%20features%20including%20the%20Trip%20creator!%0D%0A%0D%0A%0D%0A%0D%0AThis%20feature%20let's%20you%20register%20trips%20you%20are%20offering%20to%20divers,%20showing%20what%20dive%20sites%20are%20potenitally%20part%20of%20it%20and%20let%20divers%20see%20what%20sea%20creatues%20have%20been%20spotted%20on%20those%20sites%20recently!
-                    %0D%0A%0D%0A%0D%0A%0D%0AThanks%20you%20for%20being%20a%20valued%20memeber%20of%20the%20Scuba%20SEAsons%20community%20we%20hope%20that%20%20the%20partner%20features%20will%20help%20to%20grow%20your%20busines
-                    %0D%0A%0D%0A%0D%0A%0D%0ASincerely,%20the%20Scuba%20SEAsons%20team
+                    href={`mailto:${req.userEmail}?subject=Update%20Regarding%20Your%20Scuba%20SEAsons%20Partner%20Account%20Application&body=Hello%20Your%20Scuba%20SEAsons%20partner%20account%20upgrade%20account%20application%20has%20been%20declined%0D%0A%0D%0A%0D%0A%0D%0AWe%20were%20unable%20to%20definitively%20determine%20that%20your%20business%20is%20a%20compatible%20(diving%20related)%20business.%0D%0A%0D%0A%0D%0A%0D%0AIf%20you%20would%20like%20to%20challenge%20this%20result%20please%20reply%20to%20this%20email%20with%20further%20evidence%20that%20shows%20that%20your%20business%20actively%20serves%20the%20diving%20community.
+                    %0D%0A%0D%0A%0D%0A%0D%0AThanks,%20the%20Scuba%20SEAsons%20team
                    `}
                   >
-                    Send Congrats Email
+                    Send Sorry Email
                   </a>
                 </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
@@ -171,15 +185,6 @@ const PartnerRequestTable = React.memo(() => {
                       onClick={() => RejectRequest(req.userId)}
                     />
                   </Fab>
-                </TableCell>
-                <TableCell align="center" style={{ height: 10 }}>
-                  <a
-                    href={`mailto:scubaseasons@gmail.com?subject=Update%20Regarding%20Your%20Scuba%20SEAsons%20Partner%20Account%20Application&body=Hello%20Your%20Scuba%20SEAsons%20partner%20account%20upgrade%20account%20application%20has%20been%20declined%0D%0A%0D%0A%0D%0A%0D%0AWe%20were%20unable%20to%20definitively%20determine%20that%20your%20business%20is%20a%20compatible%20(diving%20related)%20business.%0D%0A%0D%0A%0D%0A%0D%0AIf%20you%20would%20like%20to%20challenge%20this%20result%20please%20reply%20to%20this%20email%20with%20further%20evidence%20that%20shows%20that%20your%20business%20actively%20serves%20the%20diving%20community.
-                    %0D%0A%0D%0A%0D%0A%0D%0AThanks,%20the%20Scuba%20SEAsons%20team
-                   `}
-                  >
-                    Send Sorry Email
-                  </a>
                 </TableCell>
               </TableRow>
             ))}
