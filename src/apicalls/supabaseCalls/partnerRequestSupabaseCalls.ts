@@ -54,12 +54,13 @@ export const updateProfileByUserId= async (userID : string, decision : boolean) 
   }
 };
 
-export const insertNewShop = async (businessName: string, lat: number, lng: number) => {
+export const insertNewShop = async (businessName: string, lat: number, lng: number, id: string) => {
   const { data, error } = await supabase.from("shops").insert([
     {
       orgName: businessName,
       lat: lat,
       lng: lng,
+      userId: id
     },
   ]);
 

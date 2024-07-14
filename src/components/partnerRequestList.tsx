@@ -39,7 +39,7 @@ const PartnerRequestTable = React.memo(() => {
     //add email to user (userProfile table)
     updatePartnerRequestByUserId(id, true);
     updateProfileByUserId(id, true);
-    insertNewShop(busName, lat, lng);
+    insertNewShop(busName, lat, lng, id);
   };
 
   const RejectRequest = async (id: string) => {
