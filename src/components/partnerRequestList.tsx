@@ -23,7 +23,6 @@ const PartnerRequestTable = React.memo(() => {
   useEffect(() => {
     const getPartnerRequests = async () => {
       partnerRequestsToVett = await partnerRequests();
-      console.log("???", partnerRequestsToVett)
       partnerRequestsToVett ? setPartnerReqs(partnerRequestsToVett) : [];
     };
 
@@ -159,7 +158,7 @@ const PartnerRequestTable = React.memo(() => {
                     <TaskAltIcon
                       onClick={() =>
                         ValidateRequest(
-                          req.userId,
+                          req.userid,
                           req.businessName,
                           req.latitude,
                           req.longitude
