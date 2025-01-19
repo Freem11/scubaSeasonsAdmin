@@ -8,6 +8,7 @@ import { ActiveSession } from './entities/session';
 import LoadingScreen from './LoadingScreen';
 import { UserProfileContext } from './contexts/userProfileContext';
 import { ActiveProfile } from './entities/profile';
+import AuthenticationPage from './authentication';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -61,7 +62,7 @@ function App() {
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
-      <AdminPage />
+         { !activeSession ? <AuthenticationPage /> : <AdminPage />}
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )

@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import Button from '../../reusables/button';
-import blackManta from '../../../images/blackManta.png';
-import googleIcon from '../../../images/google-color.png';
-import facebookIcon from '../../../images/facebook-color.png';
-import appleIcon from '../../../images/apple.png';
+import blackManta from '../../assets/blackManta.png';
+import googleIcon from '../../assets/google-color.png';
+import facebookIcon from '../../assets/facebook-color.png';
+import appleIcon from '../../assets/apple.png';
 import style from './style.module.scss';
 import screenData from '../../screenData.json';
 import { ActiveProfile } from '../../entities/profile';

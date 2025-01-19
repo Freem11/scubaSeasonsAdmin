@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import TextInput, { TextInputProps } from '../textInput';
-import Icon from '../../../icons/Icon';
+import Icon from '../../icons/Icon';
 import './style.scss';
+
 
 type SecureTextInputProps = TextInputProps & {
   secure?: boolean
