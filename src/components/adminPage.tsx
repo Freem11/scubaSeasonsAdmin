@@ -68,8 +68,8 @@ const AdminPage = () => {
     
     return (
       <Box sx={{ width: "100%", height: "100vh"}}>
-
-            <div className="col-3">
+          <div className="cols flex-column">
+            <div className="col-2">
               <Button
                 onClick={handleLogout}
                 className="btn-md bg-primary"
@@ -79,7 +79,7 @@ const AdminPage = () => {
                 {screenData.SettingsPage.logout}
               </Button>
             </div>
-
+          </div>
         <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
           <Tabs
             value={value}
