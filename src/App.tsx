@@ -4,17 +4,20 @@ import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
-import { ActiveSession } from './contexts/session';
+import { ActiveSession } from './entities/session';
 import LoadingScreen from './LoadingScreen';
+import { UserProfileContext } from './contexts/userProfileContext';
+import { ActiveProfile } from './entities/profile';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
+  const [profile, setProfile] = useState<ActiveProfile | null>(null);
 
   useEffect(() => {
     async function getUserData() {
       await supabase.auth.getSession().then((value) => {
-        localStorage.setItem('token', JSON.stringify(value.data.session));
+        localStorage.setItem('tokenAdmin', JSON.stringify(value.data.session));
         setActiveSession(value.data.session);
       });
     }
@@ -23,7 +26,7 @@ function App() {
   
   const handleStartup = async () => {
     try {
-      const valuless = localStorage.getItem('token');
+      const valuless = localStorage.getItem('tokenAdmin');
       if (valuless) {
         const value = JSON.parse(valuless);
         if (value && value.session) {
@@ -39,7 +42,7 @@ function App() {
         }
       }
       await sessionCheck();
-      localStorage.removeItem('token');
+      localStorage.removeItem('tokenAdmin');
     } catch (error) {
       console.log('no dice:', error);
     }
@@ -57,7 +60,9 @@ function App() {
   
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
+         <UserProfileContext.Provider value={{ profile, setProfile }}>
       <AdminPage />
+      </UserProfileContext.Provider>
     </SessionContext.Provider>
   )
 }

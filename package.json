@@ -12,16 +12,20 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.485.0",
     "@aws-sdk/s3-request-presigner": "^3.485.0",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
+    "@storybook/react": "^8.5.0",
     "@supabase/supabase-js": "^2.21.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.54.2",
     "react-photoswipe-gallery": "^3.0.1",
-    "reactstrap": "^9.1.1",
     "react-spring": "^9.7.2",
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3"
+    "react-toastify": "^11.0.3",
+    "reactstrap": "^9.1.1",
+    "spectre.css": "^0.5.9"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -32,6 +36,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.83.4",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   }
