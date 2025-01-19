@@ -8,7 +8,7 @@ import { animated, useSpring } from "react-spring";
 import DiveSiteVetting from "./diveSiteVetting";
 import PhotoVettingTable from "./photoVettingTable";
 import PartnerRequestTable from "./partnerRequestList";
-import SelectedPicContext from "../contexts/selectPicContext";
+import { SelectedPicContext } from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
 
@@ -83,7 +83,7 @@ const AdminPage = () => {
 
   const [selectedPic, setSelectedPic] = useState<string | null>(null);
   const fullScreenModalRef = useRef(null);
-  let screenHeightInital = window.innerHeight;
+  const screenHeightInital = window.innerHeight;
   const [windowHeight, setWindowHeight] = useState(screenHeightInital);
 
   window.addEventListener("resize", trackScreen);
@@ -98,11 +98,11 @@ const AdminPage = () => {
   });
 
   const animateFullScreenModal = () => {
-    let elements = document.getElementsByClassName("fullScreenModalDiv");
+    const elements = document.getElementsByClassName("fullScreenModalDiv");
     if (elements.length === 0) {
       return;
     }
-    let modalHeigth = elements[0].clientHeight;
+    const modalHeigth = elements[0].clientHeight;
 
     if (fullScreenModalYCoord === 0) {
       setFullScreenModalYCoord(

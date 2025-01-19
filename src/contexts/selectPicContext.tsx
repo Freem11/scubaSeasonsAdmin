@@ -5,13 +5,4 @@ type SelectedPicContextType = {
   setSelectedPic: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const SelectedPicContextState = {
-  selectedPic: null,
-  setSelectedPic: () => {},
-};
-
-const SelectedPicContext = createContext<SelectedPicContextType>(
-  SelectedPicContextState
-);
-
-export default SelectedPicContext;
+export const SelectedPicContext = createContext<SelectedPicContextType>({} as SelectedPicContextType);

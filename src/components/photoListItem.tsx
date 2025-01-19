@@ -12,7 +12,7 @@ import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
-import SelectedPicContext from "../contexts/selectPicContext";
+import { SelectedPicContext } from "../contexts/selectPicContext";
 
 const PhotoListItem = (props: any) => {
   const { id, photoFile, animal, date, lat, lng, setPhotoWait, animateFullScreenModal } = props;
@@ -20,12 +20,12 @@ const PhotoListItem = (props: any) => {
 
   let photoById: any;
 
-  let photoName = photoFile.split("/").pop();
+  const photoName = photoFile.split("/").pop();
 
   const ValidatePhoto = async (id: number) => {
     photoById = await grabPhotoWaitById(id);
 
-    let monthID = photoById[0].dateTaken.slice(5, 7);
+    const monthID = photoById[0].dateTaken.slice(5, 7);
 
     insertHeatPoint({
       lat: formVals.lat,
@@ -36,7 +36,7 @@ const PhotoListItem = (props: any) => {
       userName: photoById[0].userName,
     });
 
-    let photoInfo = {
+    const photoInfo = {
       photoFile: photoById[0].photoFile,
       label: formVals.animal,
       dateTaken: formVals.date,
@@ -49,14 +49,14 @@ const PhotoListItem = (props: any) => {
 
     photoById ? await insertphoto(photoInfo, monthID) : [];
     await deletePhotoWait(id);
-    let photosToVett = await photoWaits();
+    const photosToVett = await photoWaits();
     setPhotoWait(photosToVett);
   };
 
   const RejectPhoto = async (id: number) => {
     await removePhoto({ filePath: animal, fileName: photoFile });
     await deletePhotoWait(id);
-    let photosToVett = await photoWaits();
+    const photosToVett = await photoWaits();
     setPhotoWait(photosToVett);
   };
 

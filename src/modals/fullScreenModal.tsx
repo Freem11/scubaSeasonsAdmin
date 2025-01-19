@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FormGroup, Button } from "reactstrap";
 import "./fullScreenModal.css";
-import SelectedPicContext from "../contexts/selectPicContext";
+import { SelectedPicContext } from "../contexts/selectPicContext";
 import CloseIcon from "@mui/icons-material/Close";
 
 const FullScreenModal = (props: any) => {
@@ -15,14 +15,14 @@ const FullScreenModal = (props: any) => {
       return;
     }
 
-    let screenWidthInital = window.innerWidth;
-    let screenHeitghInital = window.innerHeight;
+    const screenWidthInital = window.innerWidth;
+    const screenHeitghInital = window.innerHeight;
 
     const img = new Image();
     img.src = `https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${selectedPic}`
     const imageBitmap = await createImageBitmap(img)
-    let ratio = imageBitmap.height/imageBitmap.width
-    let inverseRatio = imageBitmap.width/imageBitmap.height
+    const ratio = imageBitmap.height/imageBitmap.width
+    const inverseRatio = imageBitmap.width/imageBitmap.height
 
     let newWidth;
     let newHeigth;
