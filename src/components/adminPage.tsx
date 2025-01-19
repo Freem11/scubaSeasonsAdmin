@@ -11,8 +11,15 @@ import PartnerRequestTable from "./partnerRequestList";
 import { SelectedPicContext } from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
+import { signOut } from "../apicalls/supabaseCalls/authenticateSupabaseCalls";
+import { SessionContext } from "../contexts/sessionContext";
+import Button from "../reusables/button";
+import Icon from "../icons/Icon";
+import screenData from '../screenData.json';
 
 const AdminPage = () => {
+
+  const { setActiveSession } = React.useContext(SessionContext);
 
   function TabPanel(props: any) {
     const { children, value, index, ...other } = props;
@@ -52,8 +59,27 @@ const AdminPage = () => {
     };
 
 
+    const handleLogout = async () => {
+      await localStorage.removeItem('tokenAdmin');
+      await signOut();
+      setActiveSession(null);
+    };
+
+    
     return (
       <Box sx={{ width: "100%", height: "100vh"}}>
+
+            <div className="col-3">
+              <Button
+                onClick={handleLogout}
+                className="btn-md bg-primary"
+                iconRight={<Icon name="chevron-right" />}
+                type="button"
+              >
+                {screenData.SettingsPage.logout}
+              </Button>
+            </div>
+
         <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
           <Tabs
             value={value}
