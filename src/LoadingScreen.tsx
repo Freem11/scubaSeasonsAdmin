@@ -1,9 +1,7 @@
-import React from 'react';
 import './loadingScreen.css';
 import MantaRay from './assets/Matt_Manta_White.png';
 
-export default function LoadingScreen() {
-  return (
+const LoadingScreen = () => (
     <div className="screenDiv">
       <div className="containerMain">
         <img src={MantaRay} className="mantaLogo"></img>
@@ -12,4 +10,5 @@ export default function LoadingScreen() {
       </div>
     </div>
   );
-}
+
+export default LoadingScreen;

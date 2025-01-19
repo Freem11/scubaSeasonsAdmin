@@ -4,8 +4,8 @@ import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
-import LoadingScreen from './LoadingScreen';
 import { ActiveSession } from './contexts/session';
+import LoadingScreen from './LoadingScreen';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -57,7 +57,7 @@ function App() {
   
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
-    <AdminPage />
+      <AdminPage />
     </SessionContext.Provider>
   )
 }
