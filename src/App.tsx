@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
-import AdminPage from './components/adminPage';
+// import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
@@ -9,6 +9,7 @@ import LoadingScreen from './LoadingScreen';
 import { UserProfileContext } from './contexts/userProfileContext';
 import { ActiveProfile } from './entities/profile';
 import AuthenticationPage from './authentication';
+import LayoutMainView from './components/layout';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -62,7 +63,8 @@ function App() {
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
-         { !activeSession ? <AuthenticationPage /> : <AdminPage />}
+         {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
+         { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )
