@@ -1,5 +1,6 @@
 import { SeaLifePhoto } from "../../entities/seaLifePhoto";
 import readableDate from "../../helpers/readableDate";
+import Button from "../../reusables/button";
 
 
 type SeaLifePhotoEvalViewProps = {
@@ -26,7 +27,33 @@ return (
                         <h6 style={{color: "black"}}>Lat: {props.photoRecord?.latitude}</h6>
                         <h6 style={{color: "black"}}>Lng: {props.photoRecord?.longitude}</h6>
                     </div>
-                </div>
+                    </div>
+
+                    <div className="cols mt-8" style={{width: '50vw', display: 'flex', flexDirection: 'row', justifyContent: "space-between", alignItems: 'center'}}>
+                       
+                       <div className="col-3">
+                       <Button
+                        className="btn-md bg-primary"
+                        type="button"
+                        >Approve</Button>
+                       </div>
+                     
+                       <div className="col-3">
+                        <Button
+                        className="btn-md"
+                        type="button"
+                        >Reject</Button>
+                         </div>
+                        
+                        <div className="col-3">
+                           <Button
+                        className="btn-md bg-primary"
+                        type="button"
+                        >Dive Site Header Photo</Button>
+                             </div>
+                   </div>
+
+               
 
     </div>
 )
