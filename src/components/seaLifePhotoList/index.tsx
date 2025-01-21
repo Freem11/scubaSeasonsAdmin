@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { getAllPhotoWaits } from "../../apicalls/supabaseCalls/photoWaitSupabaseCalls";
-import SeaLifePhotoListView, { SeaLifePhoto } from "./view";
+import SeaLifePhotoListView from "./view";
+import { SeaLifePhotosContext } from "../../contexts/seaLifePhotosContext";
 
 export default function SeaLifePhotoList() {
-    const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
+    const {photoRecords, setPhotoRecords} = useContext(SeaLifePhotosContext)
 
     useEffect(() => {
         getSeaLifePhotos()

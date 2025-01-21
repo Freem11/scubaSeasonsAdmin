@@ -9,7 +9,6 @@
 .ssrc-text-input {
   height: var(--ssrc-text-input-height);
   display: flex;
-  border-bottom: 1px solid var(--ssrc-text-input-border-color);
   color: var(--ssrc-text-input-color);
   position: relative;
 
@@ -20,6 +19,8 @@
   input {
     border: none;
     width: 100%;
+    color: #000;
+    font-weight: 300;
   }
 
   input:focus {
