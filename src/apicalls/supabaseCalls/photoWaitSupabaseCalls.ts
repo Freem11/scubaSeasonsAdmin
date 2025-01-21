@@ -70,3 +70,17 @@ export const deletePhotoWait = async (id: number) => {
     console.log(data);
   }
 };
+
+
+export const getAllPhotoWaits = async () => {
+const { data, error } = await supabase.rpc('get_photowaits_with_user');
+
+if (error) {
+  console.log('couldn\'t do it Photo-Waits-All,', error);
+  return [];
+}
+
+if (data) {
+  return data;
+}
+}

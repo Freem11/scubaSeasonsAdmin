@@ -10,11 +10,15 @@ import { UserProfileContext } from './contexts/userProfileContext';
 import { ActiveProfile } from './entities/profile';
 import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
+import { SelectedSeaLifeContext } from './contexts/selectSeaLifePhotoContext';
+import { SeaLifePhoto } from './entities/seaLifePhoto';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
+  const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
+
 
   useEffect(() => {
     async function getUserData() {
@@ -63,8 +67,10 @@ function App() {
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
+          <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+         </SelectedSeaLifeContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )

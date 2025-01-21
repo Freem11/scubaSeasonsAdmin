@@ -24,7 +24,7 @@ const Tabs = (props: TabsProps) => {
   };
 
   return (
-    <div style={{width: '100%'}} className={`ssrc-tabs ${props.className ?? ''}`}>
+    <div className={`ssrc-tabs ${props.className ?? ''}`}>
       <ul className={`ssrc-tabs_items ${props.fullWidth ? 'full-width' : ''}`}>
         {props?.data?.map((tab, index) => {
           return (

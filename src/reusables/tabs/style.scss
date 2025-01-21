@@ -1,7 +1,9 @@
+@import '../../styles/variables.scss';
+
 :root {
   --ssrc-tabs-underline-width: 1px;
   --ssrc-tabs-underline-color: red;
-  --ssrc-tabs-active-underline-width: .1rem;
+  --ssrc-tabs-active-underline-width: 0rem;
   --ssrc-tabs-active-underline-color: blue;
   --ssrc-tabs-active-text-color: blue;
   --ssrc-tabs-focus-text-color: blue;
@@ -18,7 +20,9 @@
 
 .ssrc-tabs_items {
   align-items: center;
-  border-bottom: var(--ssrc-tabs-underline-width) solid var(--ssrc-tabs-underline-color);
+  border-bottom: var(--ssrc-tabs-underline-width) solid $primaryBlue;
+  color: $primaryBlue;
+  border-color: $primaryBlue;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
