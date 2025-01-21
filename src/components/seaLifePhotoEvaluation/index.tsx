@@ -8,9 +8,10 @@ import { Form } from "./form";
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import { SeaLifePhotosContext } from "../../contexts/seaLifePhotosContext";
 import revertedDate from "../../helpers/revertedDate";
+import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
 
 export default function SeaLifePhotoEval() {
-  const {selectedSeaLife} = useContext(SelectedSeaLifeContext)
+  const { selectedSeaLife, setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
   const { setPhotoRecords } = useContext(SeaLifePhotosContext)
     
   const ValidatePhoto = async (id: number | undefined, formData: Form) => {
@@ -41,13 +42,26 @@ export default function SeaLifePhotoEval() {
       await deletePhotoWait(id);
       const photosToVett = await getAllPhotoWaits();
       setPhotoRecords(photosToVett);
+      setSelectedSeaLife(null)
     }
   }
+
+  const RejectPhoto = async (id: number | undefined) => {
+    if(id){
+      await removePhoto({ filePath: selectedSeaLife?.label, fileName: selectedSeaLife?.photofile });
+      await deletePhotoWait(id);
+      const photosToVett = await getAllPhotoWaits();
+      setPhotoRecords(photosToVett);
+      setSelectedSeaLife(null)
+    }
+  
+  };
 
         return (
             <SeaLifePhotoEvalView 
             photoRecord={selectedSeaLife}
             validatePhoto={ValidatePhoto}
+            rejectPhoto={RejectPhoto}
             values={{
               seaCreature: selectedSeaLife?.label,
               latitude: selectedSeaLife?.latitude,

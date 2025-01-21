@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import readableDate from "../../helpers/readableDate";
 import { SelectedSeaLifeContext } from "../../contexts/selectSeaLifePhotoContext";
 
 export type SeaLifePhoto = {
