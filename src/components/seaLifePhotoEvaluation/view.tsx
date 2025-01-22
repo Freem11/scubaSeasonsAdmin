@@ -8,7 +8,9 @@ import { useState } from "react";
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
     photoRecord:       SeaLifePhoto | null
-    validatePhoto:     (id: number| undefined, formDarta: Form) => void;
+    validatePhoto:     (id: number| undefined, formData: Form) => void;
+    rejectPhoto:       (id: number| undefined) => void;
+    diveSiteHeader:    (id: number | undefined, formData: Form) => void;
     onSubmit:          (data: Form) => void
   };
 
@@ -33,6 +35,8 @@ export default function SeaLifePhotoEvalView(props: SeaLifePhotoEvalViewProps) {
       const onSubmit = (data: Form) => {
         // toast.dismiss();
         {buttonPressed === 1 &&  props.validatePhoto(props.photoRecord?.id, data)} 
+        {buttonPressed === 2 &&  props.rejectPhoto(props.photoRecord?.id)}
+        {buttonPressed === 3 &&  props.diveSiteHeader(props.photoRecord?.id, data)}
       };
     
 return (
@@ -87,17 +91,19 @@ return (
                      
                        <div className="col-3">
                         <Button
+                        onClick={() => setButtonPressed(2)}
                         className="btn-md"
-                        type="button"
+                        type="submit"
                         >Reject</Button>
                          </div>
                         
                         <div className="col-3">
-                           <Button
+                        <Button
+                         onClick={() => setButtonPressed(3)}
                         className="btn-md bg-primary"
-                        type="button"
+                        type="submit"
                         >Dive Site Header Photo</Button>
-                             </div>
+                        </div>
                    </div>
 
                

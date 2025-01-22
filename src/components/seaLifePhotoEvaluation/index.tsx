@@ -9,6 +9,7 @@ import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import { SeaLifePhotosContext } from "../../contexts/seaLifePhotosContext";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
+import { getDiveSiteByCoordinates, updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 
 export default function SeaLifePhotoEval() {
   const { selectedSeaLife, setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
@@ -54,7 +55,16 @@ export default function SeaLifePhotoEval() {
       setPhotoRecords(photosToVett);
       setSelectedSeaLife(null)
     }
-  
+  }
+
+    const DiveSiteHeader = async (id: number | undefined, formData: Form) => {
+      if(id){
+        await updateDiveSite(formData.latitude,formData.longitude, selectedSeaLife?.photofile)
+        await deletePhotoWait(id);
+        const photosToVett = await getAllPhotoWaits();
+        setPhotoRecords(photosToVett);
+        setSelectedSeaLife(null)
+      }
   };
 
         return (
@@ -62,6 +72,7 @@ export default function SeaLifePhotoEval() {
             photoRecord={selectedSeaLife}
             validatePhoto={ValidatePhoto}
             rejectPhoto={RejectPhoto}
+            diveSiteHeader={DiveSiteHeader}
             values={{
               seaCreature: selectedSeaLife?.label,
               latitude: selectedSeaLife?.latitude,

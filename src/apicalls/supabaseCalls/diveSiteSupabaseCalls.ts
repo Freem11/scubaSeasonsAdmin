@@ -112,3 +112,39 @@ if (data) {
   return data;
 }
 };
+
+export const getDiveSiteByCoordinates = async (lat: number | undefined, lng: number | undefined) => {
+
+  const { data, error } = await supabase
+  .from("diveSites")
+  .select()
+  .eq("lat", lat)
+  .eq("lng", lng)
+
+if (error) {
+  console.log("couldn't do it 2,", error);
+  return [];
+}
+
+if (data) {
+  return data;
+}
+};
+
+
+export const updateDiveSite = async (lat: number | undefined, lng: number | undefined, photoFile: string | undefined) => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .update({ diveSiteProfilePhoto: photoFile })
+    .eq('lat', lat)
+    .eq('lng', lng);
+
+  if (error) {
+    console.log('couldn\'t do it 3,', error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};
