@@ -9,14 +9,14 @@ import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import { SeaLifePhotosContext } from "../../contexts/seaLifePhotosContext";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
-import { getDiveSiteByCoordinates, updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 
 export default function SeaLifePhotoEval() {
   const { selectedSeaLife, setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
   const { setPhotoRecords } = useContext(SeaLifePhotosContext)
     
   const ValidatePhoto = async (id: number | undefined, formData: Form) => {
-    if (id){
+    if (id && formData.date){
       const monthID = selectedSeaLife?.dateTaken.slice(5, 7);
       const convertedDate = revertedDate(formData.date)
 

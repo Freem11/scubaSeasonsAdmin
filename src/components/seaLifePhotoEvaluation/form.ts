@@ -2,9 +2,9 @@ import { FormValidationRules } from "../../forms/form";
 
 export interface Form {
   seaCreature?:     string
-  latitude?:    number
-  longitude?:   number
-  date: string
+  latitude?:        number
+  longitude?:       number
+  date?:            string 
 }
 
 

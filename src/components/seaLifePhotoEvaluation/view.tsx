@@ -11,7 +11,6 @@ type SeaLifePhotoEvalViewProps = {
     validatePhoto:     (id: number| undefined, formData: Form) => void;
     rejectPhoto:       (id: number| undefined) => void;
     diveSiteHeader:    (id: number | undefined, formData: Form) => void;
-    onSubmit:          (data: Form) => void
   };
 
 export default function SeaLifePhotoEvalView(props: SeaLifePhotoEvalViewProps) {
