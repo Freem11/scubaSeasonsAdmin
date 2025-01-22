@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
-// import AdminPage from './components/adminPage';
+import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
