@@ -1,0 +1,27 @@
+@import "../../styles/variables.scss";
+
+.textInputTitle {
+    text-align: center;
+    background-color: transparent;
+    font-size: 24px;
+    color: darkgrey;
+    text-align: center;
+  }
+
+.textInput {
+  text-align: center;
+  background-color: transparent;
+  font-size: 16px;
+  color: darkgrey;
+}
+
+
+
+.tagBox {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}

@@ -1,4 +1,50 @@
+import { DiveSiteWithUserName } from "../../entities/diveSite";
+import { GPSBubble } from "../../entities/GPSBubble";
+import { Pagination } from "../../entities/pagination";
 import { supabase } from "../supabase";
+
+export const getDiveSitesBasic = async (bubble: GPSBubble) => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .select('id,lat,lng,name')
+    .gte('lat', bubble.minLat)
+    .gte('lng', bubble.minLng)
+    .lte('lat', bubble.maxLat)
+    .lte('lng', bubble.maxLng);
+
+  if (error || !data) {
+    console.log('couldn\'t do it,', error);
+    return [];
+  }
+
+  return data as DiveSiteWithUserName[];
+};
+
+export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination) => {
+  const builder = supabase.rpc('get_divesites_with_username', {
+    max_lat: bubble.maxLat,
+    min_lat: bubble.minLat,
+    max_lng: bubble.maxLng,
+    min_lng: bubble.minLng,
+    userid:  filter?.userid ?? '',
+  });
+
+  if (pagination?.page) {
+    builder.range(pagination.from(), pagination.to());
+  }
+
+  const { data, error } = await builder;
+
+  if (error) {
+    console.log('couldn\'t do it 27,', error);
+    return [];
+  }
+
+  if (data) {
+    // console.log(data)
+    return data;
+  }
+};
 
 export const diveSites = async (GPSBubble: any) => {
 
