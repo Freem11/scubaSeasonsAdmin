@@ -3,6 +3,7 @@ import { SelectedDiveSiteContext } from "../../contexts/selectDiveSiteContext"
 import { DiveSite } from "../../entities/diveSite";
 import style from './styles.module.scss';
 import { MapContext } from "../googleMap/mapContext";
+import { SelectedSeaLifeContext } from "../../contexts/selectSeaLifePhotoContext";
 
 type DiveSiteListProps = {
     diveSitesList: DiveSite[] | null
@@ -11,8 +12,10 @@ type DiveSiteListProps = {
 export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setInitialPoint, mapRef } = useContext(MapContext);
     const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
+    const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
 
     const setupMap = (record: DiveSite) => {
+        setSelectedSeaLife(null)
         setInitialPoint([record?.lat, record?.lng]);
         setSelectedDiveSite(record)
         mapRef?.panTo({ lat: record?.lat, lng: record?.lng });

@@ -3,7 +3,6 @@ import { getAllDiveSiteWaits } from "../../apicalls/supabaseCalls/diveSiteWaitSu
 import DiveSiteListView from "./view";
 import { DiveSitesContext } from "../../contexts/diveSitesContext";
 
-
 export default function DiveSiteList() {
     const { diveSites, setDiveSites } = useContext(DiveSitesContext)
 
