@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
 import AdminPage from './components/adminPage';
 import './App.css'
@@ -12,14 +12,18 @@ import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
 import { SelectedSeaLifeContext } from './contexts/selectSeaLifePhotoContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
+import { DiveSite } from './entities/diveSite';
+import { SelectedDiveSiteContext } from './contexts/selectDiveSiteContext';
+import { SitesArrayContext } from './contexts/sitesArrayContext';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
-
-
+  const [selectedDiveSite, setSelectedDiveSite] = useState<DiveSite | null>(null)
+  const [sitesArray, setSitesArray] = useState<number[]>([]);
+  
   useEffect(() => {
     async function getUserData() {
       await supabase.auth.getSession().then((value) => {
@@ -67,10 +71,14 @@ function App() {
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
+          <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
+          <SelectedDiveSiteContext.Provider value={{ selectedDiveSite, setSelectedDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
          </SelectedSeaLifeContext.Provider>
+         </SelectedDiveSiteContext.Provider>
+         </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )

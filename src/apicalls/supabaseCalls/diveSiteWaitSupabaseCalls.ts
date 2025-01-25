@@ -71,3 +71,18 @@ if (data) {
   console.log(data);
 }
 }
+
+
+export const getAllDiveSiteWaits = async () => {
+  const { data, error } = await supabase.rpc('get_divesitewaits_with_user');
+  
+  if (error) {
+    console.log('couldn\'t do it DiveSite-Waits-All,', error);
+    return [];
+  }
+  
+  if (data) {
+    return data;
+  }
+  }
+

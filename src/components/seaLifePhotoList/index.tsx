@@ -3,7 +3,7 @@ import { getAllPhotoWaits } from "../../apicalls/supabaseCalls/photoWaitSupabase
 import SeaLifePhotoListView from "./view";
 import { SeaLifePhotosContext } from "../../contexts/seaLifePhotosContext";
 
-export default function SeaLifePhotoList() {
+export default function SeaLifePhotoLis() {
     const {photoRecords, setPhotoRecords} = useContext(SeaLifePhotosContext)
 
     useEffect(() => {

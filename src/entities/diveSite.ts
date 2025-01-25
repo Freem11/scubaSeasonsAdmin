@@ -1,3 +1,14 @@
+export type DiveSite = {
+  id: number
+  created_at: string
+  name: string
+  lat: number
+  lng: number
+  userid: string
+  username: null | string
+  newusername: string
+};
+
 export type DiveSiteWithUserName = {
   id:                   number
   name:                 string
@@ -11,4 +22,11 @@ export type DiveSiteWithUserName = {
   divesitebio:          string
   newusername:          string
   divesiteprofilephoto: string
+};
+
+export type DiveSiteBasic = {
+  id:   number
+  name: string
+  lat:  number
+  lng:  number
 };
