@@ -9,12 +9,13 @@ type DiveSiteListProps = {
   };
 
 export default function DiveSiteListView(props: DiveSiteListProps) {
-    const { setInitialPoint } = useContext(MapContext);
+    const { setInitialPoint, mapRef } = useContext(MapContext);
     const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
 
     const setupMap = (record: DiveSite) => {
         setInitialPoint([record?.lat, record?.lng]);
         setSelectedDiveSite(record)
+        mapRef?.panTo({ lat: record?.lat, lng: record?.lng });
     };
 
 return (

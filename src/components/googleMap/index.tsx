@@ -5,12 +5,14 @@ import { DiveShopContext } from '../../contexts/diveShopContext';
 import { SitesArrayContext } from '../../contexts/sitesArrayContext';
 import { debounce } from '../../reusables/_helpers/debounce';
 import MapView from './view';
+import { DiveSitesContext } from '../../contexts/diveSitesContext';
 
 
 export default function MapLoader() {
   const mapContext = useContext(MapContext);
   const [tempMarker, setTempMarker] = useState<{ lat: number, lng: number } | null>(null);
   const { sitesArray } = useContext(SitesArrayContext);
+  const { diveSites } = useContext(DiveSitesContext)
 
   const diveSiteContext = useContext(DiveSiteContext);
   const diveShopContext = useContext(DiveShopContext);
@@ -58,8 +60,8 @@ export default function MapLoader() {
       tempMarker={tempMarker}
       onLoad={handleOnLoad}
       handleBoundsChange={handleBoundsChange}
-      diveSites={diveSiteContext.basicCollection.items}
-      diveShops={diveShopContext.collection.items}
+      diveSites={diveSites}
+      // diveShops={diveShopContext.collection.items}
     />
   );
 }

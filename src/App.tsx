@@ -15,6 +15,7 @@ import { SeaLifePhoto } from './entities/seaLifePhoto';
 import { DiveSite } from './entities/diveSite';
 import { SelectedDiveSiteContext } from './contexts/selectDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
+import { MapContextProvider } from './components/googleMap/mapContextProvider';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -74,8 +75,10 @@ function App() {
           <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <SelectedDiveSiteContext.Provider value={{ selectedDiveSite, setSelectedDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
+            <MapContextProvider>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+         </MapContextProvider>
          </SelectedSeaLifeContext.Provider>
          </SelectedDiveSiteContext.Provider>
          </SitesArrayContext.Provider>
