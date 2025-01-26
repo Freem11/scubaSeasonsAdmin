@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { SelectedSeaLifeContext } from "../../contexts/selectSeaLifePhotoContext";
+import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
 import { SeaLifePhoto } from "../../entities/seaLifePhoto";
 import style from './styles.module.scss';
-import { SelectedDiveSiteContext } from "../../contexts/selectDiveSiteContext";
+import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 
 type SeaLifePhotoListProps = {
     photoRecords: SeaLifePhoto[] | null
@@ -10,11 +10,11 @@ type SeaLifePhotoListProps = {
 
 export default function SeaLifePhotoListView(props: SeaLifePhotoListProps) {
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
-    const { setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
+    const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
 
     const setupSeaLife = (record: SeaLifePhoto) => {
         setSelectedSeaLife(record)
-        setSelectedDiveSite(null)
+        setSelectedPendingDiveSite(null)
     };
 
 return (

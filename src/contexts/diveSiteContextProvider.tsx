@@ -7,6 +7,7 @@ import { GPSBubble } from '../entities/GPSBubble';
 import { getDiveSitesBasic, getDiveSitesWithUser } from '../apicalls/supabaseCalls/diveSiteSupabaseCalls';
 import { Pagination } from '../entities/pagination';
 
+
 export type DiveSiteContextType = {
   // all dive sites without pagination with minimum info just to render it on the map
   basicCollection:  PagedCollection<DiveSiteBasic>

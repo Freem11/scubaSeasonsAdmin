@@ -1,29 +1,29 @@
-import { useContext, useEffect } from "react";
-import { SelectedDiveSiteContext } from "../../contexts/selectDiveSiteContext"
+import { useContext } from "react";
+import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext"
 import { DiveSite } from "../../entities/diveSite";
 import style from './styles.module.scss';
 import { MapContext } from "../googleMap/mapContext";
-import { SelectedSeaLifeContext } from "../../contexts/selectSeaLifePhotoContext";
+import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
 
 type DiveSiteListProps = {
-    diveSitesList: DiveSite[] | null
+    pendingDiveSitesList: DiveSite[] | null
   };
 
 export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setInitialPoint, mapRef } = useContext(MapContext);
-    const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
+    const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
 
     const setupMap = (record: DiveSite) => {
         setSelectedSeaLife(null)
         setInitialPoint([record?.lat, record?.lng]);
-        setSelectedDiveSite(record)
+        setSelectedPendingDiveSite(record)
         mapRef?.panTo({ lat: record?.lat, lng: record?.lng });
     };
 
 return (
     <div className="mt-4 flex-column">
-    {props.diveSitesList && props.diveSitesList.map((record: DiveSite) => {
+    {props.pendingDiveSitesList && props.pendingDiveSitesList.map((record: DiveSite) => {
         return (
         <div className={style.cardMain} key={record.id} onClick={() => setupMap(record)}>
             <div className='py-2'>

@@ -1,21 +1,17 @@
 import { useContext } from "react";
-import { SelectedDiveSiteContext } from "../../contexts/selectDiveSiteContext";
+import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 import DiveSiteEvalView from "./view";
-import { DiveSitesContext } from "../../contexts/diveSitesContext";
-
 
 export default function DiveSiteEval() {
-  const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
-  const { setDiveSites } = useContext(DiveSitesContext)    
-
+  const { selectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
 
         return (
             <DiveSiteEvalView 
-            diveSite={selectedDiveSite}
+            diveSite={selectedPendingDiveSite}
             values={{
-              siteName: selectedDiveSite?.name,
-              latitude: selectedDiveSite?.lat,
-              longitude: selectedDiveSite?.lng,
+              siteName: selectedPendingDiveSite?.name,
+              latitude: selectedPendingDiveSite?.lat,
+              longitude: selectedPendingDiveSite?.lng,
             }}
             />
 

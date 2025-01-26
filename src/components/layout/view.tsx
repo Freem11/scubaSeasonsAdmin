@@ -4,13 +4,13 @@ import DiveSiteEval from "../diveSiteEvaluation";
 import DiveSiteList from "../diveSiteList";
 import SeaLifePhotoEval from "../seaLifePhotoEvaluation";
 import SeaLifePhotoList from "../seaLifePhotoList";
-import { SelectedSeaLifeContext } from "../../contexts/selectSeaLifePhotoContext";
-import { SelectedDiveSiteContext } from "../../contexts/selectDiveSiteContext";
+import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
+import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 
 
 export default function LayoutMainView() {
     const {selectedSeaLife} = useContext(SelectedSeaLifeContext)
-    const {selectedDiveSite} = useContext(SelectedDiveSiteContext)
+    const {selectedPendingDiveSite} = useContext(SelectedPendingDiveSiteContext)
 return (
     <div className="container-fluid">
         <div className="cols col-gapless">
@@ -25,7 +25,7 @@ return (
      </div>
      <div className="col-8" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
             {selectedSeaLife && <SeaLifePhotoEval/>}
-            {selectedDiveSite && <DiveSiteEval/>}
+            {selectedPendingDiveSite && <DiveSiteEval/>}
      </div>
 
         </div>

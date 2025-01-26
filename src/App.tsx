@@ -10,10 +10,10 @@ import { UserProfileContext } from './contexts/userProfileContext';
 import { ActiveProfile } from './entities/profile';
 import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
-import { SelectedSeaLifeContext } from './contexts/selectSeaLifePhotoContext';
+import { SelectedSeaLifeContext } from './contexts/seaLifeEvals/selectedSeaLifePhotoContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
 import { DiveSite } from './entities/diveSite';
-import { SelectedDiveSiteContext } from './contexts/selectDiveSiteContext';
+import { SelectedPendingDiveSiteContext } from './contexts/diveSiteEvals/selectedDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
 import { MapContextProvider } from './components/googleMap/mapContextProvider';
 
@@ -22,7 +22,7 @@ function App() {
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
-  const [selectedDiveSite, setSelectedDiveSite] = useState<DiveSite | null>(null)
+  const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<number[]>([]);
   
   useEffect(() => {
@@ -73,14 +73,14 @@ function App() {
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
           <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
-          <SelectedDiveSiteContext.Provider value={{ selectedDiveSite, setSelectedDiveSite }}>
+          <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
             <MapContextProvider>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
          </MapContextProvider>
          </SelectedSeaLifeContext.Provider>
-         </SelectedDiveSiteContext.Provider>
+         </SelectedPendingDiveSiteContext.Provider>
          </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>

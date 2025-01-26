@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import { getAllDiveSiteWaits } from "../../apicalls/supabaseCalls/diveSiteWaitSupabaseCalls";
 import DiveSiteListView from "./view";
-import { DiveSitesContext } from "../../contexts/diveSitesContext";
+import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
 
 export default function DiveSiteList() {
-    const { diveSites, setDiveSites } = useContext(DiveSitesContext)
+    const { pendingDiveSites, setPendingDiveSites } = useContext(PendingDiveSitesContext)
 
     useEffect(() => {
         getSeaLifePhotos()
@@ -14,7 +14,7 @@ export default function DiveSiteList() {
         try {
           const records = await getAllDiveSiteWaits();
           if (records) {
-            setDiveSites(records);
+            setPendingDiveSites(records);
           }
         } catch (e) {
           console.log({ title: 'Error', message: (e as Error).message });
@@ -22,7 +22,7 @@ export default function DiveSiteList() {
       };
     
 return (
-    <DiveSiteListView diveSitesList={diveSites}/>
+    <DiveSiteListView pendingDiveSitesList={pendingDiveSites}/>
 
 )
 
