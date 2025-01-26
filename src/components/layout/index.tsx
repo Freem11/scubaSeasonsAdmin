@@ -4,6 +4,7 @@ import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesC
 import { SeaLifePhoto } from "../../entities/seaLifePhoto";
 import LayoutMainView from "./view";
 import { DiveSite } from "../../entities/diveSite";
+import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider";
 
 export default function LayoutMain() {
     const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
@@ -11,11 +12,13 @@ export default function LayoutMain() {
 
 
 return (
+    <DiveSiteContextProvider>
     <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
     <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
     <LayoutMainView/>
     </SeaLifePhotosContext.Provider>
     </PendingDiveSitesContext.Provider>
+    </DiveSiteContextProvider>
 )
 
 }
