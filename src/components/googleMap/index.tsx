@@ -14,9 +14,6 @@ export default function MapLoader() {
  
   const diveSiteContext = useContext(DiveSiteContext);
   const diveShopContext = useContext(DiveShopContext);
-
-console.log('diveSiteContext', diveSiteContext.basicCollection)
-  // getDiveSitesBasic()
   
   const center = useMemo(() => ({
     lat: mapContext.initialPoint[0],
@@ -62,6 +59,7 @@ console.log('diveSiteContext', diveSiteContext.basicCollection)
       onLoad={handleOnLoad}
       handleBoundsChange={handleBoundsChange}
       diveSites={diveSiteContext.basicCollection.items}
+      proposedSites={sitesArray}
       // diveShops={diveShopContext.collection.items}
     />
   );

@@ -28,6 +28,7 @@ type MapViewProps = {
   handleBoundsChange: () => void
   diveSites?:         DiveSiteBasic[] | null
   diveShops?:         DiveShop[] | null
+  proposedSites?:      DiveSiteBasic[] | null
 };
 
 export default function MapView(props: MapViewProps) {
@@ -81,6 +82,7 @@ export default function MapView(props: MapViewProps) {
       const points = [] as Supercluster.PointFeature<ClusterProperty>[];
       props.diveSites?.forEach(item => points.push(diveSiteToPointFeature(item)));
       props.diveShops?.forEach(item => points.push(diveShopToPointFeature(item)));
+      props.proposedSites?.forEach(item => points.push(diveSiteToPointFeature(item)));
       return {
         points:  points,
         options: { radius: 75, maxZoom: 16 },

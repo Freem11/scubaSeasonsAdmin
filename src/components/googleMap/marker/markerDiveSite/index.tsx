@@ -15,7 +15,7 @@ export function MarkerDiveSite(props: MarkerDiveSiteProps) {
 
   return (
     <Marker
-      icon={sitesArray.includes(props.id) ? iconGold : icon}
+      icon={sitesArray.find(item => item.id === props.id) ? iconGold : icon}
       title={props.title}
       position={props.position}
     >
