@@ -53,10 +53,10 @@ return (
                      </div>
                      </div>
 
-                    <h4 className="col-12 my-2" style={{color: "black"}}>Location</h4>
-
                     <div className="col-12 flex-row-between mt-2"style={{alignItems: 'center', justifyContent: 'space-between'}}>
                        
+                    <h6 className={style.tagBox}>Contributor: {props.diveSite?.newusername}</h6>
+
                         <h6 className={style.tagBox}>Lat:
                         <TextInput className={style.textInput} style={{backgroundColor: "transparent"}}
                          error={errors.latitude} 
