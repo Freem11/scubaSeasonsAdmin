@@ -14,19 +14,22 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setInitialPoint, mapRef } = useContext(MapContext);
     const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
-    const { sitesArray } = useContext(SitesArrayContext);
+    const { sitesArray, setSitesArray } = useContext(SitesArrayContext);
 
     const setupMap = (record: DiveSite) => {
         if(sitesArray.find(item => item.id === record.id)){
-            const index = sitesArray.findIndex(item => item.id === record.id)
-            sitesArray.splice(index, 1);  
-            } else {
-                sitesArray.push({id: record.id, lat: record.lat, lng: record.lng, name: record.name})
-            }
+            // const index = sitesArray.findIndex(item => item.id === record.id)
+            setSitesArray([])
+            setSelectedPendingDiveSite(null)
+            // sitesArray.splice(index, 1);  
+        } else {
+            setSitesArray([{id: record.id, lat: record.lat, lng: record.lng, name: record.name}])
+            setSelectedPendingDiveSite(record)
+        }
 
         setSelectedSeaLife(null)
         setInitialPoint([record?.lat, record?.lng]);
-        setSelectedPendingDiveSite(record)
+ 
         mapRef?.panTo({ lat: record?.lat, lng: record?.lng });
     };
 
