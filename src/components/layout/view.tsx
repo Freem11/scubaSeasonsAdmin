@@ -19,7 +19,8 @@ return (
         <Tabs data={[
                 { key: 't-1', title: 'Sea Life', content: SeaLifePhotoList },
                 { key: 't-2', title: 'Dive Sites', content: DiveSiteList },
-                { key: 't-3', title: 'Partner Requests', content: 'Partner Requests' }
+                { key: 't-3', title: 'Partner Requests', content: 'Partner Requests' },
+                { key: 't-3', title: 'Trip Requests', content: 'Trip Edit & Delete Requests' }
               ]}
               />
      </div>
