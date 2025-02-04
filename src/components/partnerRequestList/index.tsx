@@ -1,20 +1,20 @@
 import { useContext, useEffect } from "react";
-import { getAllDiveShopWaits } from "../../apicalls/supabaseCalls/diveShopWaitSupabaseCalls";
+import { partnerRequests as getAllPartnerRequests } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
 import PartnerRequestListView from "./view";
-import { PendingDiveShopsContext } from "../../contexts/diveShopEvals/diveShopsContext";
+import { PartnerRequestsContext } from "../../contexts/partnerRequestEvals/partnerRequestsContext";
 
 export default function PartnerRequestList() {
-    const { pendingDiveShops, setPendingDiveShops } = useContext(PendingDiveShopsContext)
+    const { partnerRequests, setPartnerRequests } = useContext(PartnerRequestsContext)
 
     useEffect(() => {
-        getSeaLifePhotos()
+        getPartnerRequests()
     },[])
 
-    const getSeaLifePhotos = async () => {
+    const getPartnerRequests = async () => {
         try {
-          const records = await getAllDiveShopWaits();
+          const records = await getAllPartnerRequests();
           if (records) {
-            setPendingDiveShops(records);
+            setPartnerRequests(records);
           }
         } catch (e) {
           console.log({ title: 'Error', message: (e as Error).message });
@@ -22,7 +22,7 @@ export default function PartnerRequestList() {
       };
     
 return (
-    <PartnerRequestListView pendingDiveShopsList={pendingDiveShops}/>
+    <PartnerRequestListView partnerRequestsList={partnerRequests}/>
 
 )
 

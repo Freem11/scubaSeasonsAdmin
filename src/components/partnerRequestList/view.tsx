@@ -1,45 +1,45 @@
 import { useContext } from "react";
-import { SelectedPendingDiveShopContext } from "../../contexts/diveShopEvals/selectedDiveShopContext"
-import { DiveShop } from "../../entities/diveShop";
+import { SelectedPartnerRequestContext } from "../../contexts/partnerRequestEvals/selectedPartnerRequestContext"
 import style from './styles.module.scss';
 import { MapContext } from "../googleMap/mapContext";
 import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
 import { SitesArrayContext } from "../../contexts/sitesArrayContext";
+import { PartnerRequest } from '../../entities/partnerRequest';
 
 type PartnerRequestListProps = {
-    pendingDiveShopsList: DiveShop[] | null
+    partnerRequestsList: PartnerRequest[] | null
   };
 
 export default function PartnerRequestListView(props: PartnerRequestListProps) {
     const { setInitialPoint, mapRef } = useContext(MapContext);
-    const { setSelectedPendingDiveShop } = useContext(SelectedPendingDiveShopContext)
+    const { setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext)
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
     const { sitesArray, setSitesArray } = useContext(SitesArrayContext);
 
-    const setupMap = (record: DiveShop) => {
+    const setupMap = (record: PartnerRequest) => {
         if(sitesArray.find(item => item.id === record.id)){
             // const index = sitesArray.findIndex(item => item.id === record.id)
             setSitesArray([])
-            setSelectedPendingDiveShop(null)
+            setSelectedPartnerRequest(null)
             // sitesArray.splice(index, 1);  
         } else {
-            setSitesArray([{id: record.id, lat: record.lat, lng: record.lng, name: record.orgname}])
-            setSelectedPendingDiveShop(record)
+            setSitesArray([{id: record.id, lat: record.latitude, lng: record.longitude, name: record.businessName}])
+            setSelectedPartnerRequest(record)
         }
 
         setSelectedSeaLife(null)
-        setInitialPoint([record?.lat, record?.lng]);
+        setInitialPoint([record?.latitude, record?.longitude]);
  
-        mapRef?.panTo({ lat: record?.lat, lng: record?.lng });
+        mapRef?.panTo({ lat: record?.latitude, lng: record?.longitude });
     };
 
 return (
     <div className="mt-4 flex-column">
-    {props.pendingDiveShopsList && props.pendingDiveShopsList.map((record: DiveShop) => {
+    {props.partnerRequestsList && props.partnerRequestsList.map((record: PartnerRequest) => {
         return (
         <div className={style.cardMain} key={record.id} onClick={() => setupMap(record)}>
             <div className='py-2'>
-                <div>{record.orgname}</div> 
+                <div>{record.businessName}</div> 
             </div>
         </div>
     )
