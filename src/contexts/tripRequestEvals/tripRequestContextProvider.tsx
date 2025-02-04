@@ -6,4 +6,4 @@ type TripRequestsContextType = {
   setPartnerRequests: React.Dispatch<React.SetStateAction<TripRequest[] | null>>;
 };
 
-export const PartnerRequestsContext = createContext<TripRequestsContextType>({} as TripRequestsContextType);
+export const TripRequestsContext = createContext<TripRequestsContextType>({} as TripRequestsContextType);
