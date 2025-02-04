@@ -8,5 +8,7 @@ export const getAllItineraryRequest = async () => {
   if (error) {
     console.log('couldn\'t do it: itinerary edit/delete request,', error);
   }
-  return { data, error };
+  if (data) {
+    return data;
+  }
 };
