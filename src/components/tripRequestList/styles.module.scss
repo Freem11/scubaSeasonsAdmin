@@ -4,6 +4,7 @@
     background-color: $primaryBlue;
     width: 90%;
     margin-top: 5px;
+    padding-bottom: 5px;
     display:grid;
     align-items: center;
     justify-content: center;
@@ -17,9 +18,15 @@
 }
 .textDanger {
     background-color: $primaryRed;
+    border-radius: 5px;
+    width:86px;
 }
 
 .textSuccess {
     background-color: $secondaryYellow;
     color:$themeBlack;
+    border-radius: 5px;
+    width:86px;
+    align-items: center;
+    justify-content: center;
 }

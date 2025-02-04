@@ -14,8 +14,10 @@ export default function TripRequestListView(props: TripRequestListProps) {
                 <div className={`py-2 ${style.fullWidth}`}>
                     <div>{record.description.length > 40 ? record.description.slice(0, 40) + "..." : record.description} </div> 
                 </div>
-                <div className={`px-2 py-1 ${record.requestType === "Delete" ? `${style.textDanger}` : `${style.textSuccess}`}`}>
-                    <div>{record.requestType}</div>
+                <div className="flex-column">
+                    <div className={`px-2 py-1 ${record.requestType === "Delete" ? `${style.textDanger}` : `${style.textSuccess}`}`}>
+                        <div>{record.requestType}</div>
+                    </div>
                 </div>
             </div>
             )})
