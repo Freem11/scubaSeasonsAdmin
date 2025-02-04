@@ -1,6 +1,4 @@
 import { supabase } from '../supabase';
-import { ItineraryItem } from '../entities/itineraryItem';
-
 
 export const getAllItineraryRequest = async () => {
   const { data, error } = await supabase
