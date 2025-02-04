@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MapContext } from '../components/googleMap/mapContext';
 import { DiveShop } from '../entities/diveShop';
 import { DiveShopContext } from './diveShopContext';
-import { getDiveShops } from '../apicalls/supabaseCalls/shopsSupabaseCalls';
+import { getDiveShops } from '../apicalls/supabaseCalls/diveShopSupabaseCalls';
 import { GPSBubble } from '../entities/GPSBubble';
 import { PagedCollection } from '../entities/pagedCollection';
 
