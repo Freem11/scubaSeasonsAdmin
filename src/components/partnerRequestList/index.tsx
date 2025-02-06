@@ -12,8 +12,10 @@ export default function PartnerRequestList() {
 
     const getPartnerRequests = async () => {
         try {
-          const records = await getAllPartnerRequests();
-          if (records) {
+          const response = await getAllPartnerRequests();
+          
+          if (response && 'data' in response) {
+            const { data: records } = response;
             setPartnerRequests(records);
           }
         } catch (e) {

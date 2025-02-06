@@ -25,7 +25,7 @@ export const partnerRequests = async () => {
   }
 
   if (data) {
-    return data;
+    return { data, error };
   }
 };
 
