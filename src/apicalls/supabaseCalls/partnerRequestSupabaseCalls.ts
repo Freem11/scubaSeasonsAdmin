@@ -17,16 +17,13 @@ import { supabase } from "../supabase";
 // };
 
 export const partnerRequests = async () => {
-  const { data, error } = await supabase.rpc("get_partnerrequests_with_useremail");
+  const response = await supabase.rpc("get_partnerrequests_with_useremail");
 
-  if (error) {
-    console.log("couldn't do it 52,", error);
-    return [];
+  if (response.error) {
+    console.log("couldn't do it 52,", response.error);
   }
 
-  if (data) {
-    return { data, error };
-  }
+  return response;
 };
 
 
