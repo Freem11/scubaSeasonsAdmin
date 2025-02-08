@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 
 .cardMain {
-    background-color: $primaryBlue;
     width: 90%;
     margin-top: 5px;
     padding-bottom: 5px;
@@ -13,20 +12,15 @@
     border-radius: 15px;
 }
 
-.fullWidth {
-    width: 100%;
-}
-.textDanger {
+.cardDelete{
     background-color: $primaryRed;
-    border-radius: 5px;
-    width:86px;
 }
 
-.textSuccess {
+.cardEdit{
     background-color: $secondaryYellow;
     color:$themeBlack;
-    border-radius: 5px;
-    width:86px;
-    align-items: center;
-    justify-content: center;
+}
+
+.fullWidth {
+    width: 100%;
 }

@@ -6,7 +6,7 @@ export const getAllItineraryRequest = async () => {
   .select();
 
   if (response.error) {
-    console.log('couldn\'t do it: itinerary edit/delete request,', error);
+    console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
   }
  
   return response;

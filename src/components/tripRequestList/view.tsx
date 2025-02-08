@@ -10,14 +10,9 @@ export default function TripRequestListView(props: TripRequestListProps) {
         <div className="mt-4 flex-column">
         {props.pendingTripRequestList && props.pendingTripRequestList.map((record: TripRequest) => {
             return (
-            <div className={style.cardMain} key={`1`} onClick={() => {}}>
+            <div className={`${style.cardMain} ${record.requestType === "Delete" ? `${style.cardDelete}` : `${style.cardEdit}`}`} key={record.id} onClick={() => {}}>
                 <div className={`py-2 ${style.fullWidth}`}>
-                    <div>{record.tripName.length > 40 ? record.tripName.slice(0, 40) + "..." : record.tripName} </div> 
-                </div>
-                <div className="flex-column">
-                    <div className={`px-2 py-1 ${record.requestType === "Delete" ? `${style.textDanger}` : `${style.textSuccess}`}`}>
-                        <div>{record.requestType}</div>
-                    </div>
+                    <div>{record.tripName.length > 40 ? record.tripName.slice(0, 40) + "..." : record.tripName} - {record.requestType} </div> 
                 </div>
             </div>
             )})
