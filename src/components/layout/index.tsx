@@ -14,7 +14,7 @@ export default function LayoutMain() {
     const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
     const [pendingDiveSites, setPendingDiveSites] = useState<DiveSite[] | null>(null)
     const [partnerRequests, setPartnerRequests] = useState<PartnerRequest[] | null>(null)
-    const [tripRequests, setTripRequests] = useState<TripRequest[] | []>([])
+    const [tripRequests, setTripRequests] = useState<TripRequest[] | null>(null)
 
 return (
     <DiveSiteContextProvider>
