@@ -1,13 +1,16 @@
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import readableDate from "../../helpers/readableDate";
 import { Form } from "./form";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEvalView from "./view";
+import {toast} from 'react-toastify';
+import { getItineraryByIdRequest } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
 
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
 
+  const { oldTripValue, setOldTripValue } = useState([]);
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
     if (id && formData.startDate && formData.endDate){
       //await insertTripRequest
@@ -21,9 +24,26 @@ export default function TripRequestEval() {
     }
   }
 
+  useEffect(() => {
+    getoldTripRequest(selectedTripRequest?.id);
+  },[]);
+  
+  const getoldTripRequest = async (id: number | undefined) => {
+    if(id){
+      const data = await getItineraryByIdRequest(id);
+      console.log("data", data);
+      // if (data.data){
+      //   setOldTripValue(data.data);
+      // }
+      // if(data.error){  
+      //   toast.error(data.error.message);
+      // }
+    }
+  }
+
   return (
     <TripRequestEvalView
-      values={{
+      updatedValues={{
         startDate: selectedTripRequest?.startDate && readableDate(selectedTripRequest?.startDate),
         endDate: selectedTripRequest?.endDate && readableDate(selectedTripRequest?.endDate),
         tripName: selectedTripRequest?.tripName,    

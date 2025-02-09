@@ -8,7 +8,8 @@ import { useForm, FieldErrors } from "react-hook-form";
 import Icon from "../../icons/Icon";
 
 type TripRequestEvalViewProps = {
-    values?: Form
+    oldValues?: Form
+    updatedValues?: Form
     record: TripRequest | null
     validateTripRequest: (id: number | undefined, formData: Form) => void
     rejectTripRequest: (id: number | undefined) => void
@@ -16,7 +17,7 @@ type TripRequestEvalViewProps = {
 
 export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<Form>({
-        values: props.values,
+        values: props.updatedValues,
     });
 
     const [buttonPressed, setButtonPressed] = useState<number>(0)      
