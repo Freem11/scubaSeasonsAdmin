@@ -6,7 +6,6 @@ import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/sele
 import TripRequestEvalView from "./view";
 
 export default function TripRequestEval() {
-  console.log("did it go here?");
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
 
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
