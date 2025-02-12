@@ -10,7 +10,8 @@ import { getItineraryByIdRequest } from "../../apicalls/supabaseCalls/itineraryS
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
 
-  const { oldTripValue, setOldTripValue } = useState([]);
+  // const { oldTripValue, setOldTripValue } = useState([]); 
+  // waiting for the data type that comes back from backend
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
     if (id && formData.startDate && formData.endDate){
       //await insertTripRequest
