@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.module.scss';
+import './style.scss';
 
 type EmptyStateProps = {
   visual: React.ReactNode
@@ -10,7 +10,7 @@ type EmptyStateProps = {
 
 export default function EmptyState({ visual, text, error }: EmptyStateProps) {
   return (
-    <div className={`${styles.emptyState} ${error && styles.error}`}>
+    <div className={`emptyState ${error && 'error'}`}>
       <div>
         {visual}
       </div>

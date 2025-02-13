@@ -6,6 +6,7 @@ import {  Label } from "reactstrap";
 import Button from "../../reusables/button";
 import { useForm, FieldErrors } from "react-hook-form";
 import Icon from "../../icons/Icon";
+import SiteSelector from "../../reusables/siteSelector";
 
 type TripRequestEvalViewProps = {
     oldValues?: Form
@@ -72,18 +73,21 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                             <h6 className={styles.tagBox}>End Date: {props.record?.endDate}</h6>
                         </div>
             
-                        <div className={styles.row}>
-                            <p>Dive Sites:</p>
-                                <div className={styles.siteList}>
-                                {props.record?.siteList.map((site, index) =>(
-                                    <div key={index} className={styles.list}>
-                                        <div className={styles.icons}>
-                                            <Icon name="check-bold" />
-                                        </div>
-                                        <h6 className={styles.tagBox}> {site}</h6>
+                        <div className={styles.column}>
+                            Dive Sites:
+                            {/*<div className={styles.siteList}>
+                            {props.record?.siteList.map((site, index) =>(
+                                <div key={index} className={styles.list}>
+                                    <div className={styles.icons}>
+                                        <Icon name="check-bold" />
                                     </div>
-                                )) } 
-                                </div>    
+                                    <h6 className={styles.tagBox}> {site}</h6>
+                                </div>
+                            )) } 
+                            </div>     */}
+                       
+                                <SiteSelector error={false} siteIds={props.record?.siteList || []}/>
+                       
                         </div>
 
                         <div className="cols col-12 flex ">

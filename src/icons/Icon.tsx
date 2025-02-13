@@ -4,7 +4,7 @@ import config from './_config.json';
 type IconName = keyof typeof config;
 
 type Props = {
-  name:       IconName
+  name: IconName
 };
 type viewBoxEncoded = string | number | null | Array<number>;
 

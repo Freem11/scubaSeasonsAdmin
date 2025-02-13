@@ -1,62 +1,51 @@
 import React from 'react';
-import styles from './style.module.scss';
+import './style.scss';
 import Icon from '../../icons/Icon';
 import { DiveSiteWithUserName } from '../../entities/diveSite';
 import EmptyState from '../emptyState';
 import Loader from '../loader';
 
 type SiteSelectorViewProps = {
-  sites:            DiveSiteWithUserName[] | null
-  handleSitesAdd:   () => void
-  handleSiteRemove: (id: number) => void
-  error:            boolean
+  sites: DiveSiteWithUserName[] | null
+  error: boolean
 };
 
-export default function SiteSelectorView({ sites, handleSitesAdd, handleSiteRemove, error }: SiteSelectorViewProps) {
+export default function SiteSelectorView(props: SiteSelectorViewProps) {
   return (
     <>
-      <div className={styles.siteSelector}>
-        {sites === null && (
-          <div className={styles.loadingState}><Loader /></div>
+      <div className="siteSelector">
+        {props.sites === null && (
+          <div className="loadingState"><Loader /></div>
         )}
 
-        {sites !== null && sites.length === 0 && (
+        {props.sites !== null && props.sites.length === 0 && (
           <EmptyState
-            onClick={handleSitesAdd}
             visual={(
-              <div className={styles.emptyStateIcons}>
-                <Icon name="anchor" className={styles.emptyStateIconLeft} />
-                <Icon name="anchor" className={styles.emptyStateIcon} />
-                <Icon name="anchor" className={styles.emptyStateIconRight} />
+              <div className="emptyStateIcons">
+                <Icon name="anchor" className="emptyStateIconLeft" />
+                <Icon name="anchor" className="emptyStateIcon" />
+                <Icon name="anchor" className="emptyStateIconRight" />
               </div>
             )}
             text="No dive sites yet."
-            error={error}
+            error={props.error}
           />
         )}
 
-        {sites !== null && sites.length > 0 && (
-          <div className={styles.siteList}>
-            {sites.map(site => (
-              <div key={site.id} className={styles.site}>
-                <div className={styles.siteLeft}>
-                  <Icon name="anchor" />
+        {props.sites !== null && props.sites.length > 0 && (
+          <div className="siteList">
+            {props.sites.map(site => (
+              <div key={site.id} className="site">
+                <div className="siteLeft">
+                  <Icon name="check-bold" />
                   <span>{site.name}</span>
                 </div>
-                <div className={styles.siteRight}>
-                  <div className={styles.siteActions}>
-                    <Icon name="close" onClick={() => handleSiteRemove(site.id)} />
-                  </div>
-                </div>
+               
               </div>
             ))}
           </div>
         )}
 
-        <button className={styles.button} type="button" onClick={handleSitesAdd}>
-          <Icon name="add" />
-          <span>Add dive sites</span>
-        </button>
       </div>
     </>
   );
