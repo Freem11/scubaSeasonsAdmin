@@ -8,3 +8,10 @@ export type DiveShop = {
   diveshopbio:          string
   diveshopprofilephoto: string
 };
+
+export type DiveShopBasic = {
+  id:                   number
+  orgname:              string
+  lat:                  number
+  lng:                  number
+}

@@ -8,6 +8,7 @@ import LayoutMainView from "./view";
 import { DiveSite } from "../../entities/diveSite";
 import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider";
 import { PartnerRequest } from '../../entities/partnerRequest';
+import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider';
 import { TripRequest } from "../../entities/tripRequest";
 
 export default function LayoutMain() {
@@ -18,16 +19,17 @@ export default function LayoutMain() {
 
 return (
     <DiveSiteContextProvider>
-        <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
-        <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
-        <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
-        <TripRequestsContext.Provider value={{ tripRequests, setTripRequests }}>
-            <LayoutMainView/>
-        </TripRequestsContext.Provider>
-        </SeaLifePhotosContext.Provider>
+    <DiveShopContextProvider>
+    <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
+    <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
+    <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
+    <TripRequestsContext.Provider value={{ tripRequests, setTripRequests }}>
+    <LayoutMainView/>
+    </TripRequestsContext.Provider>
+    </SeaLifePhotosContext.Provider>
     </PartnerRequestsContext.Provider>
-        </PendingDiveSitesContext.Provider>
-       
+    </PendingDiveSitesContext.Provider>
+    </DiveShopContextProvider>
     </DiveSiteContextProvider>
 )
 

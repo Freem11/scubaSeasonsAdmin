@@ -1,8 +1,8 @@
 import Supercluster from 'supercluster';
 import { ClusterProperty, PointFeatureCategory  } from '../types';
-import { DiveShop } from '../../../entities/diveShop';
+import { DiveShopBasic } from '../../../entities/diveShop';
 
-export const diveShopToPointFeature = (diveShop: DiveShop) => {
+export const diveShopToPointFeature = (diveShop: DiveShopBasic) => {
   return {
     id:         'diveshop-' + diveShop.id,
     type:       'Feature',

@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Libraries } from '@react-google-maps/api';
 import style from './style.module.scss';
 import { ClusterProperty, PointFeatureCategory } from './types';
 import { DiveSiteBasic } from '../../entities/diveSite';
-import { DiveShop } from '../../entities/diveShop';
+import { DiveShopBasic } from '../../entities/diveShop';
 import './style.css';
 import { MarkerDiveSiteCluster } from './marker/markerDiveSiteCluster';
 import Supercluster from 'supercluster';
@@ -27,8 +27,9 @@ type MapViewProps = {
   onLoad?:            (map: google.maps.Map) => void
   handleBoundsChange: () => void
   diveSites?:         DiveSiteBasic[] | null
-  diveShops?:         DiveShop[] | null
+  diveShops?:         DiveShopBasic[] | null
   proposedSites?:      DiveSiteBasic[] | null
+  proposedShops?:      DiveShopBasic[] | null
 };
 
 export default function MapView(props: MapViewProps) {
@@ -83,6 +84,7 @@ export default function MapView(props: MapViewProps) {
       props.diveSites?.forEach(item => points.push(diveSiteToPointFeature(item)));
       props.diveShops?.forEach(item => points.push(diveShopToPointFeature(item)));
       props.proposedSites?.forEach(item => points.push(diveSiteToPointFeature(item)));
+      props.proposedShops?.forEach(item => points.push(diveShopToPointFeature(item)));
       return {
         points:  points,
         options: { radius: 75, maxZoom: 16 },
