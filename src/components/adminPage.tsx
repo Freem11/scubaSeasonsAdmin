@@ -128,11 +128,11 @@ const AdminPage = () => {
     if (elements.length === 0) {
       return;
     }
-    const modalHeigth = elements[0].clientHeight;
+    const modalHeight = elements[0].clientHeight;
 
     if (fullScreenModalYCoord === 0) {
       setFullScreenModalYCoord(
-        -windowHeight + (windowHeight - modalHeigth) / 2
+        -windowHeight + (windowHeight - modalHeight) / 2
       );
     } else {
       setFullScreenModalYCoord(0);

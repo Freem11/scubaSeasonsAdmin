@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.cardMain {
+    width: 90%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    display:grid;
+    align-items: center;
+    justify-content: center;
+    color: $themeWhite;
+    font-weight: 200;
+    border-radius: 15px;
+}
+
+.cardDelete{
+    background-color: $primaryRed;
+}
+
+.cardEdit{
+    background-color: $secondaryYellow;
+    color:$themeBlack;
+}
+
+.fullWidth {
+    width: 100%;
+}
