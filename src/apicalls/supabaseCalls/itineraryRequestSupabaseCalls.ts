@@ -1,14 +1,14 @@
 import { supabase } from '../supabase';
-import { ItineraryItem } from '../entities/itineraryItem';
-
 
 export const getAllItineraryRequest = async () => {
-  const { data, error } = await supabase
+  const response = await supabase
   .from('itineraryRequests')
   .select();
 
-  if (error) {
-    console.log('couldn\'t do it: itinerary edit/delete request,', error);
+  if (response.error) {
+    console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
   }
-  return { data, error };
+ 
+  return response;
+  //edit --> save record to table 
 };
