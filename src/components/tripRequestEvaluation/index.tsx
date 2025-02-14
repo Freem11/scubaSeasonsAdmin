@@ -1,12 +1,9 @@
 
 import { useContext, useEffect, useState } from "react";
-import readableDate from "../../helpers/readableDate";
 import { Form } from "./form";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEvalView from "./view";
-import {toast} from 'react-toastify';
 import { getItineraryByIdRequest } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
-
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
 
@@ -44,17 +41,17 @@ export default function TripRequestEval() {
 
   return (
     <TripRequestEvalView
-      updatedValues={{
-        startDate: selectedTripRequest?.startDate && readableDate(selectedTripRequest?.startDate),
-        endDate: selectedTripRequest?.endDate && readableDate(selectedTripRequest?.endDate),
-        tripName: selectedTripRequest?.tripName,    
-        description: selectedTripRequest?.description,
-        price: selectedTripRequest?.price,
-        BookingPage: selectedTripRequest?.BookingPage,
-        siteList: selectedTripRequest?.siteList,
-        createdAt: selectedTripRequest?.created_at,
-        shopId: selectedTripRequest?.shopId,
-      }}
+      // updatedValues={{
+      //   startDate: selectedTripRequest?.startDate && readableDate(selectedTripRequest?.startDate),
+      //   endDate: selectedTripRequest?.endDate && readableDate(selectedTripRequest?.endDate),
+      //   tripName: selectedTripRequest?.tripName,    
+      //   description: selectedTripRequest?.description,
+      //   price: selectedTripRequest?.price,
+      //   BookingPage: selectedTripRequest?.BookingPage,
+      //   siteList: selectedTripRequest?.siteList,
+      //   createdAt: selectedTripRequest?.created_at,
+      //   shopId: selectedTripRequest?.shopId,
+      // }}
       validateTripRequest={ValidateTripRequest}
       rejectTripRequest={RejectTripRequest}
       record={selectedTripRequest}

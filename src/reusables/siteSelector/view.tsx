@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.scss';
+import style from './style.module.scss';
 import Icon from '../../icons/Icon';
 import { DiveSiteWithUserName } from '../../entities/diveSite';
 import EmptyState from '../emptyState';
@@ -13,18 +13,18 @@ type SiteSelectorViewProps = {
 export default function SiteSelectorView(props: SiteSelectorViewProps) {
   return (
     <>
-      <div className="siteSelector">
+      <div className={style.siteSelector}>
         {props.sites === null && (
-          <div className="loadingState"><Loader /></div>
+          <div className={style.loadingState}><Loader /></div>
         )}
 
         {props.sites !== null && props.sites.length === 0 && (
           <EmptyState
             visual={(
-              <div className="emptyStateIcons">
-                <Icon name="anchor" className="emptyStateIconLeft" />
-                <Icon name="anchor" className="emptyStateIcon" />
-                <Icon name="anchor" className="emptyStateIconRight" />
+              <div className={style.emptyStateIcons}>
+                <Icon name="anchor" className={style.emptyStateIconLeft} />
+                <Icon name="anchor" className={style.emptyStateIcon} />
+                <Icon name="anchor" className={style.emptyStateIconRight} />
               </div>
             )}
             text="No dive sites yet."
@@ -33,11 +33,17 @@ export default function SiteSelectorView(props: SiteSelectorViewProps) {
         )}
 
         {props.sites !== null && props.sites.length > 0 && (
-          <div className="siteList">
+          <div className={style.siteList}>
             {props.sites.map(site => (
-              <div key={site.id} className="site">
-                <div className="siteLeft">
-                  <Icon name="check-bold" />
+              <div key={site.id} className={style.site}>
+                <div className={style.siteName}>
+                  <Icon name="check-bold" width="30"
+                  height="30"
+                  style={{ 
+                    cursor: 'pointer',
+                    display: 'inline', // Ensure it's not hidden
+                    overflow: 'visible' // Allow the icon to render fully
+                  }}/>
                   <span>{site.name}</span>
                 </div>
                
