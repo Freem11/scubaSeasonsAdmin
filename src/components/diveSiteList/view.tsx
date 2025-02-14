@@ -5,7 +5,8 @@ import style from './styles.module.scss';
 import { MapContext } from "../googleMap/mapContext";
 import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
 import { SitesArrayContext } from "../../contexts/sitesArrayContext";
-import { SelectedTripRequestContext, setSelectedTripRequest } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+// import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 type DiveSiteListProps = {
     pendingDiveSitesList: DiveSite[] | null
   };
@@ -16,7 +17,7 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
     const { sitesArray, setSitesArray } = useContext(SitesArrayContext);
     const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
-
+       
     const setupMap = (record: DiveSite) => {
         if(sitesArray.find(item => item.id === record.id)){
             // const index = sitesArray.findIndex(item => item.id === record.id)

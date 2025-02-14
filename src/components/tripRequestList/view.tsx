@@ -2,6 +2,8 @@ import style from './styles.module.scss';
 import { TripRequest } from "../../entities/tripRequest";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import { useContext } from 'react';
+import { SelectedSeaLifeContext } from '../../contexts/seaLifeEvals/selectedSeaLifePhotoContext';
+import { SelectedPendingDiveSiteContext } from '../../contexts/diveSiteEvals/selectedDiveSiteContext';
 
 type TripRequestListProps = {
     pendingTripRequestList: TripRequest[] | null
@@ -10,10 +12,14 @@ type TripRequestListProps = {
 export default function TripRequestListView(props: TripRequestListProps) {
 
     const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
-    
-    const setupTripRequest = (record: TripRequest) => {
-        setSelectedTripRequest(record)
-    };
+    const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
+    const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
+        
+        const setupTripRequest = (record: TripRequest) => {
+            setSelectedSeaLife(null)
+            setSelectedPendingDiveSite(null)
+            setSelectedTripRequest(record)
+        };
     
     return (
         <div className="mt-4 flex-column">
