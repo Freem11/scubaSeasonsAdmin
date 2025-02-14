@@ -7,6 +7,7 @@ import LayoutMainView from "./view";
 import { DiveSite } from "../../entities/diveSite";
 import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider";
 import { PartnerRequest } from '../../entities/partnerRequest';
+import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider';
 
 export default function LayoutMain() {
     const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
@@ -16,6 +17,7 @@ export default function LayoutMain() {
 
 return (
     <DiveSiteContextProvider>
+    <DiveShopContextProvider>
     <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
     <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
     <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
@@ -23,6 +25,7 @@ return (
     </SeaLifePhotosContext.Provider>
     </PartnerRequestsContext.Provider>
     </PendingDiveSitesContext.Provider>
+    </DiveShopContextProvider>
     </DiveSiteContextProvider>
 )
 
