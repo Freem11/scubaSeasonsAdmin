@@ -9,11 +9,14 @@ import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaL
 import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 // import { SelectedPendingDiveShopContext } from '../../contexts/diveShopEvals/selectedDiveShopContext';
 import TripRequestList from "../tripRequestList";
+import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+import TripRequestEval from "../tripRequestEvaluation";
 
 
 export default function LayoutMainView() {
     const {selectedSeaLife} = useContext(SelectedSeaLifeContext)
     const {selectedPendingDiveSite} = useContext(SelectedPendingDiveSiteContext)
+    const {selectedTripRequest} = useContext(SelectedTripRequestContext)
     // const {selectedPendingDiveShop} = useContext(SelectedPendingDiveShopContext)
 return (
     <div className="container-fluid">
@@ -31,6 +34,7 @@ return (
      <div className="col-8" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
             {selectedSeaLife && <SeaLifePhotoEval/>}
             {selectedPendingDiveSite && <DiveSiteEval/>}
+            {selectedTripRequest && <TripRequestEval/>}
             {/* {selectedPendingDiveShop && <DiveShopEval/>} */}
      </div>
 

@@ -194,3 +194,17 @@ export const updateDiveSite = async (lat: number | undefined, lng: number | unde
     return data;
   }
 };
+
+export const getDiveSitesByIDs = async (ids: number[]): Promise<DiveSiteWithUserName[]> => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .select()
+    .in('id', ids);
+
+  if (error || !data) {
+    console.log('couldn\'t do it 7,', error);
+    return [];
+  }
+
+  return data as DiveSiteWithUserName[];
+};

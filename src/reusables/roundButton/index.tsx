@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss';
+import './style.scss';
 
 export type RoundButtonProps = {
   onClick?:   () => void
@@ -9,8 +9,8 @@ export type RoundButtonProps = {
 
 export default function RoundButtonIcon(props: RoundButtonProps) {
   return (
-    <button onClick={props.onClick} className={`btn ${style.button} ${props.className ?? ''}`}>
-      <i className={style.icon}>{props.icon}</i>
+    <button onClick={props.onClick} className={`btn button ${props.className ?? ''}`}>
+      <i className="icon">{props.icon}</i>
     </button>
   );
 }

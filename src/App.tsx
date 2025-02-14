@@ -12,18 +12,21 @@ import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
 import { SelectedSeaLifeContext } from './contexts/seaLifeEvals/selectedSeaLifePhotoContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
-import { DiveSite } from './entities/diveSite';
+import { DiveSite, DiveSiteBasic } from './entities/diveSite';
 import { SelectedPendingDiveSiteContext } from './contexts/diveSiteEvals/selectedDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
 import { MapContextProvider } from './components/googleMap/mapContextProvider';
+import { SelectedTripRequestContext } from './contexts/tripRequestEvals/selectedTripRequestContext';
+import { TripRequest } from './entities/tripRequest';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
+  const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
-  const [sitesArray, setSitesArray] = useState<number[]>([]);
+  const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
   
   useEffect(() => {
     async function getUserData() {
@@ -75,10 +78,12 @@ function App() {
           <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
+          <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
             <MapContextProvider>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
          </MapContextProvider>
+         </SelectedTripRequestContext.Provider>
          </SelectedSeaLifeContext.Provider>
          </SelectedPendingDiveSiteContext.Provider>
          </SitesArrayContext.Provider>

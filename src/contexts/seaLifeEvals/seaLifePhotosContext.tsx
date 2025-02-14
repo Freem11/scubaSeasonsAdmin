@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { SeaLifePhoto } from "../entities/seaLifePhoto";
+import { SeaLifePhoto } from "../../entities/seaLifePhoto";
 
 type SeaLifePhotosContextType = {
   photoRecords: SeaLifePhoto[] | null;
