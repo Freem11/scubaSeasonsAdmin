@@ -1,20 +1,5 @@
+import { PartnerRequest } from '../../entities/partnerRequest';
 import { supabase } from "../supabase";
-
-// export const partnerRequests = async () => {
-//   const { data, error } = await supabase
-//   .from("partnerAccountRequests")
-//   .select()
-//   .is('validated', null)
-
-//   if (error) {
-//     console.log("couldn't do it 1,", error);
-//     return [];
-//   }
-
-//   if (data) {
-//     return data;
-//   }
-// };
 
 export const partnerRequests = async () => {
   const response = await supabase.rpc("get_partnerrequests_with_useremail");
@@ -26,6 +11,41 @@ export const partnerRequests = async () => {
   return response;
 };
 
+export const grabPartnerRequestById = async (id: number) => {
+
+  const response = await supabase
+    .from("partnerAccountRequests")
+    .select()
+    .eq("id", id);
+
+  if (response.error) {
+    console.log("couldn't do it,", response.error);
+    return [];
+  }
+
+  if (response.data) {
+    return response.data as PartnerRequest[];
+  }
+};
+
+export const insertNewShop = async (values: any) => {
+  const { data, error } = await supabase.from("shops").insert([
+    {
+      orgName: values.businessName,
+      lat: values.latitude,
+      lng: values.longitude,
+      userId: values.id
+    },
+  ]);
+
+  if (error) {
+    console.log("couldn't do it 4,", error);
+  }
+
+  if (data) {
+    console.log(data);
+  }
+};
 
 export const updatePartnerRequestByUserId= async (userID : string, decision : boolean) => {
   const { error } = await supabase
@@ -51,21 +71,19 @@ export const updateProfileByUserId= async (userID : string, decision : boolean) 
   }
 };
 
-export const insertNewShop = async (businessName: string, lat: number, lng: number, id: string) => {
-  const { data, error } = await supabase.from("shops").insert([
-    {
-      orgName: businessName,
-      lat: lat,
-      lng: lng,
-      userId: id
-    },
-  ]);
+export const deletePartnerRequest = async (id: number) => {
 
-  if (error) {
-    console.log("couldn't do it 4,", error);
-  }
+  const { data, error } = await supabase
+  .from("partnerAccountRequests")
+  .delete()
+  .eq("id", id);
 
-  if (data) {
-    console.log(data);
-  }
-};
+if (error) {
+  console.log("couldn't do it,", error);
+  return [];
+}
+
+if (data) {
+  console.log(data);
+}
+}
