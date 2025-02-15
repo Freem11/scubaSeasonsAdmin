@@ -36,6 +36,7 @@ export default function PartnerRequestEval() {
                 businessName: selectedPartnerRequest?.businessName,
                 latitude: selectedPartnerRequest?.latitude,
                 longitude: selectedPartnerRequest?.longitude,
+                webpageLink: selectedPartnerRequest?.webpageLink
             }}
         />
     );

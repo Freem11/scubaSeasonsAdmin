@@ -4,6 +4,7 @@ export interface Form {
   businessName?:        string
   latitude?:        number
   longitude?:       number
+  webpageLink?:     string
 }
 
 
@@ -31,4 +32,7 @@ export const FormRules: FormValidationRules<Form> = {
       value:   180,
       message: 'Latitude must be less than 180',
     } },
+  webpageLink: {
+    required: 'Web page link is required',
+  },
 };

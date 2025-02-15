@@ -68,6 +68,13 @@ return (
                        {...register('longitude', FormRules.longitude)}
             />
           </h6>
+
+          <h6 className={style.tagBox}>Website: 
+            <TextInput className={style.textInput} style={{backgroundColor: "transparent"}}
+                       error={errors.webpageLink}  
+                       {...register('webpageLink', FormRules.webpageLink)}
+            />
+          </h6>
         </div>
 
         <div className="cols col-12 mt-8 flex-row-between">
