@@ -18,7 +18,7 @@ export default function LandingPage() {
   }
 
   async function handleSupabaseSetup(sessionToken: any, setActiveSession: React.Dispatch<React.SetStateAction<ActiveSession | null>>) {
-    if (sessionToken) {
+    if (sessionToken.user) {
       await localStorage.setItem('token', JSON.stringify(sessionToken));
       if (sessionToken.session) {
         setActiveSession(sessionToken.session);
