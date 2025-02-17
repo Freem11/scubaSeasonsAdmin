@@ -234,11 +234,11 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
+                                // style={{ 
+                                //         cursor: 'pointer',
+                                //         display: 'block', 
+                                //         overflow: 'visible' 
+                                //     }}
                             />
                             </div>
                             <h6 className={styles.tagBox}>TripName: {props.record?.tripName}</h6>
@@ -250,11 +250,11 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
+                                // style={{ 
+                                //         cursor: 'pointer',
+                                //         display: 'block', 
+                                //         overflow: 'visible' 
+                                //     }}
                             />
                             </div>
                             <h6 className={styles.tagBox}>Booking Page URL: {props.record?.BookingPage}</h6>
@@ -266,11 +266,11 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
+                                // style={{ 
+                                //         cursor: 'pointer',
+                                //         display: 'block', 
+                                //         overflow: 'visible' 
+                                //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>Price: {props.record?.price}</h6>
@@ -282,11 +282,11 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
+                                // style={{ 
+                                //         cursor: 'pointer',
+                                //         display: 'block', 
+                                //         overflow: 'visible' 
+                                //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>Start Date: {props.record?.startDate}</h6>
@@ -298,11 +298,11 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     width={24}
                                     height={24}
                                     color="currentColor"
-                                    style={{ 
-                                            cursor: 'pointer',
-                                            display: 'block', 
-                                            overflow: 'visible' 
-                                        }}
+                                    // style={{ 
+                                    //         cursor: 'pointer',
+                                    //         display: 'block', 
+                                    //         overflow: 'visible' 
+                                    //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>End Date: {props.record?.endDate}</h6>
