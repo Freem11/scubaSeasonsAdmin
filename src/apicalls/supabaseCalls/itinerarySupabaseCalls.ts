@@ -1,4 +1,5 @@
 
+import { TripRequest } from '../../entities/tripRequest';
 import { supabase } from '../supabase';
 
 export const getItineraryByIdRequest = async (id: number) => {
@@ -11,6 +12,6 @@ export const getItineraryByIdRequest = async (id: number) => {
     console.log('couldn\'t do it: get one itinerary request,', response.error);
   }
  
-  return response;
+  return response.data as TripRequest[];
   //edit --> save record to table 
 };

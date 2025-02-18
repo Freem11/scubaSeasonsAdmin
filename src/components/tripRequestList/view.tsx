@@ -12,8 +12,8 @@ type TripRequestListProps = {
 export default function TripRequestListView(props: TripRequestListProps) {
 
     const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
-    const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
-    const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
+    const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext);
+    const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext);
         
         const setupTripRequest = (record: TripRequest) => {
             setSelectedSeaLife(null)
