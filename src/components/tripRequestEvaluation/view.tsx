@@ -9,7 +9,6 @@ import Icon from "../../icons/Icon";
 import SiteSelector from "../../reusables/siteSelector";
 
 type TripRequestEvalViewProps = {
-    oldValues?: Form
     updatedValues?: Form
     record: TripRequest | null
     validateTripRequest: (id: number | undefined, formData: Form) => void
@@ -234,11 +233,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                // style={{ 
-                                //         cursor: 'pointer',
-                                //         display: 'block', 
-                                //         overflow: 'visible' 
-                                //     }}
                             />
                             </div>
                             <h6 className={styles.tagBox}>TripName: {props.record?.tripName}</h6>

@@ -12,14 +12,18 @@ export default function TripRequestList() {
     },[])
 
     const getTripRequests = async () => {
-        const records = await getAllItineraryRequest();
-        if (records.data) {
-          setTripRequests(records.data);
-        }
-        if (records.error) {  
-          toast.error(records.error.message);
-        }
-      };
+        try{
+          const records = await getAllItineraryRequest();
+          if (records.data) {
+            setTripRequests(records.data);
+          }
+          if (records.error) {  
+            toast.error(records.error.message);
+          }
+        } catch (e) {
+          console.log({ title: 'Error', message: (e as Error).message });
+      }
+    };
     
   return (
         <TripRequestListView pendingTripRequestList={tripRequests}/>

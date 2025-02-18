@@ -19,6 +19,7 @@ export default function TripRequestListView(props: TripRequestListProps) {
             setSelectedSeaLife(null)
             setSelectedPendingDiveSite(null)
             setSelectedTripRequest(record)
+            console.log("record", record)
         };
     
     return (
