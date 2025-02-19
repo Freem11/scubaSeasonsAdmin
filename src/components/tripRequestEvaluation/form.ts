@@ -10,5 +10,6 @@ export interface Form {
   price?: string
   shopId?: number
   createdAt?: string
+  OriginalItineraryID?: number
 }
 

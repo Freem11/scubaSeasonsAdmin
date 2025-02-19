@@ -10,6 +10,7 @@ import SiteSelector from "../../reusables/siteSelector";
 
 type TripRequestEvalViewProps = {
     updatedValues?: Form
+    oldValues?: Form
     record: TripRequest | null
     validateTripRequest: (id: number | undefined, formData: Form) => void
     rejectTripRequest: (id: number | undefined) => void
@@ -67,22 +68,15 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     Booking Page URL: {props.record?.BookingPage}
                                 </span>
                             </h6>
-                        </div>
-                        
+                        </div>                      
                         <div className={styles.row}>
                             <Icon name="currency-usd"  
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
                             />
                             <h6 className={styles.tagBox}>Price: {props.record?.price}</h6>
-                        </div>
-            
+                        </div>          
                         <div className={styles.row}>       
                             <Icon name="calendar-start"  
                                 width={24}
@@ -95,8 +89,7 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     }}
                             />
                             <h6 className={styles.tagBox}>Start Date: {props.record?.startDate}</h6>
-                        </div>
-            
+                        </div>         
                         <div className={styles.row}>
                             <Icon name="calendar-end"  
                                 width={24}
@@ -109,8 +102,7 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     }}
                             />
                             <h6 className={styles.tagBox}>End Date: {props.record?.endDate}</h6>
-                        </div>
-            
+                        </div>          
                         <div className={styles.column}>
                             <div className={styles.row}>
                                 <Icon name="anchor"  
@@ -127,7 +119,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                             </div>
                             <SiteSelector error={false} siteIds={props.record?.siteList || []}/>
                         </div>
-
                         <div className="cols col-12 flex ">
                             <Label label="Details" className={styles.detailsField}>
                                 <textarea
@@ -145,59 +136,67 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                             <div className={styles.icons}>
                                 <Icon name="store" />
                             </div>
-                            <h6 className={styles.tagBox}>TripName: ...</h6>
+                            <h6 className={styles.tagBox}>TripName: {props.oldValues?.tripName}</h6>
                         </div>
                         <div className={styles.row}>
                             <div className={styles.icons}>
                                 <Icon name="link" />
                             </div>
-                            <h6 className={styles.tagBox}>Booking Page URL: ...</h6>
+                            <h6 className={styles.tagBox}>Booking Page URL: {props.oldValues?.BookingPage}</h6>
                         </div>
                         
                         <div className={styles.row}>
-                            <div className={styles.icons}>
-                                <Icon name="currency-usd" />
-                            </div>
-                            <h6 className={styles.tagBox}>Price: ...</h6>
+                            <Icon name="currency-usd"  
+                                width={24}
+                                height={24}
+                                color="currentColor"
+                                style={{ 
+                                        cursor: 'pointer',
+                                        display: 'block', 
+                                        overflow: 'visible' 
+                                    }}
+                            />
+                            <h6 className={styles.tagBox}>Price: {props.oldValues?.price}</h6>
                         </div>
             
                         <div className={styles.row}>
                             <div className={styles.icons}>
                                 <Icon name="calendar-start" />
                             </div>
-                            <h6 className={styles.tagBox}>Start Date: ...</h6>
+                            <h6 className={styles.tagBox}>Start Date: {props.oldValues?.startDate}</h6>
                         </div>
             
                         <div className={styles.row}>
                             <div className={styles.icons}>
                                 <Icon name="calendar-end" />
                             </div>
-                            <h6 className={styles.tagBox}>End Date: ...</h6>
+                            <h6 className={styles.tagBox}>End Date: {props.oldValues?.endDate}</h6>
                         </div>
             
-                        <div className={styles.row}>
-                            <p>Dive Sites:</p>
-                                <div className={styles.siteList}>
-                                {/* {props.record?.siteList.map((site, index) =>(
-                                    <div key={index} className={styles.list}>
-                                        <div className={styles.icons}>
-                                            <Icon name="check-bold" />
-                                        </div>
-                                        <h6 className={styles.tagBox}> ??? </h6>
-                                    </div>
-                                )) }  */}
-                                ???
-                                </div>    
+                        <div className={styles.column}>
+                            <div className={styles.row}>
+                                <Icon name="anchor"  
+                                    width={24}
+                                    height={24}
+                                    color="currentColor"
+                                    style={{ 
+                                            cursor: 'pointer',
+                                            display: 'block', 
+                                            overflow: 'visible' 
+                                        }}
+                                    />
+                                Dive Sites:
+                            </div>
+                            <SiteSelector error={false} siteIds={props.oldValues?.siteList || []}/>
                         </div>
 
                         <div className="cols col-12 flex ">
                             <Label label="Details" className={styles.detailsField}>
-                                {/* <textarea
+                                <textarea
                                     className={`${styles.textarea} ${errors.siteList && styles.textareaError}`}
                                     placeholder="What divers need to know about this trip..."
-                                    {...register('description', )}
-                                /> */}
-                                <textarea />
+                                    value={props.oldValues?.description}
+                                />
                             </Label>  
                         </div>       
                     </div>
