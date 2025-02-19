@@ -124,7 +124,7 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 <textarea
                                     className={`${styles.textarea} ${errors.siteList && styles.textareaError}`}
                                     placeholder="What divers need to know about this trip..."
-                                    {...register('description', )}
+                                    value={props.record?.description}
                                 />
                             </Label>  
                         </div>

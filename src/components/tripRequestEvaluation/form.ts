@@ -1,6 +1,8 @@
 // import { FormValidationRules } from "../../forms/form";
 
 export interface Form {
+  id?: number
+  requestType?: string
   tripName?: string
   siteList?: number[]
   startDate?: string
@@ -9,7 +11,7 @@ export interface Form {
   description?: string
   price?: string
   shopId?: number
-  createdAt?: string
+  created_at?: string
   OriginalItineraryID?: number
 }
 
