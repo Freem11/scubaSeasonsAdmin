@@ -25,7 +25,7 @@ useEffect(() => {
   };
 
   fetchSites();
-}, [sites]); 
+}, [props.siteIds]); 
 
   return (
     <SiteSelectorView
