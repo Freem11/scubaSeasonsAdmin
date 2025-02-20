@@ -6,8 +6,7 @@ export const getItineraryByIdRequest = async (id: number) => {
   const response = await supabase
   .from('itineraries')
   .select()
-  .eq('id',id)
-  .is('deleted_at', null);
+  .eq('id',id);
 
   if (response.error) {
     console.log('couldn\'t do it: get one itinerary request,', response.error);
@@ -17,45 +16,43 @@ export const getItineraryByIdRequest = async (id: number) => {
   //edit --> save record to table 
 };
 
-export const updateItinerary = async (itinerary: any) => {
+// export const updateItinerary = async (itinerary: any) => {
   
-  if (itinerary.requestType === "Edit") {
-    const { data, error } = await supabase
-    .from("itineraries")
-    .update([
-      {
-        tripName: itinerary.tripName,
-        BookingPage: itinerary.BookingPage,
-        //what do I replace this with?
-        OriginalItineraryID: 0,
-        created_at: new Date(),
-        description: itinerary.description,
-        price: itinerary.price,
-        requestType: itinerary.requestType,
-        shopId: itinerary.shopId,
-        siteList: itinerary.siteList,
-        startDate: itinerary.startDate,
-        endDate: itinerary.endDate
-      },
-    ])
-    .eq('id', itinerary.OriginalItineraryID);
+//   if (itinerary.requestType === "Edit") {
+//     const { data, error } = await supabase
+//     .from("itineraries")
+//     .update([
+//       {
+//         tripName: itinerary.tripName,
+//         BookingPage: itinerary.BookingPage,
+//         created_at: new Date(),
+//         description: itinerary.description,
+//         price: itinerary.price,
+//         requestType: itinerary.requestType,
+//         shopId: itinerary.shopId,
+//         siteList: itinerary.siteList,
+//         startDate: itinerary.startDate,
+//         endDate: itinerary.endDate
+//       },
+//     ])
+//     .eq('id', itinerary.OriginalItineraryID);
 
-    return {
-      data: data,
-      error: error,
-    };
+//     return {
+//       data: data,
+//       error: error,
+//     };
 
-  } else {
-    const response = await supabase
-    .from('itineraries')
-    .update([
-      {deleted_at : new Date()},
-    ])
-    .eq('id', itinerary.OriginalItineraryID);
+//   } else {
+//     const response = await supabase
+//     .from('itineraries')
+//     .update([
+//       {deleted_at : new Date()},
+//     ])
+//     .eq('id', itinerary.OriginalItineraryID);
     
-    return {
-      data: response.data,
-      error: response.error,
-    };
-  }
-};
+//     return {
+//       data: response.data,
+//       error: response.error,
+//     };
+//   }
+// };

@@ -14,38 +14,40 @@ export default function TripRequestEval() {
   const [oldTripValues, setOldTripValues] = useState<TripRequest | null>(null)
   // waiting for the data type that comes back from backend
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
-    await updateItinerary({
-      id: formData.id || id,
-      requestType: formData.requestType,
-      startDate: formData.startDate,
-      endDate: formData.endDate,
-      tripName: formData.tripName,
-      siteList: formData.siteList,
-      description: formData.description,  
-      price: formData.price,
-      BookingPage: formData.BookingPage,
-    });
+    // await updateItinerary({
+    //   id: formData.id || id,
+    //   requestType: formData.requestType,
+    //   startDate: formData.startDate,
+    //   endDate: formData.endDate,
+    //   tripName: formData.tripName,
+    //   siteList: formData.siteList,
+    //   description: formData.description,  
+    //   price: formData.price,
+    //   BookingPage: formData.BookingPage,
+    // });
     
-    if (id || formData.id){
-      await deleteItineraryRequest(id || formData.id as number);
-    }
-    const updatedTripRequests = await getAllItineraryRequest();
-    setTripRequests(updatedTripRequests.data);
-    setSelectedTripRequest(null);
+    // if (id || formData.id){
+    //   await deleteItineraryRequest(id || formData.id as number);
+    // }
+    // const updatedTripRequests = await getAllItineraryRequest();
+    // setTripRequests(updatedTripRequests.data);
+    // setSelectedTripRequest(null);
+    console.log("validate");
   }
 
   const RejectTripRequest = async (id: number | undefined) => {
-    if(id){
-      await deleteItineraryRequest(id);
-      const updatedTripRequests = await getAllItineraryRequest();
-      setTripRequests(updatedTripRequests.data);
-      setSelectedTripRequest(null);
-    }
+    // if(id){
+    //   await deleteItineraryRequest(id);
+    //   const updatedTripRequests = await getAllItineraryRequest();
+    //   setTripRequests(updatedTripRequests.data);
+    //   setSelectedTripRequest(null);
+    // }
+    console.log("reject");
   }
 
   useEffect(() => {
     getOldTripRequest(selectedTripRequest?.OriginalItineraryID);
-  },[]);
+  },[selectedTripRequest]);
 
   const getOldTripRequest = async (id: number | undefined) => { 
     if(id){
