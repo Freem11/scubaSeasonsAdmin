@@ -1,4 +1,3 @@
-import { TripRequest } from '../../entities/tripRequest';
 import { supabase } from '../supabase';
 
 export const getAllItineraryRequest = async () => {
@@ -14,19 +13,15 @@ export const getAllItineraryRequest = async () => {
   return response;
 };
 
-// export const deleteItineraryRequest = async (id: number) => {
-//   const response = await supabase
-//   .from('itineraryRequests')
-//   .update(
-//     {
-//       deleted_at: new Date(),
-//     }
-//   )
-//   .eq('id',id);
+export const deleteItineraryRequest = async (id: number) => {
+  const response = await supabase
+  .from('itineraryRequests')
+  .delete()
+  .eq('id',id);
 
-//   if (response.error) {
-//     console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
-//   }
+  if (response.error) {
+    console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
+  }
  
-//   return {data: response.data, error: response.error};
-// };
+  return {data: response.data, error: response.error};
+};
