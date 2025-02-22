@@ -44,11 +44,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
                             />
                             <h6 className={styles.tagBox}>TripName: {props.record?.tripName}</h6>
                         </div>
@@ -82,11 +77,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
                             />
                             <h6 className={styles.tagBox}>Start Date: {props.record?.startDate}</h6>
                         </div>         
@@ -95,11 +85,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
                             />
                             <h6 className={styles.tagBox}>End Date: {props.record?.endDate}</h6>
                         </div>          
@@ -109,11 +94,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     width={24}
                                     height={24}
                                     color="currentColor"
-                                    style={{ 
-                                            cursor: 'pointer',
-                                            display: 'block', 
-                                            overflow: 'visible' 
-                                        }}
                                     />
                                 Dive Sites:
                             </div>
@@ -150,25 +130,20 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                style={{ 
-                                        cursor: 'pointer',
-                                        display: 'block', 
-                                        overflow: 'visible' 
-                                    }}
                             />
                             <h6 className={styles.tagBox}>Price: {props.oldValues?.price}</h6>
                         </div>
             
                         <div className={styles.row}>
                             <div className={styles.icons}>
-                                <Icon name="calendar-start" />
+                                <Icon name="calendar-start" width={24} height={24} />
                             </div>
                             <h6 className={styles.tagBox}>Start Date: {props.oldValues?.startDate}</h6>
                         </div>
             
                         <div className={styles.row}>
                             <div className={styles.icons}>
-                                <Icon name="calendar-end" />
+                                <Icon name="calendar-end" width={24} height={24} />
                             </div>
                             <h6 className={styles.tagBox}>End Date: {props.oldValues?.endDate}</h6>
                         </div>
@@ -179,11 +154,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     width={24}
                                     height={24}
                                     color="currentColor"
-                                    style={{ 
-                                            cursor: 'pointer',
-                                            display: 'block', 
-                                            overflow: 'visible' 
-                                        }}
                                     />
                                 Dive Sites:
                             </div>
@@ -238,16 +208,10 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                         </div>
                         <div className={styles.row}>
                             <div className={styles.icons}>
-                           
                                 <Icon name="link"  
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                // style={{ 
-                                //         cursor: 'pointer',
-                                //         display: 'block', 
-                                //         overflow: 'visible' 
-                                //     }}
                             />
                             </div>
                             <h6 className={styles.tagBox}>Booking Page URL: {props.record?.BookingPage}</h6>
@@ -259,11 +223,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                // style={{ 
-                                //         cursor: 'pointer',
-                                //         display: 'block', 
-                                //         overflow: 'visible' 
-                                //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>Price: {props.record?.price}</h6>
@@ -275,11 +234,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                 width={24}
                                 height={24}
                                 color="currentColor"
-                                // style={{ 
-                                //         cursor: 'pointer',
-                                //         display: 'block', 
-                                //         overflow: 'visible' 
-                                //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>Start Date: {props.record?.startDate}</h6>
@@ -291,11 +245,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     width={24}
                                     height={24}
                                     color="currentColor"
-                                    // style={{ 
-                                    //         cursor: 'pointer',
-                                    //         display: 'block', 
-                                    //         overflow: 'visible' 
-                                    //     }}
                                 />
                             </div>
                             <h6 className={styles.tagBox}>End Date: {props.record?.endDate}</h6>
@@ -309,11 +258,6 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
                                     width={24}
                                     height={24}
                                     color="currentColor"
-                                    style={{ 
-                                            cursor: 'pointer',
-                                            display: 'block', 
-                                            overflow: 'visible' 
-                                        }}
                                     />
                                 Dive Sites:
                             </div>

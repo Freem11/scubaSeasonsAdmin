@@ -11,9 +11,8 @@ export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
   const { setTripRequests} = useContext(TripRequestsContext)
   const [oldTripValues, setOldTripValues] = useState<TripRequest | null>(null)
-  // waiting for the data type that comes back from backend
+
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
-    console.log("form data on validate", formData);
     await updateItinerary({
       id: formData.id || id,
       startDate: formData.startDate,
@@ -24,14 +23,13 @@ export default function TripRequestEval() {
       price: formData.price,
       BookingPage: formData.BookingPage,
       created_at: new Date(),
-      OriginalItineraryId: formData.OriginalItineraryID,
-      requestType:formData.requestType
+      deleted_at: null,
+      requestType: formData.requestType,
+      OriginalItineraryID: formData.OriginalItineraryID
     });
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
-      const tripRequest = await getAllItineraryRequest();
-      console.log("after update", tripRequest);
     }
     const updatedTripRequests = await getAllItineraryRequest();
     setTripRequests(updatedTripRequests.data);
@@ -46,8 +44,6 @@ export default function TripRequestEval() {
       // setTripRequests(updatedTripRequests.data);
       // setSelectedTripRequest(null);
     }
-    console.log("rejected, no function yet");
-  
   }
 
   useEffect(() => {
@@ -58,8 +54,6 @@ export default function TripRequestEval() {
     if(id){
       const data = await getItineraryByIdRequest(id);
       setOldTripValues(data[0]);
-      const allData= await getTripRequests();
-      console.log("all trip requests", allData.data);
     }
   }
 

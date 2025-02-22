@@ -27,7 +27,6 @@ export const getItineraryByIdRequest = async (id: number) => {
 
 export const updateItinerary = async (itinerary: any) => {
   
-  console.log("itinerary", itinerary);
   if (itinerary.requestType === "Edit") {
     const { data, error } = await supabase
     .from("itineraries")
@@ -44,7 +43,6 @@ export const updateItinerary = async (itinerary: any) => {
         siteList: itinerary.siteList,
         startDate: itinerary.startDate,
         endDate: itinerary.endDate,
-        OriginalItineraryID: itinerary.OriginalItineraryID,
       },
     ])
     .eq('id', itinerary.OriginalItineraryID);
