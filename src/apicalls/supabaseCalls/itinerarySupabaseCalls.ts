@@ -33,6 +33,8 @@ export const updateItinerary = async (itinerary: any) => {
     .from("itineraries")
     .update([
       {
+        id: itinerary.id,
+        deleted_at:null,
         tripName: itinerary.tripName,
         BookingPage: itinerary.BookingPage,
         created_at: new Date(),
