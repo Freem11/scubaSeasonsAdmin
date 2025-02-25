@@ -24,3 +24,16 @@ export const deleteItineraryRequest = async (id: number) => {
  
   return {data: response.data, error: response.error};
 };
+
+export const rejectIteneraryRequest = async (id: number) => {
+  const response = await supabase
+  .from('itineraryRequests')
+  .update({deleted_at: new Date()})
+  .eq('id',id);
+
+  if (response.error) {
+    console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
+  }
+ 
+  return {data: response.data, error: response.error};
+}
