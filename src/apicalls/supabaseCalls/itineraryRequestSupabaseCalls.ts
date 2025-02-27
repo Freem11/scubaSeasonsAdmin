@@ -3,7 +3,8 @@ import { supabase } from '../supabase';
 export const getAllItineraryRequest = async () => {
   const response = await supabase
   .from('itineraryRequests')
-  .select();
+  .select()
+  .is('deleted_at', null);
 
   if (response.error) {
     console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
@@ -15,7 +16,10 @@ export const getAllItineraryRequest = async () => {
 export const deleteItineraryRequest = async (id: number) => {
   const response = await supabase
   .from('itineraryRequests')
-  .delete()
+  // .delete()
+  .update({
+    deleted_at: new Date(),
+  })
   .eq('id',id);
 
   if (response.error) {
@@ -25,10 +29,13 @@ export const deleteItineraryRequest = async (id: number) => {
   return {data: response.data, error: response.error};
 };
 
-export const rejectIteneraryRequest = async (id: number) => {
+export const approvedIteneraryRequest = async (id: number) => {
   const response = await supabase
   .from('itineraryRequests')
-  .update({deleted_at: new Date()})
+  .update({
+    //updated_at: new Date(),
+    //approved?: true | false,
+  })
   .eq('id',id);
 
   if (response.error) {

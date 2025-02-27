@@ -36,13 +36,13 @@ export const updateItinerary = async (itinerary: any) => {
         deleted_at:null,
         tripName: itinerary.tripName,
         BookingPage: itinerary.BookingPage,
-        created_at: new Date(),
         description: itinerary.description,
         price: itinerary.price,
         shopId: itinerary.shopId,
         siteList: itinerary.siteList,
         startDate: itinerary.startDate,
         endDate: itinerary.endDate,
+        //deleted_at?: new Date() --> if rejected
       },
     ])
     .eq('id', itinerary.OriginalItineraryID);
@@ -56,7 +56,9 @@ export const updateItinerary = async (itinerary: any) => {
     const response = await supabase
     .from('itineraries')
     .update([
-      {deleted_at : new Date()},
+      {deleted_at : new Date(),
+         //approved?: true | false,
+      },
     ])
     .eq('id', itinerary.OriginalItineraryID);
     

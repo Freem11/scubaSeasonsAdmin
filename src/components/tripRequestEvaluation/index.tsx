@@ -5,7 +5,7 @@ import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/sele
 import TripRequestEvalView from "./view";
 import { getItineraryByIdRequest, getTripRequests, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
 import { TripRequest } from "../../entities/tripRequest";
-import { deleteItineraryRequest, getAllItineraryRequest, rejectIteneraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
+import { approvedIteneraryRequest, deleteItineraryRequest, getAllItineraryRequest, rejectIteneraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
@@ -27,6 +27,8 @@ export default function TripRequestEval() {
       requestType: formData.requestType,
       OriginalItineraryID: formData.OriginalItineraryID
     });
+
+    await approvedIteneraryRequest(id || formData.id as number);
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
@@ -40,7 +42,7 @@ export default function TripRequestEval() {
     if(id){
       const updatedTripRequests = await getAllItineraryRequest();
       console.log("updated trip to reject", updatedTripRequests);
-      await rejectIteneraryRequest(id);
+      await deleteItineraryRequest(id);
       setTripRequests(updatedTripRequests.data);
       setSelectedTripRequest(null);
     }
