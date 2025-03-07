@@ -6,5 +6,5 @@ export type PartnerRequest = {
   userId:               string
   userEmail:            string
   created_at:           string
-  webPageLink:          string
+  webpageLink:          string
 };
