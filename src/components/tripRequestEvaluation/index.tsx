@@ -7,10 +7,12 @@ import { getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabas
 import { TripRequest } from "../../entities/tripRequest";
 import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
+import { UserProfileContext } from "../../contexts/userProfileContext";
 
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
   const { setTripRequests} = useContext(TripRequestsContext)
+  const {profile} = useContext(UserProfileContext)
   const [oldTripValues, setOldTripValues] = useState<TripRequest | null>(null)
 
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
@@ -29,7 +31,7 @@ export default function TripRequestEval() {
       OriginalItineraryID: formData.OriginalItineraryID
     });
 
-    await approvedItineraryRequest(id || formData.id as number);
+    await approvedItineraryRequest(id || formData.id as number, profile?.UserID);
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
