@@ -3,10 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { Form } from "./form";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEvalView from "./view";
-import { getItineraryByIdRequest, getTripRequests, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
+import { getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
 import { TripRequest } from "../../entities/tripRequest";
-import { approvedIteneraryRequest, deleteItineraryRequest, getAllItineraryRequest, rejectIteneraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
+import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
+
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
   const { setTripRequests} = useContext(TripRequestsContext)
@@ -28,7 +29,7 @@ export default function TripRequestEval() {
       OriginalItineraryID: formData.OriginalItineraryID
     });
 
-    await approvedIteneraryRequest(id || formData.id as number);
+    await approvedItineraryRequest(id || formData.id as number);
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
@@ -41,7 +42,6 @@ export default function TripRequestEval() {
   const RejectTripRequest = async (id: number | undefined) => {
     if(id){
       const updatedTripRequests = await getAllItineraryRequest();
-      console.log("updated trip to reject", updatedTripRequests);
       await deleteItineraryRequest(id);
       setTripRequests(updatedTripRequests.data);
       setSelectedTripRequest(null);

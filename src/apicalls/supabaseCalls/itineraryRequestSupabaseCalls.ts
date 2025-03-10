@@ -16,7 +16,6 @@ export const getAllItineraryRequest = async () => {
 export const deleteItineraryRequest = async (id: number) => {
   const response = await supabase
   .from('itineraryRequests')
-  // .delete()
   .update({
     deleted_at: new Date(),
   })
@@ -29,12 +28,13 @@ export const deleteItineraryRequest = async (id: number) => {
   return {data: response.data, error: response.error};
 };
 
-export const approvedIteneraryRequest = async (id: number) => {
+export const approvedItineraryRequest = async (id: number, userId?: string) => {
   const response = await supabase
   .from('itineraryRequests')
   .update({
-    //updated_at: new Date(),
-    //approved?: true | false,
+    updated_at: new Date(),
+    approved: true,
+    approved_by: userId, 
   })
   .eq('id',id);
 
