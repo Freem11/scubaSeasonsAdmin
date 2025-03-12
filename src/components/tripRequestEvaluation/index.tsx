@@ -44,8 +44,8 @@ export default function TripRequestEval() {
 
   const RejectTripRequest = async (id: number | undefined) => {
     if(id){
-      const updatedTripRequests = await getAllItineraryRequest();
       await deleteItineraryRequest(id);
+      const updatedTripRequests = await getAllItineraryRequest();
       setTripRequests(updatedTripRequests.data);
       setSelectedTripRequest(null);
     }
