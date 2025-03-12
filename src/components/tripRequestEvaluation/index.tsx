@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Form } from "./form";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEvalView from "./view";
-import { getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
+import { deleteItinerary, getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
 import { TripRequest } from "../../entities/tripRequest";
 import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
@@ -35,6 +35,7 @@ export default function TripRequestEval() {
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
+      await deleteItinerary(formData);
     }
     const updatedTripRequests = await getAllItineraryRequest();
     setTripRequests(updatedTripRequests.data);

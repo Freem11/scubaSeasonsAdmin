@@ -66,3 +66,18 @@ export const updateItinerary = async (itinerary: any) => {
     };
   }
 };
+
+export const deleteItinerary = async (itinerary: any) => {
+  
+  if (itinerary.requestType === "Delete") {
+    const { data, error } = await supabase
+    .from("itineraries")
+    .delete()
+    .eq('id', itinerary.OriginalItineraryID);
+    
+    return {
+      data: data,
+      error: error,
+    };
+  }
+};

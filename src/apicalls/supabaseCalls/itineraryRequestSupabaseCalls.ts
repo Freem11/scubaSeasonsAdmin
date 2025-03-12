@@ -4,7 +4,7 @@ export const getAllItineraryRequest = async () => {
   const response = await supabase
   .from('itineraryRequests')
   .select()
-  .is('deleted_at', null);
+  .is('approved', null);
 
   if (response.error) {
     console.log('couldn\'t do it: itinerary edit/delete request,', response.error);
@@ -17,7 +17,8 @@ export const deleteItineraryRequest = async (id: number) => {
   const response = await supabase
   .from('itineraryRequests')
   .update({
-    deleted_at: new Date(),
+    approved: false,
+    updated_at: new Date(),
   })
   .eq('id',id);
 
