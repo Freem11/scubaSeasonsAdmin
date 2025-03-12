@@ -3,6 +3,7 @@ import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaL
 import { SeaLifePhoto } from "../../entities/seaLifePhoto";
 import style from './styles.module.scss';
 import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
+import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 
 type SeaLifePhotoListProps = {
@@ -12,11 +13,13 @@ type SeaLifePhotoListProps = {
 export default function SeaLifePhotoListView(props: SeaLifePhotoListProps) {
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
     const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
+    const { setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext)
     const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
        
     const setupSeaLife = (record: SeaLifePhoto) => {
         setSelectedSeaLife(record)
         setSelectedPendingDiveSite(null)
+        setSelectedPartnerRequest(null)
         setSelectedTripRequest(null)
     };
 

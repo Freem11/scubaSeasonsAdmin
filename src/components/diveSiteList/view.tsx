@@ -5,8 +5,11 @@ import style from './styles.module.scss';
 import { MapContext } from "../googleMap/mapContext";
 import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
 import { SitesArrayContext } from "../../contexts/sitesArrayContext";
+import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
+import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
+
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
-// import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+
 type DiveSiteListProps = {
     pendingDiveSitesList: DiveSite[] | null
   };
@@ -15,7 +18,9 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setInitialPoint, mapRef } = useContext(MapContext);
     const { setSelectedPendingDiveSite } = useContext(SelectedPendingDiveSiteContext)
     const { setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
+    const { setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext)
     const { sitesArray, setSitesArray } = useContext(SitesArrayContext);
+    const { setShopsArray } = useContext(ShopsArrayContext);
     const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
        
     const setupMap = (record: DiveSite) => {
@@ -31,6 +36,8 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
 
         setSelectedSeaLife(null)
         setSelectedTripRequest(null)
+        setSelectedPartnerRequest(null)
+        setShopsArray([])
         setInitialPoint([record?.lat, record?.lng]);
  
         mapRef?.panTo({ lat: record?.lat, lng: record?.lng });

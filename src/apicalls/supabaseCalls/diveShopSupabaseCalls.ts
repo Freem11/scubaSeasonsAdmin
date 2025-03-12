@@ -22,7 +22,7 @@ export const getDiveShops = async (values: GPSBubble) => {
   return [];
 };
 
-export const shops = async (GPSBubble) => {
+export const shops = async (GPSBubble: GPSBubble) => {
   const { data, error } = await supabase
     .from('shops')
     .select()

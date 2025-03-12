@@ -1,6 +1,5 @@
-import { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
-import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
@@ -18,6 +17,10 @@ import { SitesArrayContext } from './contexts/sitesArrayContext';
 import { MapContextProvider } from './components/googleMap/mapContextProvider';
 import { SelectedTripRequestContext } from './contexts/tripRequestEvals/selectedTripRequestContext';
 import { TripRequest } from './entities/tripRequest';
+import { SelectedPartnerRequestContext } from './contexts/partnerRequestEvals/selectedPartnerRequestContext';
+import { PartnerRequest } from './entities/partnerRequest';
+import { ShopsArrayContext } from './contexts/shopsArrayContext';
+import { DiveShopBasic } from './entities/diveShop';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -27,6 +30,8 @@ function App() {
   const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
+  const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
+  const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
   
   useEffect(() => {
     async function getUserData() {
@@ -76,6 +81,8 @@ function App() {
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
          <UserProfileContext.Provider value={{ profile, setProfile }}>
           <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
+          <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
+          <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
           <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
           <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
@@ -86,6 +93,8 @@ function App() {
          </SelectedTripRequestContext.Provider>
          </SelectedSeaLifeContext.Provider>
          </SelectedPendingDiveSiteContext.Provider>
+         </SelectedPartnerRequestContext.Provider>
+         </ShopsArrayContext.Provider>
          </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
