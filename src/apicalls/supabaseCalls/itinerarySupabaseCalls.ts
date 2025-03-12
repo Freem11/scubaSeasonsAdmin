@@ -22,7 +22,6 @@ export const getItineraryByIdRequest = async (id: number) => {
   }
  
   return response.data as TripRequest[];
-  //edit --> save record to table 
 };
 
 export const updateItinerary = async (itinerary: any) => {
@@ -36,7 +35,6 @@ export const updateItinerary = async (itinerary: any) => {
         deleted_at:null,
         tripName: itinerary.tripName,
         BookingPage: itinerary.BookingPage,
-        created_at: new Date(),
         description: itinerary.description,
         price: itinerary.price,
         shopId: itinerary.shopId,
@@ -56,7 +54,9 @@ export const updateItinerary = async (itinerary: any) => {
     const response = await supabase
     .from('itineraries')
     .update([
-      {deleted_at : new Date()},
+      {
+        deleted_at : new Date(),
+      },
     ])
     .eq('id', itinerary.OriginalItineraryID);
     

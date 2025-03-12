@@ -3,13 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { Form } from "./form";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEvalView from "./view";
-import { getItineraryByIdRequest, getTripRequests, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
+import { getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
 import { TripRequest } from "../../entities/tripRequest";
-import { deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
+import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
+import { UserProfileContext } from "../../contexts/userProfileContext";
+
 export default function TripRequestEval() {
   const { selectedTripRequest, setSelectedTripRequest } = useContext(SelectedTripRequestContext)
   const { setTripRequests} = useContext(TripRequestsContext)
+  const {profile} = useContext(UserProfileContext)
   const [oldTripValues, setOldTripValues] = useState<TripRequest | null>(null)
 
   const ValidateTripRequest = async (id: number | undefined, formData: Form) => {
@@ -27,6 +30,8 @@ export default function TripRequestEval() {
       requestType: formData.requestType,
       OriginalItineraryID: formData.OriginalItineraryID
     });
+
+    await approvedItineraryRequest(id || formData.id as number, profile?.UserID);
     
     if (id || formData.id){
       await deleteItineraryRequest(id || formData.id as number);
@@ -38,11 +43,10 @@ export default function TripRequestEval() {
 
   const RejectTripRequest = async (id: number | undefined) => {
     if(id){
-      // await deleteItineraryRequest(id);
       const updatedTripRequests = await getAllItineraryRequest();
-      console.log("updated trip to reject", updatedTripRequests);
-      // setTripRequests(updatedTripRequests.data);
-      // setSelectedTripRequest(null);
+      await deleteItineraryRequest(id);
+      setTripRequests(updatedTripRequests.data);
+      setSelectedTripRequest(null);
     }
   }
 
