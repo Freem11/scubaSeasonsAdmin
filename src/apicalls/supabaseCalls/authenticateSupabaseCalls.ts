@@ -64,13 +64,13 @@ export const signInStandard = async (loginDetails: loginDetails) => {
 
   if (error || !data) {
     console.log('couldn\'t login,', error);
-    return { error: { message: 'Error: Couldn\'t login.' } };
+    return { error: { status_code: error?.status, message: error?.message } };
   }
 
   // Validate admin access
   if (data.user && !data.user.user_metadata?.is_admin) {
     await supabase.auth.signOut();
-    return { error: { message: 'Unauthorized: Admin access only.' } };
+    return { error: { status_code: 403, message: 'Unauthorized: Admin access only.' } };
   }
 
     return { data };
