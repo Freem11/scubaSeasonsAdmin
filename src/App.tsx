@@ -15,6 +15,8 @@ import { DiveSite, DiveSiteBasic } from './entities/diveSite';
 import { SelectedPendingDiveSiteContext } from './contexts/diveSiteEvals/selectedDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
 import { MapContextProvider } from './components/googleMap/mapContextProvider';
+import { SelectedTripRequestContext } from './contexts/tripRequestEvals/selectedTripRequestContext';
+import { TripRequest } from './entities/tripRequest';
 import { SelectedPartnerRequestContext } from './contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { PartnerRequest } from './entities/partnerRequest';
 import { ShopsArrayContext } from './contexts/shopsArrayContext';
@@ -25,9 +27,10 @@ function App() {
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
+  const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
-  const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
+  const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
   const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
   
   useEffect(() => {
@@ -82,10 +85,12 @@ function App() {
           <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
           <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
           <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
-          <MapContextProvider>
+          <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
+            <MapContextProvider>
          {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
          { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
          </MapContextProvider>
+         </SelectedTripRequestContext.Provider>
          </SelectedSeaLifeContext.Provider>
          </SelectedPendingDiveSiteContext.Provider>
          </SelectedPartnerRequestContext.Provider>

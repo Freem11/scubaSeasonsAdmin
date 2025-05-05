@@ -10,4 +10,5 @@ export type TripRequest = {
     created_at: string
     startDate?: string
     endDate?: string
+    OriginalItineraryID?: number
   };

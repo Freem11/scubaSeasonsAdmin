@@ -8,6 +8,8 @@ import { SitesArrayContext } from "../../contexts/sitesArrayContext";
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
 
+import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+
 type DiveSiteListProps = {
     pendingDiveSitesList: DiveSite[] | null
   };
@@ -19,7 +21,8 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
     const { setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext)
     const { sitesArray, setSitesArray } = useContext(SitesArrayContext);
     const { setShopsArray } = useContext(ShopsArrayContext);
-
+    const { setSelectedTripRequest } = useContext(SelectedTripRequestContext);
+       
     const setupMap = (record: DiveSite) => {
         if(sitesArray.find(item => item.id === record.id)){
             // const index = sitesArray.findIndex(item => item.id === record.id)
@@ -32,6 +35,7 @@ export default function DiveSiteListView(props: DiveSiteListProps) {
         }
 
         setSelectedSeaLife(null)
+        setSelectedTripRequest(null)
         setSelectedPartnerRequest(null)
         setShopsArray([])
         setInitialPoint([record?.lat, record?.lng]);
