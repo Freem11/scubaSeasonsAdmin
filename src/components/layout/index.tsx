@@ -12,25 +12,24 @@ import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider'
 import { TripRequest } from "../../entities/tripRequest";
 
 export default function LayoutMain() {
-    const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
-    const [pendingDiveSites, setPendingDiveSites] = useState<DiveSite[] | null>(null)
-    const [partnerRequests, setPartnerRequests] = useState<PartnerRequest[] | null>(null)
-    const [tripRequests, setTripRequests] = useState<TripRequest[] | null>(null)
+  const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
+  const [pendingDiveSites, setPendingDiveSites] = useState<DiveSite[] | null>(null)
+  const [partnerRequests, setPartnerRequests] = useState<PartnerRequest[] | null>(null)
+  const [tripRequests, setTripRequests] = useState<TripRequest[] | null>(null)
 
-return (
+  return (
     <DiveSiteContextProvider>
-    <DiveShopContextProvider>
-    <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
-    <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
-    <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
-    <TripRequestsContext.Provider value={{ tripRequests, setTripRequests }}>
-    <LayoutMainView/>
-    </TripRequestsContext.Provider>
-    </SeaLifePhotosContext.Provider>
-    </PartnerRequestsContext.Provider>
-    </PendingDiveSitesContext.Provider>
-    </DiveShopContextProvider>
+      <DiveShopContextProvider>
+        <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
+          <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
+            <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
+              <TripRequestsContext.Provider value={{ tripRequests, setTripRequests }}>
+                <LayoutMainView/>
+              </TripRequestsContext.Provider>
+            </SeaLifePhotosContext.Provider>
+          </PartnerRequestsContext.Provider>
+        </PendingDiveSitesContext.Provider>
+      </DiveShopContextProvider>
     </DiveSiteContextProvider>
-)
-
+  )
 }
