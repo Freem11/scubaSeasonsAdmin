@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import PartnerRequestEvalView from './view';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
@@ -26,6 +26,12 @@ export default function PartnerRequestEval() {
     setPartnerRequests(data);
     }
   };
+
+    useEffect(() => {
+        return () => {
+            setSelectedPartnerRequest(null);
+        }
+    }, [setSelectedPartnerRequest]);
 
     return (
         <PartnerRequestEvalView

@@ -36,6 +36,10 @@ export default function PartnerRequestEvalView(props: PartnerRequestEvalViewProp
         {buttonPressed === 1 &&  props.validatePartnerRequest(props.partnerRequest?.id, data)} 
         {buttonPressed === 2 &&  props.rejectPartnerRequest(props.partnerRequest?.id)}
       };
+
+    if (!props.partnerRequest) {
+        return null;
+    }
     
 return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
@@ -52,7 +56,7 @@ return (
           </div>
         </div>
 
-        <div className="col-12 flex-row-between mt-2"style={{alignItems: 'center', justifyContent: 'space-between'}}>
+        <div className="col-12 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
                        
           <h6 className={style.tagBox}>Contributor: {props.partnerRequest?.userEmail}</h6>
 

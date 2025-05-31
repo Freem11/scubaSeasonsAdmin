@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './style.scss';
 
-type TabItem = {
+export type TabItem = {
   key?:    string
   title:   string | React.FC
   content: string | React.FC
+  tabContent: ReactNode
 };
 type TabsProps = {
   data:       TabItem[]

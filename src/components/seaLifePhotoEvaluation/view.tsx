@@ -1,10 +1,11 @@
-import { useForm, FieldErrors } from "react-hook-form";
-import { SeaLifePhoto } from "../../entities/seaLifePhoto";
-import Button from "../../reusables/button";
-import TextInput from "../../reusables/textInput";
-import { Form, FormRules } from "./form";
 import { useState } from "react";
+import { useForm, FieldErrors } from "react-hook-form";
+
+import { SeaLifePhoto } from "../../entities/seaLifePhoto";
+import TextInput from "../../reusables/textInput";
+import Button from "../../reusables/button";
 import style from './styles.module.scss';
+import { Form, FormRules } from "./form";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
@@ -17,7 +18,7 @@ type SeaLifePhotoEvalViewProps = {
 export default function SeaLifePhotoEvalView(props: SeaLifePhotoEvalViewProps) {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<Form>({
         values: props.values,
-      });
+    });
 
     const [buttonPressed, setButtonPressed] = useState<number>(0)
     const photoName = props.photoRecord?.photofile.split('/').pop();
@@ -30,14 +31,18 @@ export default function SeaLifePhotoEvalView(props: SeaLifePhotoEvalViewProps) {
         //     toast.error(error.message);
         //   }
         // });
-      };
-    
-      const onSubmit = (data: Form) => {
+    };
+
+    const onSubmit = (data: Form) => {
         // toast.dismiss();
-        {buttonPressed === 1 &&  props.validatePhoto(props.photoRecord?.id, data)} 
+        {buttonPressed === 1 &&  props.validatePhoto(props.photoRecord?.id, data)}
         {buttonPressed === 2 &&  props.rejectPhoto(props.photoRecord?.id)}
         {buttonPressed === 3 &&  props.diveSiteHeader(props.photoRecord?.id, data)}
       };
+
+    if (!props.photoRecord) {
+        return null;
+    }
     
 return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
@@ -67,7 +72,7 @@ return (
                     <h4 className="col-12 my-2" style={{color: "black"}}>Location</h4>
 
                     <div className="col-2"/>
-                    <div className="col-8 flex-row-between mt-2"style={{alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div className="col-8 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
                        
                         <h6 className={style.tagBox}>Lat:
                         <TextInput className={style.textInput} style={{backgroundColor: "transparent"}}

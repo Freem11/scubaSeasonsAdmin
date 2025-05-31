@@ -1,11 +1,11 @@
+import { useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 import { DiveSite } from "../../entities/diveSite";
 import Button from "../../reusables/button";
 import TextInput from "../../reusables/textInput";
-import { Form, FormRules } from "./form";
-import { useState } from "react";
-import style from './styles.module.scss';
 import MapLoader from "../googleMap";
+import style from './styles.module.scss';
+import { Form, FormRules } from "./form";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
@@ -36,6 +36,10 @@ export default function DiveSiteEvalView(props: SeaLifePhotoEvalViewProps) {
         {buttonPressed === 1 &&  props.validateDiveSite(props.diveSite?.id, data)} 
         {buttonPressed === 2 &&  props.rejectDiveSite(props.diveSite?.id)}
       };
+
+    if (!props.diveSite) {
+        return null;
+    }
     
 return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
@@ -52,7 +56,7 @@ return (
           </div>
         </div>
 
-        <div className="col-12 flex-row-between mt-2"style={{alignItems: 'center', justifyContent: 'space-between'}}>      
+        <div className="col-12 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
           <h6 className={style.tagBox}>Contributor: {props.diveSite?.newusername}</h6>
           <h6 className={style.tagBox}>Lat:
             <TextInput className={style.textInput} style={{backgroundColor: "transparent"}}
