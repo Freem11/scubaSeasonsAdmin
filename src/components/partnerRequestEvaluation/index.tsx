@@ -1,31 +1,33 @@
 import { useContext, useEffect } from 'react';
-import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
-import PartnerRequestEvalView from './view';
-import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
+
 import { deletePartnerRequest, grabPartnerRequestById, insertNewShop, partnerRequests } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
+import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
+import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
+import PartnerRequestEvalView from './view';
 
 export default function PartnerRequestEval() {
     const { selectedPartnerRequest, setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext)
     const { setPartnerRequests } = useContext(PartnerRequestsContext)
-  const ValidatePartnerRequest = async (id: number| undefined) => {
-    if(id){
-      const partnerRequestById = await grabPartnerRequestById(id);
-      await insertNewShop(partnerRequestById && partnerRequestById[0])
-      await deletePartnerRequest(id)
-      setSelectedPartnerRequest(null)
-      const { data } = await partnerRequests();
-      setPartnerRequests(data);
-    }
-  };
 
-  const RejectPartnerRequest = async(id: number| undefined) => {
-    if(id){
-    await deletePartnerRequest(id);
-    setSelectedPartnerRequest(null)
-    const { data } = await partnerRequests();
-    setPartnerRequests(data);
-    }
-  };
+    const validatePartnerRequest = async (id: number| undefined) => {
+        if (id) {
+            const partnerRequestById = await grabPartnerRequestById(id);
+            await insertNewShop(partnerRequestById && partnerRequestById[0])
+            await deletePartnerRequest(id)
+            setSelectedPartnerRequest(null)
+            const { data } = await partnerRequests();
+            setPartnerRequests(data);
+        }
+    };
+
+    const rejectPartnerRequest = async(id: number| undefined) => {
+        if (id) {
+            await deletePartnerRequest(id);
+            setSelectedPartnerRequest(null)
+            const { data } = await partnerRequests();
+            setPartnerRequests(data);
+        }
+    };
 
     useEffect(() => {
         return () => {
@@ -35,8 +37,8 @@ export default function PartnerRequestEval() {
 
     return (
         <PartnerRequestEvalView
-            validatePartnerRequest={ValidatePartnerRequest}
-            rejectPartnerRequest={RejectPartnerRequest}
+            validatePartnerRequest={validatePartnerRequest}
+            rejectPartnerRequest={rejectPartnerRequest}
             partnerRequest={selectedPartnerRequest}
             values={{
                 businessName: selectedPartnerRequest?.businessName,
