@@ -25,12 +25,7 @@ export default function LayoutMainView() {
         <div className="container-fluid">
             <div className="cols col-gapless">
                 <div className="col-4" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
-                    <Tabs
-                        data={tabs}
-                        onChange={(data) => {
-                            setCurrentTab(data)
-                        }}
-                    />
+                    <Tabs data={tabs} onChange={setCurrentTab} />
                 </div>
                 <div className="col-8" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
                     {currentTab.tabContent}
