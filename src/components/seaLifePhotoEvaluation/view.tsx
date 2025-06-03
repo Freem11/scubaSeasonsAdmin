@@ -45,7 +45,11 @@ export default function SeaLifePhotoEvalView(props: SeaLifePhotoEvalViewProps) {
     }
     
     return (
-        <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
+        <form
+            onSubmit={handleSubmit(onSubmit, handleError)}
+            className="cols col-12 mt-2 flex-column full-height"
+            style={{ flexWrap: "nowrap" }}
+        >
             <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={'60%'}></img>
             <div className="mt-2">
                 <div className="col-12 my-2">
