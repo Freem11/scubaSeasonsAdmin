@@ -2,7 +2,8 @@ import {
   grabPartnerRequestById,
   insertNewShop,
   partnerRequests,
-  updateValidatePartnerRequestByUserId
+  updateValidatePartnerRequestByUserId,
+  updateProfileByUserId
 } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
@@ -20,7 +21,8 @@ export default function PartnerRequestEval() {
         setIsLoading(true);
         const partnerRequestById = await grabPartnerRequestById(selectedPartnerRequest.id);
         await insertNewShop(partnerRequestById);
-        await updateValidatePartnerRequestByUserId(partnerRequestById.userId, true)
+        await updateValidatePartnerRequestByUserId(partnerRequestById.userId, true);
+        await updateProfileByUserId(partnerRequestById.userId, true);
         setSelectedPartnerRequest(null);
         const { data } = await partnerRequests();
         setPartnerRequests(data);
@@ -36,7 +38,8 @@ export default function PartnerRequestEval() {
     if (selectedPartnerRequest?.id) {
       try {
         setIsLoading(true);
-        await updateValidatePartnerRequestByUserId(selectedPartnerRequest.userId, false)
+        await updateValidatePartnerRequestByUserId(selectedPartnerRequest.userId, false);
+        await updateProfileByUserId(selectedPartnerRequest.userId, false);
         setSelectedPartnerRequest(null);
         const { data } = await partnerRequests();
         setPartnerRequests(data);
