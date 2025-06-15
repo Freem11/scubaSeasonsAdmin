@@ -24,12 +24,16 @@
   color: $primaryBlue;
   border-color: $primaryBlue;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   list-style: none;
   margin: 0;
+  white-space: nowrap;
 
   .ssrc-tabs_item {
     margin-top: 0;
+    flex-shrink: 0;
 
     button {
       border-bottom: var(--ssrc-tabs-active-underline-width) solid transparent;
@@ -41,6 +45,7 @@
       background-color: transparent;
       border-color: transparent;
       outline: none;
+      white-space: nowrap;
       &:focus,
       &:hover {
         color: var(--ssrc-tabs-focus-text-color);

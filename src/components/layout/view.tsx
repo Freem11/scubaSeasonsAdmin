@@ -12,6 +12,7 @@ import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEval
 import TripRequestList from "../tripRequestList";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import TripRequestEval from "../tripRequestEvaluation";
+import DiveSiteFlagList from '../diveSiteFlagList';
 
 
 export default function LayoutMainView() {
@@ -27,7 +28,8 @@ export default function LayoutMainView() {
                         { key: 't-1', title: 'Sea Life', content: SeaLifePhotoList },
                         { key: 't-2', title: 'Dive Sites', content: DiveSiteList },
                         { key: 't-3', title: 'Partner Requests', content: PartnerRequestList },
-                        { key: 't-4', title: 'Trip Requests', content: TripRequestList }
+                        { key: 't-4', title: 'Trip Requests', content: TripRequestList },
+                        { key: 't-5', title: 'Dive Site Flags', content: DiveSiteFlagList },
                     ]} />
                 </div>
                 <div className="col-8" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
