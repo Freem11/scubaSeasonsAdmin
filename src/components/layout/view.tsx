@@ -27,7 +27,8 @@ export default function LayoutMainView() {
                         { key: 't-1', title: 'Sea Life', content: SeaLifePhotoList },
                         { key: 't-2', title: 'Dive Sites', content: DiveSiteList },
                         { key: 't-3', title: 'Partner Requests', content: PartnerRequestList },
-                        { key: 't-4', title: 'Trip Requests', content: TripRequestList }
+                        { key: 't-4', title: 'Trip Requests', content: TripRequestList },
+                        { key: 't-5', title: 'Dive Site Flags', content: 'not implemented' },
                     ]} />
                 </div>
                 <div className="col-8" style={{ overflowX: 'hidden', overflowY: 'scroll', height: '100vh' }}>
