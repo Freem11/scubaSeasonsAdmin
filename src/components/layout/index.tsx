@@ -10,12 +10,15 @@ import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider"
 import { PartnerRequest } from '../../entities/partnerRequest';
 import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider';
 import { TripRequest } from "../../entities/tripRequest";
+import { DiveSiteFlagsContext } from '../../contexts/diveSiteFlagEvals/diveSiteFlagsContext';
+import { UserRequest } from '../../entities/userRequest';
 
 export default function LayoutMain() {
     const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
     const [pendingDiveSites, setPendingDiveSites] = useState<DiveSite[] | null>(null)
     const [partnerRequests, setPartnerRequests] = useState<PartnerRequest[] | null>(null)
     const [tripRequests, setTripRequests] = useState<TripRequest[] | null>(null)
+    const [diveSiteFlags, setDiveSiteFlags] = useState<UserRequest[] | null>(null)
 
 return (
     <DiveSiteContextProvider>
@@ -24,7 +27,9 @@ return (
     <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
     <SeaLifePhotosContext.Provider value={{ photoRecords, setPhotoRecords }}>
     <TripRequestsContext.Provider value={{ tripRequests, setTripRequests }}>
+    <DiveSiteFlagsContext.Provider value={{ diveSiteFlags, setDiveSiteFlags }}>
     <LayoutMainView/>
+    </DiveSiteFlagsContext.Provider>
     </TripRequestsContext.Provider>
     </SeaLifePhotosContext.Provider>
     </PartnerRequestsContext.Provider>
