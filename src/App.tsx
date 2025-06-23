@@ -79,23 +79,23 @@ function App() {
   
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
-         <UserProfileContext.Provider value={{ profile, setProfile }}>
-          <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
+      <UserProfileContext.Provider value={{ profile, setProfile }}>
+        <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
-          <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
-          <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
-          <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
-          <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
-            <MapContextProvider>
-         {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
-         { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
-         </MapContextProvider>
-         </SelectedTripRequestContext.Provider>
-         </SelectedSeaLifeContext.Provider>
-         </SelectedPendingDiveSiteContext.Provider>
-         </SelectedPartnerRequestContext.Provider>
+            <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
+              <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
+                <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
+                  <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
+                    <MapContextProvider>
+                     {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
+                     { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+                   </MapContextProvider>
+                 </SelectedTripRequestContext.Provider>
+               </SelectedSeaLifeContext.Provider>
+             </SelectedPendingDiveSiteContext.Provider>
+           </SelectedPartnerRequestContext.Provider>
          </ShopsArrayContext.Provider>
-         </SitesArrayContext.Provider>
+       </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )
