@@ -31,6 +31,10 @@ export default function TripRequestEvalView(props: TripRequestEvalViewProps) {
         console.log(errors)
       };
 
+    if (!props.record) {
+        return null;
+    }
+
     return (
         <>
         {props.record?.requestType === "Edit" ?

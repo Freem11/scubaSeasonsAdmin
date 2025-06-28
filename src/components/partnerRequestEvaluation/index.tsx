@@ -7,14 +7,14 @@ import {
 } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import PartnerRequestEvalView from './view';
 
 export default function PartnerRequestEval() {
   const { selectedPartnerRequest, setSelectedPartnerRequest } = useContext(SelectedPartnerRequestContext);
   const { setPartnerRequests } = useContext(PartnerRequestsContext);
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const onApprove = useCallback(async () => {
     if (selectedPartnerRequest?.id) {
       try {
@@ -33,7 +33,7 @@ export default function PartnerRequestEval() {
       }
     }
   }, [selectedPartnerRequest?.id, selectedPartnerRequest?.userId, setPartnerRequests, setSelectedPartnerRequest])
-  
+
   const onReject = useCallback(async () => {
     if (selectedPartnerRequest?.id) {
       try {
@@ -50,6 +50,12 @@ export default function PartnerRequestEval() {
       }
     }
   }, [selectedPartnerRequest?.id, selectedPartnerRequest?.userId, setPartnerRequests, setSelectedPartnerRequest])
+
+    useEffect(() => {
+        return () => {
+            setSelectedPartnerRequest(null);
+        }
+    }, [setSelectedPartnerRequest]);
 
   return (
     <PartnerRequestEvalView

@@ -14,9 +14,9 @@ export default function PartnerRequestEvalView(props: ComponentViewProps) {
   const {onApprove , onReject, partnerData, isLoading} = props;
 
   if (!partnerData) {
-    return <div>please choose partner</div>;
+    return <div>Please choose partner</div>;
   }
-  
+
   return (
     <div>
       <div style={{height: '70vh', width: '100%'}}>
