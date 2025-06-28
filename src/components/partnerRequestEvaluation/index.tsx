@@ -7,7 +7,7 @@ import {
 } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import PartnerRequestEvalView from './view';
 
 export default function PartnerRequestEval() {
