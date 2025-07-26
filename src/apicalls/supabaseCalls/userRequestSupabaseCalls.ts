@@ -10,6 +10,6 @@ export const getDiveSiteFlags = async () => {
     console.log('couldn\'t do it: dive site flag retrieve request,', response.error);
   }
 
-  console.log(response);
+  console.log(response.data);
   return response;
 };

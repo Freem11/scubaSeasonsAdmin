@@ -60,7 +60,7 @@ export default function DiveSiteFlagListView(props: DiveSiteFlagListProps) {
                             onClick={() => {}}
                         >
                             <div className="py-2">
-                                <div>{record.entity_id}</div>
+                                <div>{record.data.original.name || record.data.name.newName}</div>
                             </div>
                         </div>
                     );
