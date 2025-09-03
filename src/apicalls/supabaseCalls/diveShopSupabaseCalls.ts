@@ -3,7 +3,7 @@ import { GPSBubble } from '../../entities/GPSBubble';
 import { supabase } from '../supabase';
 
 export const getDiveShops = async (values: GPSBubble) => {
-  const { data, error } = await supabase.rpc('get_diveshops', {
+  const { data, error } = await supabase.rpc('get_diveshops_new', {
     max_lat: values.maxLat,
     min_lat: values.minLat,
     max_lng: values.maxLng,

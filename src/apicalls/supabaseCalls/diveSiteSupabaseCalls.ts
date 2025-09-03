@@ -5,7 +5,7 @@ import { supabase } from "../supabase";
 
 export const getDiveSitesBasic = async (bubble: GPSBubble) => {
   const { data, error } = await supabase
-    .rpc('get_divesites_within', {
+    .rpc('get_dive_sites_within', {
       max_lat: bubble.maxLat,
       min_lat: bubble.minLat,
       max_lng: bubble.maxLng,
@@ -40,7 +40,7 @@ export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<D
     return [];
   }
 
-    return data;
+  return data;
   
 };
 
@@ -121,10 +121,12 @@ export const insertDiveSite = async (values: any) => {
 
   const { data, error } = await supabase
   .rpc('insert_divesite', {
-    name: values.name,
-    lat: values.lat,
-    lng: values.lng,
-    UserID: values.UserID
+    records: [{
+      name: values.name,
+      lat: values.lat,
+      lng: values.lng,
+      UserID: values.UserID
+    }]
   });
 
   if (error || !data) {
@@ -171,7 +173,7 @@ export const insertDiveSite = async (values: any) => {
 
 
 export const updateDiveSite = async (lat: number | undefined, lng: number | undefined, photoFile: string | undefined) => {
-  const { data, error } = await supabase.rpc('update_divesite', {
+  const { data, error } = await supabase.rpc('update_dive_site_photo_geom', {
     p_lat: lat,
     p_lng: lng,
     profilePhoto: photoFile
