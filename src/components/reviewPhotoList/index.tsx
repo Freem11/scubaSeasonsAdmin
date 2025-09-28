@@ -5,6 +5,7 @@ import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/revi
 
 export default function ReviewPhotoList() {
     const {pendingReviewPhotos, setPendingReviewPhotos} = useContext(PendingReviewPhotosContext)
+    
     useEffect(() => {
       getReviewPhotos()
     },[])
@@ -12,6 +13,7 @@ export default function ReviewPhotoList() {
     const getReviewPhotos = async () => {
         try {
           const records = await getAllReviewPhotosWithReviewInfo();
+          console.log('records', records)
           if (records) {
             setPendingReviewPhotos(records);
           }
@@ -19,6 +21,8 @@ export default function ReviewPhotoList() {
           console.log({ title: 'Error', message: (e as Error).message });
         }
       };
+
+      console.log('pendingReviewPhotos', pendingReviewPhotos)
     
 return (
     <ReveiwPhotoListView photoRecords={pendingReviewPhotos}/>

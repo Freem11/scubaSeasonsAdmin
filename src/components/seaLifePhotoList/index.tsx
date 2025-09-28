@@ -20,6 +20,8 @@ export default function SeaLifePhotoList() {
           console.log({ title: 'Error', message: (e as Error).message });
         }
       };
+
+      console.log('photoRecords', photoRecords)
     
 return (
     <SeaLifePhotoListView photoRecords={photoRecords}/>
