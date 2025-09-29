@@ -5,4 +5,5 @@ export type ReviewPhotoWithInfo = {
     decision: string
     dive_date: string
     divesite_id: number
+    created_by: string
   };

@@ -1,6 +1,8 @@
 import { FormValidationRules } from "../../forms/form";
+import { Option } from '../../reusables/select';
 
 export interface Form {
+  animal?:          Option
   divesite_id?:     number
   review_id?:       number
   dive_date?:       string 

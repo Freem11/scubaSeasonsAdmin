@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deletePhotoWait } from "../../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import { insertHeatPoint } from "../../apicalls/supabaseCalls/heatPointSupabaseCalls";
 import readableDate from "../../helpers/readableDate";
@@ -6,16 +6,32 @@ import { Form } from "./form";
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
-import { updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { getDiveSiteById, updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
 import { getAllReviewPhotosWithReviewInfo } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
 import ReviewPhotoEvalView from "./view";
+import { DiveSite } from "../../entities/diveSite";
+import { DynamicSelectOptionsAnimals } from "../../entities/DynamicSelectOptionsAnimals";
 
 export default function ReviewPhotoEval() {
   const { selectedReviewPhoto, setSelectedReviewPhoto } = useContext(SelectedPendingReviewPhotoContext)
   const { setPendingReviewPhotos } = useContext(PendingReviewPhotosContext)
     
+  const [diveSite, setDiveSite] = useState<DiveSite | null>(null)
+
+  useEffect(() => {
+    if(selectedReviewPhoto?.divesite_id){
+      getDiveSiteData(selectedReviewPhoto?.divesite_id);
+    }
+
+  }, [selectedReviewPhoto]);
+
+  const getDiveSiteData = async(diveSite_id: number) => {
+    const diveSiteData = await getDiveSiteById(diveSite_id)
+      setDiveSite(diveSiteData[0])
+  }
+
   // const ValidatePhoto = async (id: number | undefined, formData: Form) => {
   //   if (id && formData.date){
   //     const monthID = selectedSeaLife?.dateTaken.slice(5, 7);
@@ -70,19 +86,14 @@ export default function ReviewPhotoEval() {
 
 
   console.log('selectedReviewPhoto', selectedReviewPhoto)
+  console.log('diveSite', diveSite)
 
         return (
             <ReviewPhotoEvalView 
             photoRecord={selectedReviewPhoto}
-            validatePhoto={ValidatePhoto}
-            rejectPhoto={RejectPhoto}
+            diveSiteInfo={diveSite}
             diveSiteHeader={DiveSiteHeader}
-            values={{
-              divesite_id: selectedReviewPhoto?.divesite_id,
-              review_id: selectedReviewPhoto?.review_id,
-              dive_date: selectedReviewPhoto?.dive_date && readableDate(selectedReviewPhoto?.dive_date),
-              photo: selectedReviewPhoto?.photoPath
-            }}
+            getMoreAnimals={DynamicSelectOptionsAnimals.getMoreOptions}
             />
 
         )
