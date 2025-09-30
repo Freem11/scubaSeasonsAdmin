@@ -6,17 +6,17 @@ import { Form } from "./form";
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
-import { getDiveSiteById, updateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { getDiveSiteById } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
-import { getAllReviewPhotosWithReviewInfo } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
+import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
 import ReviewPhotoEvalView from "./view";
 import { DiveSite } from "../../entities/diveSite";
 import { DynamicSelectOptionsAnimals } from "../../entities/DynamicSelectOptionsAnimals";
 
 export default function ReviewPhotoEval() {
   const { selectedReviewPhoto, setSelectedReviewPhoto } = useContext(SelectedPendingReviewPhotoContext)
-  const { setPendingReviewPhotos } = useContext(PendingReviewPhotosContext)
+  const { pendingReviewPhotos, setPendingReviewPhotos } = useContext(PendingReviewPhotosContext)
     
   const [diveSite, setDiveSite] = useState<DiveSite | null>(null)
 
@@ -32,57 +32,42 @@ export default function ReviewPhotoEval() {
       setDiveSite(diveSiteData[0])
   }
 
-  // const ValidatePhoto = async (id: number | undefined, formData: Form) => {
-  //   if (id && formData.date){
-  //     const monthID = selectedSeaLife?.dateTaken.slice(5, 7);
-  //     const convertedDate = revertedDate(formData.date)
 
-  //     await insertHeatPoint({
-  //       lat: formData.latitude,
-  //       lng: formData.longitude,
-  //       animal: formData.seaCreature,
-  //       month: monthID,
-  //       UserID: selectedSeaLife?.userid,
-  //       userName: selectedSeaLife?.newusername,
-  //     });
+  const OkPhoto = async (reviewPhotoId: number) => {
+    await updateWithDecision(reviewPhotoId, "Approved")
+  }
 
-  //     await insertphoto({
-  //       photoFile: selectedSeaLife?.photofile,
-  //       label: formData.seaCreature,
-  //       dateTaken: convertedDate,
-  //       latitude: formData.latitude,
-  //       longitude: formData.longitude,
-  //       month: monthID,
-  //       UserID: selectedSeaLife?.userid,
-  //       userName: selectedSeaLife?.newusername,
-  //     }, Number(monthID));
+  const RejectPhoto = async (reviewPhotoId: number) => {
+    if(reviewPhotoId){
+      await removePhoto({ fileName: selectedReviewPhoto?.photoPath });
+      await deleteReviewPhoto(reviewPhotoId);
+      const photosToVett = await getAllReviewPhotosWithReviewInfo();
+      setPendingReviewPhotos(photosToVett);
+      setSelectedReviewPhoto(null)
+    }
+  }
 
-  //     await deletePhotoWait(id);
-  //     const photosToVett = await getAllPhotoWaits();
-  //     setPhotoRecords(photosToVett);
-  //     setSelectedSeaLife(null)
-  //   }
+  const PromoteToHeader = async (reviewPhotoId: number, photoPath: string) => {
+    if(reviewPhotoId){
+      await updateDiveSitePhoto(reviewPhotoId, photoPath)
+      await updateWithDecision(reviewPhotoId, "Header Photo")
+      const photosToVett = await getAllReviewPhotosWithReviewInfo();
+      setPendingReviewPhotos(photosToVett);
+      setSelectedReviewPhoto(null)
+    }
+};
+
+const PromoteToSighting = async (reviewPhotoId: number, photoPath: string) => {
+  // if(reviewPhotoId){
+  //   await updateDiveSitePhoto(reviewPhotoId, photoPath)
+  //   await updateWithDecision(reviewPhotoId, "Header Photo")
+  //   const photosToVett = await getAllReviewPhotosWithReviewInfo();
+  //   setPendingReviewPhotos(photosToVett);
+  //   setSelectedReviewPhoto(null)
   // }
+};
 
-  // const RejectPhoto = async (id: number | undefined) => {
-  //   if(id){
-  //     await removePhoto({ filePath: selectedSeaLife?.label, fileName: selectedSeaLife?.photofile });
-  //     await deletePhotoWait(id);
-  //     const photosToVett = await getAllPhotoWaits();
-  //     setPhotoRecords(photosToVett);
-  //     setSelectedSeaLife(null)
-  //   }
-  // }
 
-    const DiveSiteHeader = async (id: number | undefined, formData: Form) => {
-      if(id){
-        await updateDiveSite(formData.latitude,formData.longitude, selectedReviewPhoto?.photoPath)
-        await deletePhotoWait(id);
-        const photosToVett = await getAllReviewPhotosWithReviewInfo();
-        setPendingReviewPhotos(photosToVett);
-        setSelectedReviewPhoto(null)
-      }
-  };
 
 
   console.log('selectedReviewPhoto', selectedReviewPhoto)
@@ -94,6 +79,9 @@ export default function ReviewPhotoEval() {
             diveSiteInfo={diveSite}
             diveSiteHeader={DiveSiteHeader}
             getMoreAnimals={DynamicSelectOptionsAnimals.getMoreOptions}
+            okPhoto={OkPhoto}
+            rejectPhoto={RejectPhoto}
+            headerPromote={PromoteToHeader}
             />
 
         )

@@ -11,10 +11,13 @@ import Icon from "../../icons/Icon";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
-    photoRecord:       ReviewPhotoWithInfo | null
-    diveSiteInfo:      DiveSite | null
+    photoRecord:       ReviewPhotoWithInfo
+    diveSiteInfo:      DiveSite
     diveSiteHeader:    (id: number | undefined, formData: Form) => void;
-    getMoreAnimals:       (search: string, limit: number, skip: number) => Promise<any>
+    getMoreAnimals:    (search: string, limit: number, skip: number) => Promise<any>
+    okPhoto:           (reviewPhotoId: number) => void;
+    rejectPhoto:       (reviewPhotoId: number) => void;
+    headerPromote:     (reviewPhotoId: number, photoPath: string) => void;
   };
 
 export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
@@ -37,14 +40,16 @@ export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
     
       const onSubmit = (data: Form) => {
         // toast.dismiss();
-        // {buttonPressed === 1 &&  props.validatePhoto(props.photoRecord?.id, data)} 
-        // {buttonPressed === 2 &&  props.rejectPhoto(props.photoRecord?.id)}
-        // {buttonPressed === 3 &&  props.diveSiteHeader(props.photoRecord?.id, data)}
+        {buttonPressed === 1 &&  props.okPhoto(props.photoRecord.id)} 
+        {buttonPressed === 2 &&  props.rejectPhoto(props.photoRecord.id)}
+        {buttonPressed === 3 &&  props.headerPromote(props.photoRecord.id, props.photoRecord.photoPath)}
+         // {buttonPressed === 4 &&  props.diveSiteHeader(props.photoRecord?.id, data)}
       };
     
+      // style={{ overflow: 'hidden', height: '90vh' }}
 return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
-                <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={'60%'}></img>
+                <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={'60%'} height={'50%'} style={{marginTop: '5%'}}></img>
                 <div className="mt-2">
                     <div className="col-12 my-2">
                      {/* <TextInput className={style.textInputTitle} style={{textAlign: 'center', backgroundColor: "transparent"}}
@@ -55,7 +60,7 @@ return (
                      </div>
             <div className="cols col-12 mt-2 flex-row-between">
 
-                    <div className="col10 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
+                    <div className="col-10 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
                        {/* for photo need */}
                           {/* dive date */}
                           {/* site lat */}
@@ -78,7 +83,7 @@ return (
                        {/* for ds header need */}
                           {/* diveSite_id */}
 
-                       
+                        <div className="col-2"/>
                         <h6 className={style.tagBox}>Dive Date: {props.photoRecord?.dive_date}</h6>
                         <h6 className={style.tagBox}>Dive Site: {props.diveSiteInfo?.name}</h6>
                         <h6 className={style.tagBox}>Latitude: {props.diveSiteInfo?.lat}</h6>
@@ -86,23 +91,34 @@ return (
                         <h6 className={style.tagBox}>Submitter: {props.photoRecord?.created_by}</h6>
                     </div>
 
-                    <DynamicSelect
-                      {...register('animal', FormRules.animal)}
-                      allowCreate={true}
-                      labelInValue={true}
-                      modeSelectedTags="on"
-                      placeholder={"Please Enter Sea life Species"}
-                      getMoreOptions={props.getMoreAnimals}
-                      iconLeft={(
-                          <Icon name="shark" />
-                      )}
-                      error={errors.animal}
-                    />
 
                     </div>
 
+
+                    <div className="cols col-12 mt-2 flex-row-between">
+                    <div className="col-2"/>
+                      <div className="col-8">
+                      <h6 className={style.tagBox}>Species:</h6>
+                      <DynamicSelect
+                        {...register('animal', FormRules.animal)}
+                        allowCreate={true}
+                        labelInValue={true}
+                        modeSelectedTags="on"
+                        placeholder={"Please Enter Sea life Species"}
+                        getMoreOptions={props.getMoreAnimals}
+                        iconLeft={(
+                            <Icon name="shark" />
+                        )}
+                        error={errors.animal}
+                      />
+                      </div>
+                      <div className="col-2"/>
+                    </div>
+
+                    
+
                     <div className="cols col-12 mt-8 flex-row-between">
-                       
+                    <div className="col-1"/>
                        <div className="col-2">
                        <Button
                         onClick={() => setButtonPressed(1)}
@@ -135,8 +151,8 @@ return (
                         type="submit"
                         >Sea Life Sighting</Button>
                         </div>
-                   </div>
-
+                        <div className="col-1"/>
+                        </div>
                
 
     </form>
