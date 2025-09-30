@@ -1,6 +1,5 @@
 import { useForm, FieldErrors } from "react-hook-form";
 import Button from "../../reusables/button";
-import TextInput from "../../reusables/textInput";
 import { Form, FormRules } from "./form";
 import { useState } from "react";
 import style from './styles.module.scss';
@@ -8,16 +7,17 @@ import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
 import { DiveSite } from "../../entities/diveSite";
 import DynamicSelect from "../../reusables/dynamicSelect";
 import Icon from "../../icons/Icon";
+import { Option } from "../../reusables/select";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
-    photoRecord:       ReviewPhotoWithInfo
-    diveSiteInfo:      DiveSite
-    diveSiteHeader:    (id: number | undefined, formData: Form) => void;
+    photoRecord:       ReviewPhotoWithInfo | null
+    diveSiteInfo:      DiveSite | null
     getMoreAnimals:    (search: string, limit: number, skip: number) => Promise<any>
     okPhoto:           (reviewPhotoId: number) => void;
     rejectPhoto:       (reviewPhotoId: number) => void;
     headerPromote:     (reviewPhotoId: number, photoPath: string) => void;
+    sightingPromote:   (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => void;
   };
 
 export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
@@ -40,49 +40,20 @@ export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
     
       const onSubmit = (data: Form) => {
         // toast.dismiss();
-        {buttonPressed === 1 &&  props.okPhoto(props.photoRecord.id)} 
-        {buttonPressed === 2 &&  props.rejectPhoto(props.photoRecord.id)}
-        {buttonPressed === 3 &&  props.headerPromote(props.photoRecord.id, props.photoRecord.photoPath)}
-         // {buttonPressed === 4 &&  props.diveSiteHeader(props.photoRecord?.id, data)}
+        {buttonPressed === 1 &&  props.photoRecord && props.okPhoto(props.photoRecord.id)} 
+        {buttonPressed === 2 &&  props.photoRecord && props.rejectPhoto(props.photoRecord.id)}
+        {buttonPressed === 3 &&  props.photoRecord && props.headerPromote(props.photoRecord.id, props.photoRecord.photoPath)}
+        {buttonPressed === 4 &&  props.photoRecord &&  props.diveSiteInfo && props.sightingPromote(props.photoRecord, props.diveSiteInfo, data.animal)}
       };
     
-      // style={{ overflow: 'hidden', height: '90vh' }}
-return (
+  return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
                 <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={'60%'} height={'50%'} style={{marginTop: '5%'}}></img>
-                <div className="mt-2">
-                    <div className="col-12 my-2">
-                     {/* <TextInput className={style.textInputTitle} style={{textAlign: 'center', backgroundColor: "transparent"}}
-                        error={errors.seaCreature}
-                        {...register('seaCreature', FormRules.seaCreature)}
-                     /> */}
-                     </div>
-                     </div>
+              
             <div className="cols col-12 mt-2 flex-row-between">
 
                     <div className="col-10 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>
-                       {/* for photo need */}
-                          {/* dive date */}
-                          {/* site lat */}
-                          {/* site lng */}
-                          {/* user_id */}
-                          {/* photoPath */}
-
-                          {/* make month (from dive date) */}
-                          {/* make sea creature name */}
-
-                       {/* for heat point need */}
-                          {/* site lat */}
-                          {/* site lng */}
-                          {/* user_id */}
-                          {/* photoPath */}
-
-                          {/* make month (from dive date) */}
-                          {/* make sea creature name */}
-
-                       {/* for ds header need */}
-                          {/* diveSite_id */}
-
+        
                         <div className="col-2"/>
                         <h6 className={style.tagBox}>Dive Date: {props.photoRecord?.dive_date}</h6>
                         <h6 className={style.tagBox}>Dive Site: {props.diveSiteInfo?.name}</h6>
@@ -90,7 +61,6 @@ return (
                         <h6 className={style.tagBox}>Longitude: {props.diveSiteInfo?.lng}</h6>
                         <h6 className={style.tagBox}>Submitter: {props.photoRecord?.created_by}</h6>
                     </div>
-
 
                     </div>
 
@@ -114,8 +84,6 @@ return (
                       </div>
                       <div className="col-2"/>
                     </div>
-
-                    
 
                     <div className="cols col-12 mt-8 flex-row-between">
                     <div className="col-1"/>
@@ -153,8 +121,6 @@ return (
                         </div>
                         <div className="col-1"/>
                         </div>
-               
-
     </form>
 )
 }

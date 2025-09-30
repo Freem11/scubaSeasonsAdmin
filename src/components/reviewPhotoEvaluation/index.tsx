@@ -1,8 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { deletePhotoWait } from "../../apicalls/supabaseCalls/photoWaitSupabaseCalls";
 import { insertHeatPoint } from "../../apicalls/supabaseCalls/heatPointSupabaseCalls";
-import readableDate from "../../helpers/readableDate";
-import { Form } from "./form";
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
@@ -13,6 +10,8 @@ import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhot
 import ReviewPhotoEvalView from "./view";
 import { DiveSite } from "../../entities/diveSite";
 import { DynamicSelectOptionsAnimals } from "../../entities/DynamicSelectOptionsAnimals";
+import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
+import { Option } from "../../reusables/select";
 
 export default function ReviewPhotoEval() {
   const { selectedReviewPhoto, setSelectedReviewPhoto } = useContext(SelectedPendingReviewPhotoContext)
@@ -34,55 +33,68 @@ export default function ReviewPhotoEval() {
 
 
   const OkPhoto = async (reviewPhotoId: number) => {
-    await updateWithDecision(reviewPhotoId, "Approved")
+      await updateWithDecision(reviewPhotoId, "Approved")
   }
 
   const RejectPhoto = async (reviewPhotoId: number) => {
-    if(reviewPhotoId){
       await removePhoto({ fileName: selectedReviewPhoto?.photoPath });
       await deleteReviewPhoto(reviewPhotoId);
       const photosToVett = await getAllReviewPhotosWithReviewInfo();
       setPendingReviewPhotos(photosToVett);
       setSelectedReviewPhoto(null)
-    }
   }
 
   const PromoteToHeader = async (reviewPhotoId: number, photoPath: string) => {
-    if(reviewPhotoId){
       await updateDiveSitePhoto(reviewPhotoId, photoPath)
       await updateWithDecision(reviewPhotoId, "Header Photo")
       const photosToVett = await getAllReviewPhotosWithReviewInfo();
       setPendingReviewPhotos(photosToVett);
       setSelectedReviewPhoto(null)
-    }
 };
 
-const PromoteToSighting = async (reviewPhotoId: number, photoPath: string) => {
-  // if(reviewPhotoId){
-  //   await updateDiveSitePhoto(reviewPhotoId, photoPath)
-  //   await updateWithDecision(reviewPhotoId, "Header Photo")
-  //   const photosToVett = await getAllReviewPhotosWithReviewInfo();
-  //   setPendingReviewPhotos(photosToVett);
-  //   setSelectedReviewPhoto(null)
-  // }
+const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => {
+  
+  if(animalLabel) {
+    const monthID = reviewPhoto.dive_date.slice(5, 7);
+    const convertedDate = revertedDate(reviewPhoto.dive_date)
+  
+      await insertphoto({
+        photoFile: reviewPhoto.photoPath,
+        label: animalLabel,
+        dateTaken: convertedDate,
+        latitude: diveSiteInfo.lat,
+        longitude: diveSiteInfo.lng,
+        month: monthID,
+        UserID: reviewPhoto.created_by,
+        userName: null,
+      }, Number(monthID));
+    
+      await insertHeatPoint({
+        lat: diveSiteInfo.lat,
+        lng: diveSiteInfo.lng,
+        animal: animalLabel,
+        month: monthID,
+        UserID: reviewPhoto.created_by,
+        userName: null,
+      });
+  
+      await updateWithDecision(reviewPhoto.id, "Sighting")
+      const photosToVett = await getAllReviewPhotosWithReviewInfo();
+      setPendingReviewPhotos(photosToVett);
+      setSelectedReviewPhoto(null)
+  }
 };
-
-
-
-
-  console.log('selectedReviewPhoto', selectedReviewPhoto)
-  console.log('diveSite', diveSite)
 
         return (
-            <ReviewPhotoEvalView 
+          <ReviewPhotoEvalView 
             photoRecord={selectedReviewPhoto}
             diveSiteInfo={diveSite}
-            diveSiteHeader={DiveSiteHeader}
             getMoreAnimals={DynamicSelectOptionsAnimals.getMoreOptions}
             okPhoto={OkPhoto}
             rejectPhoto={RejectPhoto}
             headerPromote={PromoteToHeader}
-            />
+            sightingPromote={PromoteToSighting}
+          />
 
         )
 
