@@ -8,6 +8,7 @@ import { DiveSite } from "../../entities/diveSite";
 import DynamicSelect from "../../reusables/dynamicSelect";
 import Icon from "../../icons/Icon";
 import { Option } from "../../reusables/select";
+import { cloudflareBucketUrl } from "../../globalVariables";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
@@ -48,8 +49,8 @@ export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
     
   return (
     <form onSubmit={handleSubmit(onSubmit, handleError)} className="cols col-12 mt-2 flex-column full-height">
-                <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={'60%'} height={'50%'} style={{marginTop: '5%'}}></img>
-              
+                <img src={`${cloudflareBucketUrl}${photoName}`} width={'60%'} height={'50%'} style={{marginTop: '5%'}}></img>
+                  
             <div className="cols col-12 mt-2 flex-row-between">
 
                     <div className="col-10 flex-row-between mt-2" style={{alignItems: 'center', justifyContent: 'space-between'}}>

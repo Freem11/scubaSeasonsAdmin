@@ -6,6 +6,7 @@ import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEval
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
+import { cloudflareBucketUrl } from "../../globalVariables";
 
 type ReviewPhotoListProps = {
     photoRecords: ReviewPhotoWithInfo[] | null
@@ -34,7 +35,7 @@ return (
         return (
         <div className={style.cardMain} key={record.id} onClick={() => setupReviewPhoto(record)}>
             <div className={style.pic}>
-            <img src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`} width={200} style={{borderRadius: "5%"}}></img>
+            <img src={`${cloudflareBucketUrl}${photoName}`} width={200} style={{borderRadius: "5%"}}></img>
             </div>
         </div>
     )
