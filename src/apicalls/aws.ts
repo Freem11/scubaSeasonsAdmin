@@ -1,10 +1,7 @@
 import {
   S3Client,
 } from "@aws-sdk/client-s3";
-
-const awsAccountId = import.meta.env.VITE_AWS_R2_ACCOUNT_ID
-const awsAccessKeyId = import.meta.env.VITE_AWS_R2_ACCESS_KEY_ID
-const awsSecretKey = import.meta.env.VITE_AWS_R2_SECRET_KEY
+import { awsAccessKeyId, awsAccountId, awsSecretKey } from "../globalVariables";
 
 export const aws3 = new S3Client({
     region: "auto",
