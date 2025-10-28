@@ -15,6 +15,7 @@ if (data) {
 
 
 export const updateWithDecision = async (id: number, decision: string) => {
+
   const { data, error } = await supabase
   .from('diveSiteReviewPhotos')
   .update({ decision: decision})
@@ -50,9 +51,10 @@ export const deleteReviewPhoto = async (id: number) => {
 
 
   export const updateDiveSitePhoto = async (id: number, photoFile: string) => {
+
   const { data, error } = await supabase
     .from('diveSites')
-    .update({ diveSiteProfilePhoto: photoFile })
+    .update({ "diveSiteProfilePhoto": photoFile })
     .eq("id", id);
 
   if (error) {

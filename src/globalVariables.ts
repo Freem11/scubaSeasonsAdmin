@@ -15,8 +15,8 @@ let awsAccessKeyId = devAwsAccessKeyId;
 let awsSecretKey = devAwsSecretKey;
 let cloudflareBucketUrl = devCloudflareBucketUrl;
 
-const useProdKeys = false;
-// const useProdKeys = true;
+// const useProdKeys = false;
+const useProdKeys = true;
 
 if (useProdKeys){
   awsAccountId = prodAwsAccountId;
