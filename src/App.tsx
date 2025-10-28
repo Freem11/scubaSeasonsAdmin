@@ -21,12 +21,15 @@ import { SelectedPartnerRequestContext } from './contexts/partnerRequestEvals/se
 import { PartnerRequest } from './entities/partnerRequest';
 import { ShopsArrayContext } from './contexts/shopsArrayContext';
 import { DiveShopBasic } from './entities/diveShop';
+import { ReviewPhotoWithInfo } from './entities/reviewPhotoWithInfo';
+import { SelectedPendingReviewPhotoContext } from './contexts/reviewPhotoEvals/selectedReviewPhotoContext';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
+  const [selectedReviewPhoto, setSelectedReviewPhoto] = useState<ReviewPhotoWithInfo | null>(null)
   const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
@@ -82,6 +85,7 @@ function App() {
       <UserProfileContext.Provider value={{ profile, setProfile }}>
         <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
+            <SelectedPendingReviewPhotoContext.Provider value={{ selectedReviewPhoto, setSelectedReviewPhoto }}>
             <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
               <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
                 <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
@@ -94,6 +98,7 @@ function App() {
                </SelectedSeaLifeContext.Provider>
              </SelectedPendingDiveSiteContext.Provider>
            </SelectedPartnerRequestContext.Provider>
+           </SelectedPendingReviewPhotoContext.Provider>
          </ShopsArrayContext.Provider>
        </SitesArrayContext.Provider>
       </UserProfileContext.Provider>

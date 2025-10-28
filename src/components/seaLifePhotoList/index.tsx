@@ -4,7 +4,7 @@ import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosC
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
 import SeaLifePhotoListView from "./view";
 
-export default function SeaLifePhotoLis() {
+export default function SeaLifePhotoList() {
     const {photoRecords, setPhotoRecords} = useContext(SeaLifePhotosContext)
     const { setPendingDiveSites } = useContext(PendingDiveSitesContext)
 

@@ -208,3 +208,19 @@ export const getDiveSitesByIDs = async (ids: number[]): Promise<DiveSiteWithUser
 
   return data as DiveSiteWithUserName[];
 };
+
+
+export const getDiveSiteById = async (id: string | number) => {
+  const { data, error } = await supabase.rpc('get_single_divesite_byid_info_with_username', {
+    idnum: id,
+  });
+
+  if (error) {
+    console.log('couldn\'t do it 7,', error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};
