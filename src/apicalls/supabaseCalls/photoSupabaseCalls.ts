@@ -238,3 +238,23 @@ export const getUpdatePhotos= async () => {
   }
 };
 
+// In photoSupabaseCalls.js
+export const getAllPhotos = async () => {
+  let allRecords = [];
+  let from = 0;
+  const PAGE_SIZE = 1000; 
+
+  while (true) {
+    const { data, error } = await supabase
+      .from("photos")
+      .select("*")
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (error) throw error;
+    allRecords = [...allRecords, ...data];
+
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+  return allRecords;
+};

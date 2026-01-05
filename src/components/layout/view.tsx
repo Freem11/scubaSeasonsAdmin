@@ -10,6 +10,7 @@ import TripRequestList from "../tripRequestList";
 import TripRequestEval from "../tripRequestEvaluation";
 import ReviewPhotoList from '../reviewPhotoList';
 import ReviewPhotoEval from '../reviewPhotoEvaluation';
+import PhotoGallery from '../test';
 
 export default function LayoutMainView() {
 
@@ -18,8 +19,9 @@ export default function LayoutMainView() {
             { key: 't-1', title: 'Sea Life', content: SeaLifePhotoList, tabContent: <SeaLifePhotoEval /> },
             { key: 't-2', title: 'Dive Sites', content: DiveSiteList, tabContent: <DiveSiteEval /> },
             { key: 't-3', title: 'Review Photos', content: ReviewPhotoList, tabContent: <ReviewPhotoEval />},
-            { key: 't-3', title: 'Partner Requests', content: PartnerRequestList, tabContent: <PartnerRequestEval /> },
-            { key: 't-4', title: 'Trip Requests', content: TripRequestList, tabContent: <TripRequestEval /> }
+            { key: 't-4', title: 'Partner Requests', content: PartnerRequestList, tabContent: <PartnerRequestEval /> },
+            { key: 't-5', title: 'Trip Requests', content: TripRequestList, tabContent: <TripRequestEval /> },
+            { key: 't-6', title: 'Photo Bucket', content: PhotoGallery, tabContent: null}
         ]
     }, []);
 

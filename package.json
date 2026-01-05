@@ -41,6 +41,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "sass": "^1.83.4",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "vite-plugin-react-native-web": "^2.5.0"
   }
 }
