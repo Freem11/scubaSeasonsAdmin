@@ -6,37 +6,33 @@ export const diveSiteWaits = async () => {
   .from("diveSiteWait")
   .select();
 
-  if (error) {
+  if (error || !data) {
     console.log("couldn't do it,", error);
     return [];
   }
 
-  if (data) {
-    return data;
-  }
+  return data;
+  
 };
 
-export const insertDiveSiteWaits = async (values: any) => {
-  console.log("Supa got", values)
-  const { data, error } = await supabase
-  .from("diveSiteWait")
-  .insert([
-    {
-      name: values.Site,
-      lat: values.Latitude,
-      lng: values.Longitude,
-      UserID: values.UserID
-    },
-  ]);
+// export const insertDiveSiteWaits = async (values: any) => {
+  
+//   const { data, error } = await supabase
+//   .from("diveSiteWait")
+//   .insert([
+//     {
+//       name: values.Site,
+//       lat: values.Latitude,
+//       lng: values.Longitude,
+//       UserID: values.UserID
+//     },
+//   ]);
 
-  if (error) {
-    console.log("couldn't do it,", error);
-  }
-
-  if (data) {
-    console.log(data);
-  }
-};
+//   if (error || !data) {
+//     console.log("couldn't do it,", error);
+//   }
+  
+// };
 
 export const grabDiveSiteWaitById = async (id: number) => {
 
@@ -45,14 +41,11 @@ export const grabDiveSiteWaitById = async (id: number) => {
     .select()
     .eq("id", id)
 
-  if (error) {
+  if (error || !data) {
     console.log("couldn't do it,", error);
     return [];
   }
-
-  if (data) {
     return data;
-  }
 };
 
 export const deleteDiveSiteWait = async (id: number) => {
@@ -62,27 +55,20 @@ export const deleteDiveSiteWait = async (id: number) => {
   .delete()
   .eq("id", id);
 
-if (error) {
-  console.log("couldn't do it,", error);
-  return [];
-}
-
-if (data) {
-  console.log(data);
-}
+  if (error || !data) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
 }
 
 
 export const getAllDiveSiteWaits = async () => {
   const { data, error } = await supabase.rpc('get_divesitewaits_with_user');
   
-  if (error) {
+  if (error || !data) {
     console.log('couldn\'t do it DiveSite-Waits-All,', error);
     return [];
   }
-  
-  if (data) {
     return data;
-  }
-  }
+}
 

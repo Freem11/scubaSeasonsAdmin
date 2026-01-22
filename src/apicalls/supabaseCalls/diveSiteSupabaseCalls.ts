@@ -5,15 +5,15 @@ import { supabase } from "../supabase";
 
 export const getDiveSitesBasic = async (bubble: GPSBubble) => {
   const { data, error } = await supabase
-    .from('diveSites')
-    .select('id,lat,lng,name')
-    .gte('lat', bubble.minLat)
-    .gte('lng', bubble.minLng)
-    .lte('lat', bubble.maxLat)
-    .lte('lng', bubble.maxLng);
+    .rpc('get_dive_sites_within', {
+      max_lat: bubble.maxLat,
+      min_lat: bubble.minLat,
+      max_lng: bubble.maxLng,
+      min_lng: bubble.minLng
+    });
 
   if (error || !data) {
-    console.log('couldn\'t do it,', error);
+    console.log('couldn\'t do it', error);
     return [];
   }
 
@@ -21,7 +21,7 @@ export const getDiveSitesBasic = async (bubble: GPSBubble) => {
 };
 
 export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination) => {
-  const builder = supabase.rpc('get_divesites_with_username', {
+  const builder = supabase.rpc('get_divesites_with_username_new', {
     max_lat: bubble.maxLat,
     min_lat: bubble.minLat,
     max_lng: bubble.maxLng,
@@ -35,164 +35,156 @@ export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<D
 
   const { data, error } = await builder;
 
-  if (error) {
-    console.log('couldn\'t do it 27,', error);
+  if (error || !data) {
+    console.log('couldn\'t do it,', error);
     return [];
   }
 
-  if (data) {
-    // console.log(data)
-    return data;
-  }
+  return data;
+  
 };
 
-export const diveSites = async (GPSBubble: any) => {
+// export const diveSites = async (GPSBubble: any) => {
 
-  let minLatx, maxLatx, minLngx, maxLngx;
+//   let minLatx, maxLatx, minLngx, maxLngx;
 
-  if (GPSBubble.minLat) {
-    minLatx = GPSBubble.minLat;
-    maxLatx = GPSBubble.maxLat;
-    minLngx = GPSBubble.minLng;
-    maxLngx = GPSBubble.maxLng;
-  } else {
-    minLatx = GPSBubble.southWest.latitude;
-    maxLatx = GPSBubble.northEast.latitude;
-    minLngx = GPSBubble.southWest.longitude;
-    maxLngx = GPSBubble.northEast.longitude;
-  }
+//   if (GPSBubble.minLat) {
+//     minLatx = GPSBubble.minLat;
+//     maxLatx = GPSBubble.maxLat;
+//     minLngx = GPSBubble.minLng;
+//     maxLngx = GPSBubble.maxLng;
+//   } else {
+//     minLatx = GPSBubble.southWest.latitude;
+//     maxLatx = GPSBubble.northEast.latitude;
+//     minLngx = GPSBubble.southWest.longitude;
+//     maxLngx = GPSBubble.northEast.longitude;
+//   }
 
-  const { data, error } = await supabase
-  .from("diveSites")
-  .select()
-  .gte('lat', minLatx)
-  .gte('lng', minLngx)
-  .lte('lat', maxLatx)
-  .lte('lng', maxLngx)
+//   const { data, error } = await supabase
+//   .rpc('get_divesites', {
+//       max_lat: maxLatx,
+//       min_lat: minLatx,
+//       max_lng: maxLngx,
+//       min_lng: minLngx
+//   });
 
-if (error) {
-  console.log("couldn't do it,", error)
-  return([])
-}
+//   if (error || !data) {
+//     console.log("couldn't do it,", error)
+//     return([])
+//   }
 
-if (data) {
-  return data
-}
-};
+//     return data
+  
+// };
 
-export const getSiteNamesThatFit = async (GPSBubble: any, value: string) => {
+// export const getSiteNamesThatFit = async (GPSBubble: any, value: string) => {
 
-  if(value === "") {
-    return [];
-  }
+//   if(value === "") {
+//     return [];
+//   }
 
-  let minLatx, maxLatx, minLngx, maxLngx;
+//   let minLatx, maxLatx, minLngx, maxLngx;
 
-  if (GPSBubble.minLat) {
-    minLatx = GPSBubble.minLat;
-    maxLatx = GPSBubble.maxLat;
-    minLngx = GPSBubble.minLng;
-    maxLngx = GPSBubble.maxLng;
-  } else {
-    minLatx = GPSBubble.southWest.latitude;
-    maxLatx = GPSBubble.northEast.latitude;
-    minLngx = GPSBubble.southWest.longitude;
-    maxLngx = GPSBubble.northEast.longitude;
-  }
+//   if (GPSBubble.minLat) {
+//     minLatx = GPSBubble.minLat;
+//     maxLatx = GPSBubble.maxLat;
+//     minLngx = GPSBubble.minLng;
+//     maxLngx = GPSBubble.maxLng;
+//   } else {
+//     minLatx = GPSBubble.southWest.latitude;
+//     maxLatx = GPSBubble.northEast.latitude;
+//     minLngx = GPSBubble.southWest.longitude;
+//     maxLngx = GPSBubble.northEast.longitude;
+//   }
 
-  const { data, error } = await supabase
-    .from("diveSites")
-    .select()
-    .gte('lat', minLatx)
-    .gte('lng', minLngx)
-    .lte('lat', maxLatx)
-    .lte('lng', maxLngx)
-    .ilike("name", "%" + value + "%");
+//   const { data, error } = await supabase
+//     .from("diveSites")
+//     .select()
+//     .gte('lat', minLatx)
+//     .gte('lng', minLngx)
+//     .lte('lat', maxLatx)
+//     .lte('lng', maxLngx)
+//     .ilike("name", "%" + value + "%");
 
-  if (error) {
-    console.log("couldn't do it,", error);
-    return [];
-  }
+//   if (error) {
+//     console.log("couldn't do it,", error);
+//     return [];
+//   }
 
-  if (data) {
-    return data;
-  }
-};
+//   if (data) {
+//     return data;
+//   }
+// };
 
 
 export const insertDiveSite = async (values: any) => {
 
   const { data, error } = await supabase
-  .from("diveSites")
-  .insert([
-    {
+  .rpc('insert_divesite', {
+    records: [{
       name: values.name,
       lat: values.lat,
       lng: values.lng,
       UserID: values.UserID
-    },
-  ]);
+    }]
+  });
 
-if (error) {
-  console.log("couldn't do it,", error);
-}
-
-if (data) {
+  if (error || !data) {
+    console.log("couldn't do it,", error);
+  }
+  
   console.log(data);
-}
+  
 };
 
-export const getDiveSiteByName = async (value: string) => {
+// export const getDiveSiteByName = async (value: string) => {
 
-  const { data, error } = await supabase
-  .from("diveSites")
-  .select()
-  .eq("name", value)
+//   const { data, error } = await supabase
+//   .from("diveSites")
+//   .select()
+//   .eq("name", value)
 
-if (error) {
-  console.log("couldn't do it 7,", error);
-  return [];
-}
+//   if (error || !data) {
+//     console.log("couldn't do it,", error);
+//     return [];
+//   }
 
-if (data) {
-  return data;
-}
-};
+//     return data;
+  
+// };
 
-export const getDiveSiteByCoordinates = async (lat: number | undefined, lng: number | undefined) => {
+// export const getDiveSiteByCoordinates = async (lat: number | undefined, lng: number | undefined) => {
 
-  const { data, error } = await supabase
-  .from("diveSites")
-  .select()
-  .eq("lat", lat)
-  .eq("lng", lng)
+//   const { data, error } = await supabase
+//   .from("diveSites")
+//   .select()
+//   .eq("lat", lat)
+//   .eq("lng", lng)
 
-if (error) {
-  console.log("couldn't do it 2,", error);
-  return [];
-}
+// if (error) {
+//   console.log("couldn't do it 2,", error);
+//   return [];
+// }
 
-if (data) {
-  return data;
-}
-};
+// if (data) {
+//   return data;
+// }
+// };
 
 
 export const updateDiveSite = async (lat: number | undefined, lng: number | undefined, photoFile: string | undefined) => {
-  const { data, error } = await supabase
-    .from('diveSites')
-    .update({ diveSiteProfilePhoto: photoFile })
-    .eq('lat', lat)
-    .eq('lng', lng);
+  const { data, error } = await supabase.rpc('update_dive_site_photo_geom', {
+    p_lat: lat,
+    p_lng: lng,
+    profilePhoto: photoFile
+  });
 
-  if (error) {
-    console.log('couldn\'t do it 3,', error);
+  if (error || !data) {
+    console.log('couldn\'t do it,', error);
     return [];
   }
 
-  if (data) {
-    return data;
-  }
+  return data;
 };
 
 export const getDiveSitesByIDs = async (ids: number[]): Promise<DiveSiteWithUserName[]> => {
@@ -202,7 +194,7 @@ export const getDiveSitesByIDs = async (ids: number[]): Promise<DiveSiteWithUser
     .in('id', ids);
 
   if (error || !data) {
-    console.log('couldn\'t do it 7,', error);
+    console.log('couldn\'t do it,', error);
     return [];
   }
 
