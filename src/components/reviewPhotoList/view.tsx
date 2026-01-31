@@ -31,6 +31,8 @@ export default function ReviewPhotoListView(props: ReviewPhotoListProps) {
 return (
     <div className="mt-4 flex-column">
     {props.photoRecords && props.photoRecords.map((record) => {
+
+        console.log('record', record)
           const photoName = record.photoPath.split('/').pop();
         return (
         <div className={style.cardMain} key={record.id} onClick={() => setupReviewPhoto(record)}>

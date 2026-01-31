@@ -22,7 +22,8 @@ export const insertphoto = async (values: any, monthID: number) => {
       latitude: values.latitude,
       longitude: values.longitude,
       month: monthID,
-      UserID: values.UserID
+      UserID: values.UserID,
+      image_id: values.image_id
     },
   ]);
 

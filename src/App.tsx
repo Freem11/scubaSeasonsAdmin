@@ -10,7 +10,6 @@ import { ActiveProfile } from './entities/profile';
 import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
 import { SelectedSeaLifeContext } from './contexts/seaLifeEvals/selectedSeaLifePhotoContext';
-import { SeaLifePhoto } from './entities/seaLifePhoto';
 import { DiveSite, DiveSiteBasic } from './entities/diveSite';
 import { SelectedPendingDiveSiteContext } from './contexts/diveSiteEvals/selectedDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
@@ -23,6 +22,10 @@ import { ShopsArrayContext } from './contexts/shopsArrayContext';
 import { DiveShopBasic } from './entities/diveShop';
 import { ReviewPhotoWithInfo } from './entities/reviewPhotoWithInfo';
 import { SelectedPendingReviewPhotoContext } from './contexts/reviewPhotoEvals/selectedReviewPhotoContext';
+import { SeaLifeHeadersContext } from './contexts/seaLifeHeaders/seaLifeHeaderContext';
+import { Species } from './entities/species';
+import { SpeciesContext } from './contexts/seaLifeHeaders/speciesContext';
+import { SeaLifePhoto } from './entities/seaLifePhoto';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -31,6 +34,8 @@ function App() {
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
   const [selectedReviewPhoto, setSelectedReviewPhoto] = useState<ReviewPhotoWithInfo | null>(null)
   const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
+  const [headerlessSpecies, setHeaderlessSpecies] = useState<Species[] | null>(null)
+  const [species, setSpecies] = useState<string | null>(null);
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
   const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
@@ -90,10 +95,14 @@ function App() {
               <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
                 <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
                   <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
+                    <SpeciesContext.Provider value={{ species, setSpecies }}>
+                    <SeaLifeHeadersContext.Provider value={{ headerlessSpecies, setHeaderlessSpecies}}>
                     <MapContextProvider>
                      {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
                      { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
                    </MapContextProvider>
+                   </SeaLifeHeadersContext.Provider>
+                   </SpeciesContext.Provider>
                  </SelectedTripRequestContext.Provider>
                </SelectedSeaLifeContext.Provider>
              </SelectedPendingDiveSiteContext.Provider>

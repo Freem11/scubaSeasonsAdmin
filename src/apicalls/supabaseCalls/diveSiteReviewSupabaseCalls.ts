@@ -50,11 +50,11 @@ export const deleteReviewPhoto = async (id: number) => {
 };
 
 
-  export const updateDiveSitePhoto = async (id: number, photoFile: string) => {
+  export const updateDiveSitePhoto = async (id: number, photoFile: string, image_id: number) => {
 
   const { data, error } = await supabase
     .from('diveSites')
-    .update({ "diveSiteProfilePhoto": photoFile })
+    .update({ "diveSiteProfilePhoto": photoFile, "image_id": image_id })
     .eq("id", id);
 
   if (error) {

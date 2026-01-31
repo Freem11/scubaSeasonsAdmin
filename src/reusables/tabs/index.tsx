@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react';
 import './style.scss';
 
 export type TabItem = {
-  key?:    string
+  key?:    string 
   title:   string | React.FC
-  content: string | React.FC
+  content: string | React.FC | null
   tabContent: ReactNode
 };
 type TabsProps = {

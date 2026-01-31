@@ -17,7 +17,7 @@ type SeaLifePhotoEvalViewProps = {
     getMoreAnimals:    (search: string, limit: number, skip: number) => Promise<any>
     okPhoto:           (reviewPhotoId: number) => void;
     rejectPhoto:       (reviewPhotoId: number) => void;
-    headerPromote:     (reviewPhotoId: number, divesite_id: number, photoPath: string) => void;
+    headerPromote:     (reviewPhoto: ReviewPhotoWithInfo, divesite_id: number, photoPath: string) => void;
     sightingPromote:   (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => void;
   };
 
@@ -43,7 +43,7 @@ export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
         // toast.dismiss();
         {buttonPressed === 1 &&  props.photoRecord && props.okPhoto(props.photoRecord.id)} 
         {buttonPressed === 2 &&  props.photoRecord && props.rejectPhoto(props.photoRecord.id)}
-        {buttonPressed === 3 &&  props.photoRecord && props.headerPromote(props.photoRecord.id, props.photoRecord.divesite_id, props.photoRecord.photoPath)}
+        {buttonPressed === 3 &&  props.photoRecord && props.headerPromote(props.photoRecord, props.photoRecord.divesite_id, props.photoRecord.photoPath)}
         {buttonPressed === 4 &&  props.photoRecord &&  props.diveSiteInfo && props.sightingPromote(props.photoRecord, props.diveSiteInfo, data.animal)}
       };
     

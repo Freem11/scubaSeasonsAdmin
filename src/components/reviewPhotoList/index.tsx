@@ -13,7 +13,6 @@ export default function ReviewPhotoList() {
     const getReviewPhotos = async () => {
         try {
           const records = await getAllReviewPhotosWithReviewInfo();
-          console.log('records', records)
           if (records) {
             setPendingReviewPhotos(records);
           }

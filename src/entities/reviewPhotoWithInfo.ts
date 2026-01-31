@@ -6,4 +6,5 @@ export type ReviewPhotoWithInfo = {
     dive_date: string
     divesite_id: number
     created_by: string
+    image_id: number
   };

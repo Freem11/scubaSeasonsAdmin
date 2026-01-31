@@ -16,6 +16,7 @@ export default function SeaLifePhotoEval() {
     const { setPhotoRecords } = useContext(SeaLifePhotosContext)
 
     const validatePhoto = async (id: number | undefined, formData: Form) => {
+
         if (id && formData.date) {
             const monthID = selectedSeaLife?.dateTaken.slice(5, 7);
             const convertedDate = revertedDate(formData.date)

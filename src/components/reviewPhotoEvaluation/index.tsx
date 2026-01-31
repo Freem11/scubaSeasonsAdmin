@@ -44,16 +44,16 @@ export default function ReviewPhotoEval() {
       setSelectedReviewPhoto(null)
   }
 
-  const PromoteToHeader = async (reviewPhotoId: number, divesite_id: number, photoPath: string) => {
-      await updateDiveSitePhoto(divesite_id, photoPath)
-      await updateWithDecision(reviewPhotoId, "Header Photo")
+  const PromoteToHeader = async (reviewPhoto: ReviewPhotoWithInfo, divesite_id: number, photoPath: string) => {
+      await updateDiveSitePhoto(divesite_id, photoPath, reviewPhoto.image_id)
+      await updateWithDecision(reviewPhoto.id, "Header Photo")
       const photosToVett = await getAllReviewPhotosWithReviewInfo();
       setPendingReviewPhotos(photosToVett);
       setSelectedReviewPhoto(null)
 };
 
 const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => {
-  
+  console.log('reviewPhoto', reviewPhoto)
   console.log(reviewPhoto,diveSiteInfo, animalLabel )
   if(animalLabel) {
     const monthID = reviewPhoto.dive_date.slice(5, 7);
@@ -68,6 +68,7 @@ const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo:
         month: monthID,
         UserID: reviewPhoto.created_by,
         userName: null,
+        image_id: reviewPhoto.image_id
       }, Number(monthID));
     
       await insertHeatPoint({

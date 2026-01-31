@@ -4,15 +4,15 @@ import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosC
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
 import SeaLifePhotoListView from "./view";
 
-export default function SeaLifePhotoList() {
+export default function SeaLifeHeaderList() {
     const {photoRecords, setPhotoRecords} = useContext(SeaLifePhotosContext)
     const { setPendingDiveSites } = useContext(PendingDiveSitesContext)
 
     useEffect(() => {
-        getSeaLifePhotos()
+        getHeaderlessSeaLifePhotos()
     },[])
 
-    const getSeaLifePhotos = async () => {
+    const getHeaderlessSeaLifePhotos = async () => {
         setPendingDiveSites(null)
         try {
             const records = await getAllPhotoWaits();
