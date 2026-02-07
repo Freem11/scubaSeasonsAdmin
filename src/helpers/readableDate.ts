@@ -3,6 +3,6 @@ export default function readableDate(date: string) {
     month: 'long',
     day:   'numeric',
     year:  'numeric',
-  }).format(new Date(date));
+  }).format(new Date(`${date}T00:00:00`));
   return formattedDate;
 }

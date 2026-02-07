@@ -22,7 +22,8 @@ export const insertphoto = async (values: any, monthID: number) => {
       latitude: values.latitude,
       longitude: values.longitude,
       month: monthID,
-      UserID: values.UserID
+      UserID: values.UserID,
+      image_id: values.image_id
     },
   ]);
 
@@ -238,3 +239,23 @@ export const getUpdatePhotos= async () => {
   }
 };
 
+// In photoSupabaseCalls.js
+export const getAllPhotos = async () => {
+  let allRecords = [];
+  let from = 0;
+  const PAGE_SIZE = 1000; 
+
+  while (true) {
+    const { data, error } = await supabase
+      .from("photos")
+      .select("*")
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (error) throw error;
+    allRecords = [...allRecords, ...data];
+
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+  return allRecords;
+};

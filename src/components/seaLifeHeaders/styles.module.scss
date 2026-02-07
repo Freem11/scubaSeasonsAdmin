@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss";
+
+.cardMain{
+  margin-bottom: 5%;
+}
+
+
+.image{
+  border-radius: 5%;
+}
+
+
+.imageSelected{
+  border-radius: 5%;
+  border: 10px yellow solid;
+}
+
+.textInputTitle {
+    text-align: center;
+    background-color: transparent;
+    font-size: 24px;
+    color: darkgrey;
+    text-align: center;
+  }
+
+.textInput {
+  text-align: center;
+  background-color: transparent;
+  font-size: 16px;
+  color: darkgrey;
+}
+
+
+
+.tagBox {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+
+@media (max-width: 768px) {
+  .formColumns {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

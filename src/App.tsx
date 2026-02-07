@@ -1,6 +1,5 @@
-import { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
-import AdminPage from './components/adminPage';
 import './App.css'
 import { supabase } from './apicalls/supabase';
 import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
@@ -11,19 +10,36 @@ import { ActiveProfile } from './entities/profile';
 import AuthenticationPage from './authentication';
 import LayoutMainView from './components/layout';
 import { SelectedSeaLifeContext } from './contexts/seaLifeEvals/selectedSeaLifePhotoContext';
-import { SeaLifePhoto } from './entities/seaLifePhoto';
-import { DiveSite } from './entities/diveSite';
+import { DiveSite, DiveSiteBasic } from './entities/diveSite';
 import { SelectedPendingDiveSiteContext } from './contexts/diveSiteEvals/selectedDiveSiteContext';
 import { SitesArrayContext } from './contexts/sitesArrayContext';
 import { MapContextProvider } from './components/googleMap/mapContextProvider';
+import { SelectedTripRequestContext } from './contexts/tripRequestEvals/selectedTripRequestContext';
+import { TripRequest } from './entities/tripRequest';
+import { SelectedPartnerRequestContext } from './contexts/partnerRequestEvals/selectedPartnerRequestContext';
+import { PartnerRequest } from './entities/partnerRequest';
+import { ShopsArrayContext } from './contexts/shopsArrayContext';
+import { DiveShopBasic } from './entities/diveShop';
+import { ReviewPhotoWithInfo } from './entities/reviewPhotoWithInfo';
+import { SelectedPendingReviewPhotoContext } from './contexts/reviewPhotoEvals/selectedReviewPhotoContext';
+import { SeaLifeHeadersContext } from './contexts/seaLifeHeaders/seaLifeHeaderContext';
+import { Species } from './entities/species';
+import { SpeciesContext } from './contexts/seaLifeHeaders/speciesContext';
+import { SeaLifePhoto } from './entities/seaLifePhoto';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
   const [profile, setProfile] = useState<ActiveProfile | null>(null);
   const [selectedSeaLife, setSelectedSeaLife] = useState<SeaLifePhoto | null>(null)
+  const [selectedReviewPhoto, setSelectedReviewPhoto] = useState<ReviewPhotoWithInfo | null>(null)
+  const [selectedTripRequest, setSelectedTripRequest] = useState<TripRequest | null>(null)
+  const [headerlessSpecies, setHeaderlessSpecies] = useState<Species[] | null>(null)
+  const [species, setSpecies] = useState<string | null>(null);
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
-  const [sitesArray, setSitesArray] = useState<number[]>([]);
+  const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
+  const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
+  const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
   
   useEffect(() => {
     async function getUserData() {
@@ -71,17 +87,29 @@ function App() {
   
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
-         <UserProfileContext.Provider value={{ profile, setProfile }}>
-          <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
-          <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
-          <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
-            <MapContextProvider>
-         {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
-         { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
-         </MapContextProvider>
-         </SelectedSeaLifeContext.Provider>
-         </SelectedPendingDiveSiteContext.Provider>
-         </SitesArrayContext.Provider>
+      <UserProfileContext.Provider value={{ profile, setProfile }}>
+        <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
+          <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
+            <SelectedPendingReviewPhotoContext.Provider value={{ selectedReviewPhoto, setSelectedReviewPhoto }}>
+            <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
+              <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
+                <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
+                  <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
+                    <SpeciesContext.Provider value={{ species, setSpecies }}>
+                    <SeaLifeHeadersContext.Provider value={{ headerlessSpecies, setHeaderlessSpecies}}>
+                    <MapContextProvider>
+                     {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
+                     { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+                   </MapContextProvider>
+                   </SeaLifeHeadersContext.Provider>
+                   </SpeciesContext.Provider>
+                 </SelectedTripRequestContext.Provider>
+               </SelectedSeaLifeContext.Provider>
+             </SelectedPendingDiveSiteContext.Provider>
+           </SelectedPartnerRequestContext.Provider>
+           </SelectedPendingReviewPhotoContext.Provider>
+         </ShopsArrayContext.Provider>
+       </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )

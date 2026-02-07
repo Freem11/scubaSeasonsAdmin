@@ -194,3 +194,33 @@ export const updateDiveSite = async (lat: number | undefined, lng: number | unde
     return data;
   }
 };
+
+export const getDiveSitesByIDs = async (ids: number[]): Promise<DiveSiteWithUserName[]> => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .select()
+    .in('id', ids);
+
+  if (error || !data) {
+    console.log('couldn\'t do it 7,', error);
+    return [];
+  }
+
+  return data as DiveSiteWithUserName[];
+};
+
+
+export const getDiveSiteById = async (id: string | number) => {
+  const { data, error } = await supabase.rpc('get_single_divesite_byid_info_with_username', {
+    idnum: id,
+  });
+
+  if (error) {
+    console.log('couldn\'t do it 7,', error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};

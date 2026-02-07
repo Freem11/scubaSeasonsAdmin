@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { MapContext } from './mapContext';
 import { DiveSiteContext } from '../../contexts/diveSiteContext';
 import { DiveShopContext } from '../../contexts/diveShopContext';
 import { SitesArrayContext } from '../../contexts/sitesArrayContext';
+import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
 import { debounce } from '../../reusables/_helpers/debounce';
 import MapView from './view';
 
@@ -11,6 +12,7 @@ export default function MapLoader() {
   const mapContext = useContext(MapContext);
   const [tempMarker, setTempMarker] = useState<{ lat: number, lng: number } | null>(null);
   const { sitesArray } = useContext(SitesArrayContext);
+  const { shopsArray } = useContext(ShopsArrayContext);
  
   const diveSiteContext = useContext(DiveSiteContext);
   const diveShopContext = useContext(DiveShopContext);
@@ -42,12 +44,19 @@ export default function MapLoader() {
           lng: diveSiteContext.selectedDiveSite.lng,
         });
       }
+
+      if (diveShopContext.selectedShop && !diveShopContext.selectedShop.lat) {
+        setTempMarker({
+          lat: diveShopContext.selectedShop.lat,
+          lng: diveShopContext.selectedShop.lng,
+        });
+      }
     }
 
     setTimeout(() => {
       setTempMarker(null);
     }, 2000);
-  }, [diveSiteContext.selectedDiveSite]);
+  }, [diveSiteContext.selectedDiveSite, diveShopContext.selectedShop]);
 
 
   return (
@@ -58,9 +67,10 @@ export default function MapLoader() {
       tempMarker={tempMarker}
       onLoad={handleOnLoad}
       handleBoundsChange={handleBoundsChange}
-      diveSites={diveSiteContext.basicCollection.items}
+      diveSites={sitesArray.length === 0 ? [] : diveSiteContext.basicCollection.items}
+      diveShops={shopsArray.length === 0 ? [] : diveShopContext.collection.items}
       proposedSites={sitesArray}
-      // diveShops={diveShopContext.collection.items}
+      proposedShops={shopsArray}
     />
   );
 }
