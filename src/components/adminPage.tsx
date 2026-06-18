@@ -11,15 +11,12 @@ import PartnerRequestTable from "./partnerRequestList";
 import { SelectedPicContext } from "../contexts/selectPicContext";
 import FullScreenModal from "../modals/fullScreenModal";
 import "./adminPage.css";
-import { signOut } from "../apicalls/supabaseCalls/authenticateSupabaseCalls";
-import { SessionContext } from "../contexts/sessionContext";
 import Button from "../reusables/button";
 import Icon from "../icons/Icon";
 import screenData from '../screenData.json';
+import { signOut } from "../apicalls/supabaseCalls/authenticateSupabaseCalls";
 
 const AdminPage = () => {
-
-  const { setActiveSession } = React.useContext(SessionContext);
 
   function TabPanel(props: any) {
     const { children, value, index, ...other } = props;
@@ -54,33 +51,33 @@ const AdminPage = () => {
     const { animateFullScreenModal } = props;
     const [value, setValue] = useState<number>(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     };
 
-
     const handleLogout = async () => {
-      await localStorage.removeItem('tokenAdmin');
-      await signOut();
-      setActiveSession(null);
-    };
+      try {
+        await signOut();
+      } catch (error) {
+        console.error("Logout execution failed:", error);
+      }
+    }
 
-    
     return (
-      <Box sx={{ width: "100%", height: "100vh"}}>
-          <div className="cols flex-column">
-            <div className="col-2">
-              <Button
-                onClick={handleLogout}
-                className="btn-md bg-primary"
-                iconRight={<Icon name="chevron-right" />}
-                type="button"
-              >
-                {screenData.SettingsPage.logout}
-              </Button>
-            </div>
+      <Box sx={{ width: "100%", height: "100vh" }}>
+        <div className="cols flex-column">
+          <div className="col-2">
+            <Button
+              onClick={handleLogout}
+              className="btn-md bg-primary"
+              iconRight={<Icon name="chevron-right" />}
+              type="button"
+            >
+              {screenData.SettingsPage.logout}
+            </Button>
           </div>
-        <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
+        </div>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -92,7 +89,7 @@ const AdminPage = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <PhotoVettingTable animateFullScreenModal={animateFullScreenModal}/>
+          <PhotoVettingTable animateFullScreenModal={animateFullScreenModal} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <DiveSiteVetting />
@@ -105,7 +102,7 @@ const AdminPage = () => {
   }
 
   const [fullScreenModalYCoord, setFullScreenModalYCoord] =
-  useState<number>(0);
+    useState<number>(0);
 
   const [selectedPic, setSelectedPic] = useState<string | null>(null);
   const fullScreenModalRef = useRef(null);
@@ -141,7 +138,7 @@ const AdminPage = () => {
 
   return (
     <SelectedPicContext.Provider value={{ selectedPic, setSelectedPic }}>
-      <BasicTabs animateFullScreenModal={animateFullScreenModal}/>
+      <BasicTabs animateFullScreenModal={animateFullScreenModal} />
       <animated.div
         hidden={!(selectedPic && selectedPic !== "")}
         className="fullScreenModalDiv"
