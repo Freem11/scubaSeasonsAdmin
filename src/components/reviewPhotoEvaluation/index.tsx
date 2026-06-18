@@ -79,8 +79,10 @@ const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo:
         UserID: reviewPhoto.created_by,
         userName: null,
       });
+
+      console.log("passing", reviewPhoto.id, "Sighting", reviewPhoto.classification)
   
-      await updateWithDecision(reviewPhoto.id, "Sighting")
+      await updateWithDecision(reviewPhoto.id, "Sighting", reviewPhoto.classification)
       const photosToVett = await getAllReviewPhotosWithReviewInfo();
       setPendingReviewPhotos(photosToVett);
       setSelectedReviewPhoto(null)
