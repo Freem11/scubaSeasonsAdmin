@@ -1,8 +1,7 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SessionContext } from './contexts/sessionContext';
 import './App.css'
 import { supabase } from './apicalls/supabase';
-import { sessionCheck, sessionRefresh } from './apicalls/supabaseCalls/authenticateSupabaseCalls';
 import { ActiveSession } from './entities/session';
 import LoadingScreen from './LoadingScreen';
 import { UserProfileContext } from './contexts/userProfileContext';
@@ -40,76 +39,65 @@ function App() {
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
   const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
   const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
-  
+
   useEffect(() => {
-    async function getUserData() {
-      await supabase.auth.getSession().then((value) => {
-        localStorage.setItem('tokenAdmin', JSON.stringify(value.data.session));
-        setActiveSession(value.data.session);
-      });
-    }
-    getUserData();
-  }, []);
-  
-  const handleStartup = async () => {
-    try {
-      const valuless = localStorage.getItem('tokenAdmin');
-      if (valuless) {
-        const value = JSON.parse(valuless);
-        if (value && value.session) {
-          if (value.session.refresh_token) {
-            const newSession = await sessionRefresh(
-              value.session.refresh_token,
-            );
-            if(newSession){
-              setActiveSession(newSession.session);
-            }
+    async function initializeAuth() {
+      try {
+        // 1. Let Supabase check its internal storage and restore the session natively
+        const { data: { session } } = await supabase.auth.getSession();
 
-          }
+        if (session) {
+          setActiveSession(session);
         }
+
+      } catch (error) {
+        console.error('Auth initialization failed:', error);
+      } finally {
+        // 3. Always mark the app as ready so it clears the loading screen
+        setAppIsReady(true);
       }
-      await sessionCheck();
-      localStorage.removeItem('tokenAdmin');
-    } catch (error) {
-      console.log('no dice:', error);
     }
 
-      setAppIsReady(true);
-  };
-  
-  useLayoutEffect(() => {
-    handleStartup();
+    initializeAuth();
+
+    // 4. Listen for real-time auth changes 
+    // (e.g. token expired, user logged out in another tab)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setActiveSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   if (!appIsReady) {
     return <LoadingScreen />;
   }
-  
+
   return (
     <SessionContext.Provider value={{ activeSession, setActiveSession }}>
       <UserProfileContext.Provider value={{ profile, setProfile }}>
         <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
             <SelectedPendingReviewPhotoContext.Provider value={{ selectedReviewPhoto, setSelectedReviewPhoto }}>
-            <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
-              <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
-                <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
-                  <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
-                    <SpeciesContext.Provider value={{ species, setSpecies }}>
-                    <SeaLifeHeadersContext.Provider value={{ headerlessSpecies, setHeaderlessSpecies}}>
-                    <MapContextProvider>
-                     {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
-                     { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
-                   </MapContextProvider>
-                   </SeaLifeHeadersContext.Provider>
-                   </SpeciesContext.Provider>
-                 </SelectedTripRequestContext.Provider>
-               </SelectedSeaLifeContext.Provider>
-             </SelectedPendingDiveSiteContext.Provider>
-           </SelectedPartnerRequestContext.Provider>
-           </SelectedPendingReviewPhotoContext.Provider>
-         </ShopsArrayContext.Provider>
-       </SitesArrayContext.Provider>
+              <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
+                <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
+                  <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
+                    <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
+                      <SpeciesContext.Provider value={{ species, setSpecies }}>
+                        <SeaLifeHeadersContext.Provider value={{ headerlessSpecies, setHeaderlessSpecies }}>
+                          <MapContextProvider>
+                            {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
+                            {!activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+                          </MapContextProvider>
+                        </SeaLifeHeadersContext.Provider>
+                      </SpeciesContext.Provider>
+                    </SelectedTripRequestContext.Provider>
+                  </SelectedSeaLifeContext.Provider>
+                </SelectedPendingDiveSiteContext.Provider>
+              </SelectedPartnerRequestContext.Provider>
+            </SelectedPendingReviewPhotoContext.Provider>
+          </ShopsArrayContext.Provider>
+        </SitesArrayContext.Provider>
       </UserProfileContext.Provider>
     </SessionContext.Provider>
   )

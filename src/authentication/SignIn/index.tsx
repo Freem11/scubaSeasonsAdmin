@@ -1,30 +1,23 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SliderContext } from '../../reusables/slider/context';
 import { Form } from './form';
-import { sessionCheck, signInStandard } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
-import { SessionContext } from '../../contexts/sessionContext';
+import { signInStandard } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
 import SignInPageView from './view';
 import { toast } from 'react-toastify';
 import screenData from '../../screenData.json';
 
 
 export default function SignInPage() {
-  const { setActiveSession } = useContext(SessionContext);
   const { goToSlide } = useContext(SliderContext);
 
   const onSubmit = async (data: Form) => {
-    const accessToken = await signInStandard(data);
-    if (accessToken && accessToken?.data?.session !== null) {
-      localStorage.setItem(
-        'token',
-        JSON.stringify(accessToken?.data.session.refresh_token),
-      );
-      setActiveSession(accessToken.data.session);
-    } else {
+    const response = await signInStandard(data);
+    
+    // If there's an error or no session returned, show the error toast.
+    // Otherwise, do nothing! App.tsx's listener will automatically update the UI.
+    if (!response?.data?.session) {
       toast.error(screenData.SignInPage.signInError);
-      return;
     }
-    await sessionCheck();
   };
 
   return (
