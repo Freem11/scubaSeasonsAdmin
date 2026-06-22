@@ -73,8 +73,8 @@ if (data) {
 }
 
 
-export const getAllDiveSiteWaits = async () => {
-  const { data, error } = await supabase.rpc('get_divesitewaits_with_user');
+export const getPendingDiveSites = async () => {
+  const { data, error } = await supabase.rpc('get_pending_divesites');
   
   if (error) {
     console.log('couldn\'t do it DiveSite-Waits-All,', error);

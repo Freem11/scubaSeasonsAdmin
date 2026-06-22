@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { deleteDiveSiteWait, getAllDiveSiteWaits, grabDiveSiteWaitById } from "../../apicalls/supabaseCalls/diveSiteWaitSupabaseCalls";
+import { deleteDiveSiteWait, getPendingDiveSites, grabDiveSiteWaitById } from "../../apicalls/supabaseCalls/diveSiteWaitSupabaseCalls";
 import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 import { insertDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
@@ -16,7 +16,7 @@ export default function DiveSiteEval() {
             await insertDiveSite(diveSiteById && diveSiteById[0])
             await deleteDiveSiteWait(id)
             setSelectedPendingDiveSite(null)
-            const diveSitesToVett = await getAllDiveSiteWaits();
+            const diveSitesToVett = await getPendingDiveSites();
             setPendingDiveSites(diveSitesToVett);
         }
     };
@@ -25,7 +25,7 @@ export default function DiveSiteEval() {
         if (id) {
             await deleteDiveSiteWait(id);
             setSelectedPendingDiveSite(null)
-            const diveSitesToVett = await getAllDiveSiteWaits();
+            const diveSitesToVett = await getPendingDiveSites();
             setPendingDiveSites(diveSitesToVett);
         }
     };
