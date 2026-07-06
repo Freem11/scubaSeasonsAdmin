@@ -26,6 +26,7 @@ import { SeaLifeHeadersContext } from './contexts/seaLifeHeaders/seaLifeHeaderCo
 import { Species } from './entities/species';
 import { SpeciesContext } from './contexts/seaLifeHeaders/speciesContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
+import { SelectedUnverifiedDiveSiteContext } from './contexts/unverifieddiveSiteEvals/selectedDiveSiteContext';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -37,6 +38,7 @@ function App() {
   const [headerlessSpecies, setHeaderlessSpecies] = useState<Species[] | null>(null)
   const [species, setSpecies] = useState<string | null>(null);
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
+  const [selectedUnverifiedDiveSite, setSelectedUnverifiedDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
   const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
   const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
@@ -92,6 +94,7 @@ function App() {
           <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
             <SelectedPendingReviewPhotoContext.Provider value={{ selectedReviewPhoto, setSelectedReviewPhoto }}>
             <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
+              <SelectedUnverifiedDiveSiteContext.Provider value={{ selectedUnverifiedDiveSite, setSelectedUnverifiedDiveSite }}>
               <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
                 <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
                   <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
@@ -106,6 +109,7 @@ function App() {
                  </SelectedTripRequestContext.Provider>
                </SelectedSeaLifeContext.Provider>
              </SelectedPendingDiveSiteContext.Provider>
+             </SelectedUnverifiedDiveSiteContext.Provider>
            </SelectedPartnerRequestContext.Provider>
            </SelectedPendingReviewPhotoContext.Provider>
          </ShopsArrayContext.Provider>

@@ -224,3 +224,49 @@ export const getDiveSiteById = async (id: string | number) => {
     return data;
   }
 };
+
+export const getUnverifiedDiveSites= async () => {
+  const { data, error } = await supabase.rpc('get_unverified_divesites_with_user');
+
+  if (error) {
+    console.log('couldn\'t do it get_unverified_divesites,', error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};
+
+export const validateDiveSite = async (id: number) => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .update({ 'is_validated': true })
+    .eq('id', id);
+
+  if (error) {
+    console.log('couldn\'t do it validate_divesite,', error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};
+
+export const deleteDiveSite = async (id: number) => {
+
+  const { data, error } = await supabase
+  .from("diveSites")
+  .delete()
+  .eq("id", id);
+
+if (error) {
+  console.log("couldn't do it,", error);
+  return [];
+}
+
+if (data) {
+  console.log(data);
+}
+}
