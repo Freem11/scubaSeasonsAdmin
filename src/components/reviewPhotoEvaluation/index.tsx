@@ -3,7 +3,7 @@ import { insertHeatPoint } from "../../apicalls/supabaseCalls/heatPointSupabaseC
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
 import revertedDate from "../../helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
-import { getDiveSiteById } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { getUnverifiedDiveSitesByID } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
 import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
@@ -12,6 +12,7 @@ import { DiveSite } from "../../entities/diveSite";
 import { DynamicSelectOptionsAnimals } from "../../entities/DynamicSelectOptionsAnimals";
 import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
 import { Option } from "../../reusables/select";
+import { toast } from "react-toastify";
 
 export default function ReviewPhotoEval() {
   const { selectedReviewPhoto, setSelectedReviewPhoto } = useContext(SelectedPendingReviewPhotoContext)
@@ -27,10 +28,9 @@ export default function ReviewPhotoEval() {
   }, [selectedReviewPhoto]);
 
   const getDiveSiteData = async(diveSite_id: number) => {
-    const diveSiteData = await getDiveSiteById(diveSite_id)
-      setDiveSite(diveSiteData[0])
+    const diveSiteData = await getUnverifiedDiveSitesByID(diveSite_id)
+    setDiveSite(diveSiteData)
   }
-
 
   const OkPhoto = async (reviewPhotoId: number) => {
       await updateWithDecision(reviewPhotoId, "Approved")
@@ -53,9 +53,14 @@ export default function ReviewPhotoEval() {
 };
 
 const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => {
-  console.log('reviewPhoto', reviewPhoto)
-  console.log(reviewPhoto,diveSiteInfo, animalLabel )
-  if(animalLabel) {
+
+ 
+  if(diveSiteInfo.is_validated === false){
+      toast.warning("Cannot Promote to Sea Life Sighitng, The Dive Site is not yet Validated");
+      return;
+  }
+
+  if(animalLabel && diveSiteInfo.is_validated === true) {
     const monthID = reviewPhoto.dive_date.slice(5, 7);
     const convertedDate = revertedDate(reviewPhoto.dive_date)
   

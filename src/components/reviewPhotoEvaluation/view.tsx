@@ -31,7 +31,6 @@ export default function ReviewPhotoEvalView(props: SeaLifePhotoEvalViewProps) {
         defaultValues: props.values,
     });
 
-    console.log('photoRecord', props.photoRecord)
     // Sync form when photoRecord becomes available
     useEffect(() => {
         if (props.photoRecord?.classification) {

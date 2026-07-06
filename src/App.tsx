@@ -27,6 +27,7 @@ import { Species } from './entities/species';
 import { SpeciesContext } from './contexts/seaLifeHeaders/speciesContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
 import { SelectedUnverifiedDiveSiteContext } from './contexts/unverifieddiveSiteEvals/selectedDiveSiteContext';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -103,6 +104,7 @@ function App() {
                     <MapContextProvider>
                      {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
                      { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+                     <ToastContainer />
                    </MapContextProvider>
                    </SeaLifeHeadersContext.Provider>
                    </SpeciesContext.Provider>

@@ -238,6 +238,21 @@ export const getUnverifiedDiveSites= async () => {
   }
 };
 
+export const getUnverifiedDiveSitesByID = async (id: number) => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .select()
+    .eq('id', id)
+    .single();
+
+  if (error || !data) {
+    console.log('couldn\'t do it get_single_unverified_divesite,', error);
+    return [];
+  }
+
+  return data;
+};
+
 export const validateDiveSite = async (id: number) => {
   const { data, error } = await supabase
     .from('diveSites')
