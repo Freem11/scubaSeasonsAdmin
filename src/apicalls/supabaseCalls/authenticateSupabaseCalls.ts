@@ -154,6 +154,9 @@ export const sendPasswordResetEmail = async (email: string, url: string) => {
 export const socialSignIn = async (provider: any) => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: provider,
+    options: {
+    redirectTo: 'http://localhost:3000/auth/callback',
+  },
   });
 
   if (error) {

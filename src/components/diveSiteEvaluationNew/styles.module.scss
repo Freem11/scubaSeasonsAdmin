@@ -12,7 +12,7 @@
   text-align: center;
   background-color: transparent;
   font-size: 16px;
-  color: black;
+  color: darkgrey;
 }
 
 
@@ -23,19 +23,5 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
-}
-
-
-@media (max-width: 768px) {
-  .formColumns {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1rem;
-  }
-}
-
-.formColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    width: 50%;
 }

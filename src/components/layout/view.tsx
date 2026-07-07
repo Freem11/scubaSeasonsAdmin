@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import Tabs, { TabItem } from '../../reusables/tabs';
 import DiveSiteEval from '../diveSiteEvaluation';
+import UnverifiedDiveSiteEval from "../diveSiteEvaluationNew";
 import DiveSiteList from '../diveSiteList';
+import UnverfiedDiveSiteList from '../diveSiteListNew';
 import PartnerRequestList from '../partnerRequestList';
 import PartnerRequestEval from '../partnerRequestEvaluation';
 import SeaLifePhotoEval from '../seaLifePhotoEvaluation';
@@ -19,12 +21,13 @@ export default function LayoutMainView() {
     const tabs = useMemo(() => {
         return [
             { key: 't-1', title: 'Sea Life', content: SeaLifePhotoList, tabContent: <SeaLifePhotoEval /> },
-            { key: 't-2', title: 'Dive Sites', content: DiveSiteList, tabContent: <DiveSiteEval /> },
-            { key: 't-3', title: 'Review Photos', content: ReviewPhotoList, tabContent: <ReviewPhotoEval />},
-            { key: 't-4', title: 'Partner Requests', content: PartnerRequestList, tabContent: <PartnerRequestEval /> },
-            { key: 't-5', title: 'Trip Requests', content: TripRequestList, tabContent: <TripRequestEval /> },
-            { key: 't-6', title: 'Photo Bucket', content: PhotoGallery, tabContent: null},
-            { key: 't-7', title: 'Sea Life Headers', content: SeaLifeHeadersList, tabContent: <SeaLifeHeadersEval/>}
+            { key: 't-2', title: 'Dive Sites OLD', content: DiveSiteList, tabContent: <DiveSiteEval /> },
+            { key: 't-3', title: 'Dive Sites', content: UnverfiedDiveSiteList, tabContent: <UnverifiedDiveSiteEval /> },
+            { key: 't-4', title: 'Review Photos', content: ReviewPhotoList, tabContent: <ReviewPhotoEval />},
+            { key: 't-5', title: 'Partner Requests', content: PartnerRequestList, tabContent: <PartnerRequestEval /> },
+            { key: 't-6', title: 'Trip Requests', content: TripRequestList, tabContent: <TripRequestEval /> },
+            { key: 't-7', title: 'Photo Bucket', content: PhotoGallery, tabContent: null},
+            { key: 't-8', title: 'Sea Life Headers', content: SeaLifeHeadersList, tabContent: <SeaLifeHeadersEval/>}
         ]
     }, []);
 

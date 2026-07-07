@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosContext";
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
+import { UnverifiedDiveSitesContext} from "../../contexts/unverifieddiveSiteEvals/diveSitesContext";
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
 import { SeaLifePhoto } from "../../entities/seaLifePhoto";
@@ -16,6 +17,7 @@ import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/revi
 export default function LayoutMain() {
   const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)
   const [pendingDiveSites, setPendingDiveSites] = useState<DiveSite[] | null>(null)
+  const [unverifiedDiveSites, setUnverifiedDiveSites] = useState<DiveSite[] | null>(null)
   const [pendingReviewPhotos, setPendingReviewPhotos] = useState<ReviewPhotoWithInfo[] | null>(null)
   const [partnerRequests, setPartnerRequests] = useState<PartnerRequest[] | null>(null)
   const [tripRequests, setTripRequests] = useState<TripRequest[] | null>(null)
@@ -23,6 +25,7 @@ export default function LayoutMain() {
   return (
     <DiveSiteContextProvider>
       <DiveShopContextProvider>
+        <UnverifiedDiveSitesContext.Provider value={{ unverifiedDiveSites, setUnverifiedDiveSites }}>
         <PendingDiveSitesContext.Provider value={{ pendingDiveSites, setPendingDiveSites }}>
           <PartnerRequestsContext.Provider value={{ partnerRequests, setPartnerRequests }}>
             <PendingReviewPhotosContext.Provider value={{ pendingReviewPhotos, setPendingReviewPhotos }}>
@@ -34,6 +37,7 @@ export default function LayoutMain() {
             </PendingReviewPhotosContext.Provider>
           </PartnerRequestsContext.Provider>
         </PendingDiveSitesContext.Provider>
+        </UnverifiedDiveSitesContext.Provider>
       </DiveShopContextProvider>
     </DiveSiteContextProvider>
   )
