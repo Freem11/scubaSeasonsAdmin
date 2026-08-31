@@ -31,9 +31,9 @@ export default function LandingPageView(props: LandingPageProps) {
             <Button className="btn-primary btn-lg" onClick={() => props.goToSlide(2)}>
               {screenData.LandingPage.buttonOneText}
             </Button>
-            <Button className="btn-lg mt-4" onClick={() => props.goToSlide(0)}>
+            {/* <Button className="btn-lg mt-4" onClick={() => props.goToSlide(0)}>
               {screenData.LandingPage.buttonTwoText}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
