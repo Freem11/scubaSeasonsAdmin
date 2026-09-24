@@ -53,7 +53,6 @@ export default function ReviewPhotoEval() {
 };
 
 const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo: DiveSite, animalLabel: Option | undefined) => {
-
  
   if(diveSiteInfo.is_validated === false){
       toast.warning("Cannot Promote to Sea Life Sighitng, The Dive Site is not yet Validated");
@@ -61,7 +60,13 @@ const PromoteToSighting = async (reviewPhoto: ReviewPhotoWithInfo, diveSiteInfo:
   }
 
   if(animalLabel && diveSiteInfo.is_validated === true) {
-    const monthID = reviewPhoto.dive_date.slice(5, 7);
+
+    if(!reviewPhoto.dive_date){
+      toast.warning("Cannot Promote to Sea Life Sighitng, Not Dive Date on Story!");
+      return
+    }
+
+    const monthID = reviewPhoto.dive_date.slice(5, 7);  
     const convertedDate = revertedDate(reviewPhoto.dive_date)
   
       await insertphoto({
