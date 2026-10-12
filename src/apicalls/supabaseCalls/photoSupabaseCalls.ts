@@ -1,4 +1,5 @@
 import { supabase } from "../supabase";
+import { Photo } from "../../entities/photo";
 
 export const getAnimalNames = async () => {
   const { data, error } = await supabase.from("photos").select("label");
@@ -245,7 +246,7 @@ export const getUpdatePhotos= async () => {
 
 // In photoSupabaseCalls.js
 export const getAllPhotos = async () => {
-  let allRecords = [];
+  let allRecords: Photo[] = [];
   let from = 0;
   const PAGE_SIZE = 1000; 
 

@@ -1,7 +1,14 @@
 import { ActiveProfile } from '../../entities/profile';
 import { supabase } from '../supabase';
 
-export const addDeletedAccountInfo = async (values) => {
+type DeletedAccountInfo = {
+  firstName: string
+  lastName:  string
+  email:     string
+  UserID:    string
+};
+
+export const addDeletedAccountInfo = async (values: DeletedAccountInfo) => {
   console.log('passing', values);
   const { data, error } = await supabase
     .from('deletedUsers')
@@ -24,7 +31,7 @@ export const addDeletedAccountInfo = async (values) => {
 };
 
 
-export const createProfile = async (values) => {
+export const createProfile = async (values: { email: string, id: string }) => {
   const { data, error } = await supabase
     .from('UserProfiles')
     .insert([
@@ -62,7 +69,7 @@ export const updateProfile = async (values: { username: string, id: string }) =>
   }
 };
 
-export const deleteProfile = async (id) => {
+export const deleteProfile = async (id: string) => {
   const { data, error } = await supabase
     .from('UserProfiles')
     .delete()
@@ -110,7 +117,7 @@ export const grabProfileByUserName = async (userName: string) => {
   }
 };
 
-export const getProfileWithStats = async (userId) => {
+export const getProfileWithStats = async (userId: string) => {
   const { data, error } = await supabase.rpc('get_userprofile_with_stats', {
     userid: userId,
   });
