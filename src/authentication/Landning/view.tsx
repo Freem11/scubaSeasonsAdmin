@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import Button from '../../reusables/button';
 import blackManta from '../../assets/blackManta.png';
 import googleIcon from '../../assets/google-color.png';
