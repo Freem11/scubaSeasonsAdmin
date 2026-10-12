@@ -26,6 +26,11 @@ import { SeaLifeHeadersContext } from './contexts/seaLifeHeaders/seaLifeHeaderCo
 import { Species } from './entities/species';
 import { SpeciesContext } from './contexts/seaLifeHeaders/speciesContext';
 import { SeaLifePhoto } from './entities/seaLifePhoto';
+import { SelectedUnverifiedDiveSiteContext } from './contexts/unverifieddiveSiteEvals/selectedDiveSiteContext';
+import { ToastContainer } from 'react-toastify';
+import { DiveSitesWithHeadersContext } from './contexts/diveSitesWithHeaders/diveSitesWithHeadersContext';
+import { DiveSiteWithHeader } from './entities/diveSiteWithHeader';
+import { SelectedDiveSiteWithHeadersContext } from './contexts/diveSitesWithHeaders/selectedDiveSiteWithHeadersContext';
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -37,9 +42,13 @@ function App() {
   const [headerlessSpecies, setHeaderlessSpecies] = useState<Species[] | null>(null)
   const [species, setSpecies] = useState<string | null>(null);
   const [selectedPendingDiveSite, setSelectedPendingDiveSite] = useState<DiveSite | null>(null)
+  const [selectedUnverifiedDiveSite, setSelectedUnverifiedDiveSite] = useState<DiveSite | null>(null)
   const [sitesArray, setSitesArray] = useState<DiveSiteBasic[]>([]);
   const [selectedPartnerRequest, setSelectedPartnerRequest] = useState<PartnerRequest | null>(null)
   const [shopsArray, setShopsArray] = useState<DiveShopBasic[]>([]);
+  const [diveSitesWithHeaders, setDiveSitesWithHeaders] = useState<DiveSiteWithHeader[]>([]);
+  const [selectedDiveSiteWithHeaders, setSelectedDiveSiteWithHeaders] = useState<DiveSiteWithHeader | null>(null);
+  
   
   useEffect(() => {
     async function getUserData() {
@@ -90,8 +99,11 @@ function App() {
       <UserProfileContext.Provider value={{ profile, setProfile }}>
         <SitesArrayContext.Provider value={{ sitesArray, setSitesArray }}>
           <ShopsArrayContext.Provider value={{ shopsArray, setShopsArray }}>
+            <DiveSitesWithHeadersContext.Provider value={{ diveSitesWithHeaders, setDiveSitesWithHeaders }}>
+              <SelectedDiveSiteWithHeadersContext.Provider value={{ selectedDiveSiteWithHeaders, setSelectedDiveSiteWithHeaders}}>
             <SelectedPendingReviewPhotoContext.Provider value={{ selectedReviewPhoto, setSelectedReviewPhoto }}>
             <SelectedPartnerRequestContext.Provider value={{ selectedPartnerRequest, setSelectedPartnerRequest }}>
+              <SelectedUnverifiedDiveSiteContext.Provider value={{ selectedUnverifiedDiveSite, setSelectedUnverifiedDiveSite }}>
               <SelectedPendingDiveSiteContext.Provider value={{ selectedPendingDiveSite, setSelectedPendingDiveSite }}>
                 <SelectedSeaLifeContext.Provider value={{ selectedSeaLife, setSelectedSeaLife }}>
                   <SelectedTripRequestContext.Provider value={{ selectedTripRequest, setSelectedTripRequest }}>
@@ -100,14 +112,18 @@ function App() {
                     <MapContextProvider>
                      {/* { !activeSession ? <AuthenticationPage /> : <AdminPage />} */}
                      { !activeSession ? <AuthenticationPage /> : <LayoutMainView />}
+                     <ToastContainer />
                    </MapContextProvider>
                    </SeaLifeHeadersContext.Provider>
                    </SpeciesContext.Provider>
                  </SelectedTripRequestContext.Provider>
                </SelectedSeaLifeContext.Provider>
              </SelectedPendingDiveSiteContext.Provider>
+             </SelectedUnverifiedDiveSiteContext.Provider>
            </SelectedPartnerRequestContext.Provider>
            </SelectedPendingReviewPhotoContext.Provider>
+           </SelectedDiveSiteWithHeadersContext.Provider>
+           </DiveSitesWithHeadersContext.Provider>
          </ShopsArrayContext.Provider>
        </SitesArrayContext.Provider>
       </UserProfileContext.Provider>

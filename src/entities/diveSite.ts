@@ -7,6 +7,7 @@ export type DiveSite = {
   userid: string
   username: null | string
   newusername: string
+  is_validated: boolean
 };
 
 export type DiveSiteWithUserName = {

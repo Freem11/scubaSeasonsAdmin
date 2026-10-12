@@ -14,12 +14,17 @@ if (data) {
 }
 
 
-export const updateWithDecision = async (id: number, decision: string) => {
+export const updateWithDecision = async (id: number, decision: string, classification: string) => {
+
+    console.log("recieved", id, decision, classification)
 
   const { data, error } = await supabase
   .from('diveSiteReviewPhotos')
-  .update({ decision: decision})
+  .update({ decision: decision, classification: classification})
   .eq('id', id)
+  .select();
+
+  console.log(data)
 
   if (error) {
     console.log('couldn\'t do it REVIEW_PHOTO_APPROVAL,', error);
