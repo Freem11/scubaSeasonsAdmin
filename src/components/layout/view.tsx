@@ -15,6 +15,9 @@ import ReviewPhotoEval from '../reviewPhotoEvaluation';
 import PhotoGallery from '../test';
 import SeaLifeHeadersList from '../seaLifeHeadersList';
 import SeaLifeHeadersEval from '../seaLifeHeaders';
+import DiveSiteHeadersList from '../diveSitesWithHeadersList';
+import DiveSiteWithHeaders from '../diveSiteWithHeaderEvaluation';
+
 
 export default function LayoutMainView() {
 
@@ -27,7 +30,8 @@ export default function LayoutMainView() {
             { key: 't-5', title: 'Partner Requests', content: PartnerRequestList, tabContent: <PartnerRequestEval /> },
             { key: 't-6', title: 'Trip Requests', content: TripRequestList, tabContent: <TripRequestEval /> },
             { key: 't-7', title: 'Photo Bucket', content: PhotoGallery, tabContent: null},
-            { key: 't-8', title: 'Sea Life Headers', content: SeaLifeHeadersList, tabContent: <SeaLifeHeadersEval/>}
+            { key: 't-8', title: 'Sea Life Headers', content: SeaLifeHeadersList, tabContent: <SeaLifeHeadersEval/>},
+            { key: 't-9', title: 'Dive Site Headers', content: DiveSiteHeadersList, tabContent: <DiveSiteWithHeaders/>}
         ]
     }, []);
 
