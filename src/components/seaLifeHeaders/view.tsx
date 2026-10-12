@@ -1,28 +1,21 @@
 import React from "react";
 import style from './styles.module.scss';
-import { Species } from "../../entities/species";
-import { SeaLifePhoto } from "../../entities/seaLifePhoto";
+import { SpeciesWithImage } from "../../entities/species";
+import { Photo } from "../../entities/photo";
 import { updateSpeciesImage } from "../../apicalls/supabaseCalls/speciesSupabaseCalls";
 
 type SpeceisHeaderSelectionViewProps = {
-    currentPhoto: Species[] | null;
-    setCurrentPhoto: React.Dispatch<React.SetStateAction<Species[] | null>>
-    photoList: SeaLifePhoto[] | null;
+    currentPhoto: SpeciesWithImage[] | null;
+    setCurrentPhoto: React.Dispatch<React.SetStateAction<SpeciesWithImage[] | null>>
+    photoList: Photo[] | null;
 };
 
 export default function SpeceisHeaderSelectionView({ currentPhoto, setCurrentPhoto, photoList }: SpeceisHeaderSelectionViewProps) {
 
-    const updateHeaderImageSelection = async(speciesId: number, imageId: number) => {
+    const updateHeaderImageSelection = async(speciesId: number, imageId: number | null) => {
         const updatedSpeciesRecord= await updateSpeciesImage(speciesId, imageId)
         setCurrentPhoto(updatedSpeciesRecord)
     };
-
-    let showPhoto = true
-    if(currentPhoto){
-        showPhoto = currentPhoto[0].image_url
-    } else {
-        showPhoto = false
-    }
 
     return (
         <> 
@@ -34,11 +27,11 @@ export default function SpeceisHeaderSelectionView({ currentPhoto, setCurrentPho
                     src={`${currentPhoto[0].public_domain}/${currentPhoto[0].md}`}
                     width={200}
                     style={{borderRadius: "5%"}}
-                    alt={currentPhoto.label}
+                    alt={currentPhoto[0].name}
                 />
             </div>
             <div className="full-height flex-column">
-                <div>{currentPhoto.label}</div>
+                <div>{currentPhoto[0].name}</div>
             </div>
         </div>}
 
@@ -57,7 +50,7 @@ export default function SpeceisHeaderSelectionView({ currentPhoto, setCurrentPho
                 const photoName = record.photoFile.split('/').pop();
 
                 return (
-                    <div className={style.cardMain} key={record.id} onClick={() => updateHeaderImageSelection(currentPhoto[0].id, record.image_id)}>
+                    <div className={style.cardMain} key={record.id} onClick={() => currentPhoto && updateHeaderImageSelection(currentPhoto[0].id, record.image_id)}>
                         <div className={style.pic}>
                             <img
                                 src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}

@@ -1,5 +1,4 @@
-import { useCallback, useContext, useEffect } from "react";
-import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
+import { useContext } from "react";
 import style from './styles.module.scss';
 import { Species } from "../../entities/species";
 import { SpeciesContext } from "../../contexts/seaLifeHeaders/speciesContext";
@@ -9,8 +8,6 @@ type SeaLifeHEadersListProps = {
   };
 
 export default function SeaLifeHeadersView(props: SeaLifeHEadersListProps) {
-    const { selectedSeaLife, setSelectedSeaLife } = useContext(SelectedSeaLifeContext)
-
     const { setSpecies } = useContext(SpeciesContext)
 
 
