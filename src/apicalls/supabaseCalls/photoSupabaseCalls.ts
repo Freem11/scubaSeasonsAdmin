@@ -36,7 +36,10 @@ export const insertphoto = async (values: any, monthID: number) => {
   }
 };
 
-export const getAnimalNamesThatFit = async (value: string) => {
+/** One `label` cell of public.photos: a sea-life species name. */
+export type PhotoLabel = { label: string };
+
+export const getAnimalNamesThatFit = async (value: string): Promise<PhotoLabel[]> => {
 
   if(value === "") {
     return [];
@@ -55,6 +58,7 @@ export const getAnimalNamesThatFit = async (value: string) => {
   if (data) {
     return data;
   }
+  return [];
 };
 
 export const getPhotosforAnchor = async (value: any) => {

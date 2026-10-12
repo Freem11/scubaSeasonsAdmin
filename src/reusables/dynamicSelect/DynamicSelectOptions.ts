@@ -1,10 +1,25 @@
-export class DynamicSelectOptions {
-  convertItem(item) {
-    return item;
+import { Option } from '../select';
+
+export type DynamicSelectResult = {
+  options:    Option[]
+  totalCount: number | null
+};
+
+/**
+ * A list response. An HTTP client can attach the response headers
+ * (x-total-count) to the array. A Supabase result carries no headers.
+ */
+export type DynamicSelectResponse<TItem> = TItem[] & {
+  headers?: Record<string, string>
+};
+
+export class DynamicSelectOptions<TItem = Option> {
+  convertItem(item: TItem): Option {
+    return item as Option;
   }
 
-  convertItems(items) {
-    const result = { options: [], totalCount: 0 };
+  convertItems(items?: TItem[] | null): DynamicSelectResult {
+    const result: DynamicSelectResult = { options: [], totalCount: 0 };
     if (items?.length) {
       result.options = items.filter(item => !!item).map(item => this.convertItem(item));
       result.totalCount = result.options.length;
@@ -12,8 +27,8 @@ export class DynamicSelectOptions {
     return result;
   }
 
-  convertHttpResponse(response) {
-    const result = { options: [], totalCount: 0 };
+  convertHttpResponse(response: DynamicSelectResponse<TItem>): DynamicSelectResult {
+    const result: DynamicSelectResult = { options: [], totalCount: 0 };
 
     if (response?.length === 0) {
       return result;
@@ -23,7 +38,7 @@ export class DynamicSelectOptions {
 
     const headers = response.headers;
     if (headers?.hasOwnProperty('x-total-count')) {
-      result.totalCount = parseInt(response.headers['x-total-count']);
+      result.totalCount = parseInt(headers['x-total-count']);
     } else {
       result.totalCount = null;
     }
