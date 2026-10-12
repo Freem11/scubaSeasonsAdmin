@@ -4,7 +4,8 @@ import Icon from '../../icons/Icon';
 import './style.scss';
 
 
-type SecureTextInputProps = TextInputProps & {
+// React never passes `ref` inside `props`, so the spread below never carries one.
+type SecureTextInputProps = Omit<TextInputProps, 'ref'> & {
   secure?: boolean
 };
 

@@ -110,7 +110,7 @@ const defaultProps = {
    */
   triggerOnChangeWhenReselect: false as boolean,
 
-  onSearch:           (search: string) => {
+  onSearch:           (_search: string) => {
     // TODO: implement search by static options
   },
 };
