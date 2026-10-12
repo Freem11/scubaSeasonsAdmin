@@ -14,7 +14,8 @@ if (data) {
 }
 
 
-export const updateWithDecision = async (id: number, decision: string, classification: string) => {
+/** `classification` is set only on a sighting promotion; the other decisions leave the column as it is. */
+export const updateWithDecision = async (id: number, decision: string, classification?: string) => {
 
     console.log("recieved", id, decision, classification)
 

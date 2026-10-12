@@ -84,38 +84,6 @@ export const performPasswordReset = async (newPassowrd: string) => {
   return response;
 };
 
-export const signInFaceBook = async () => {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: 'facebook',
-  });
-
-  if (error) {
-    console.log('couldn\'t login,', error);
-  }
-
-  if (user && session) {
-    console.log(user, session);
-    return { user, session };
-  }
-};
-
-export const signInGoogle = async () => {
-  console.log('made it');
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: 'google',
-  });
-
-  console.log(user, session, error);
-  if (error) {
-    console.log('couldn\'t login,', error);
-  }
-
-  if (user && session) {
-    // console.log(user, session);
-    return { user, session };
-  }
-};
-
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Select, { SelectProps } from '../select';
+import Select, { Option, SelectProps } from '../select';
 
 
 const defaultProps = {
   searchLimit: 100,
 };
 
-export type GetMoreOptions = (search: string, limit: number, skip: number) => Promise<{ options: any[] }>;
+export type GetMoreOptions = (search: string, limit: number, skip: number) => Promise<{ options: Option[] }>;
 
 type DynamicSelectProps = SelectProps & Partial<typeof defaultProps> & {
   getMoreOptions:      GetMoreOptions
@@ -17,9 +17,9 @@ type DynamicSelectProps = SelectProps & Partial<typeof defaultProps> & {
 const DynamicSelect = React.forwardRef<HTMLInputElement, DynamicSelectProps>(function DynamicSelect(_props: DynamicSelectProps, forwardedRef) {
   const props = { ...defaultProps, ..._props };
   const { getSelectedOptions, getMoreOptions, searchLimit, ...rest } = props;
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<Option[]>([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [searchOffset, setSearchOffset] = useState(0);
+  const [searchOffset] = useState(0);
 
   useEffect(() => {
     init();

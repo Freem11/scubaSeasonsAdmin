@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormRules } from './form';
 import Button from '../../reusables/button';

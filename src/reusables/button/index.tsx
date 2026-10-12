@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import style from './style.module.scss';
 
 
-type StandardButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+type StandardButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 export type ButtonProps = {
   onClick?:   () => void
   iconLeft?:  React.ReactNode
