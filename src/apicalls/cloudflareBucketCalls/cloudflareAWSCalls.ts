@@ -2,7 +2,6 @@ import { aws3 } from "../aws";
 import {
     PutObjectCommand,
     DeleteObjectCommand,
-    paginateListObjectsV2,
     ListObjectsV2CommandInput,
     ListObjectsV2Command
   } from "@aws-sdk/client-s3";
@@ -87,7 +86,6 @@ export const uploadphoto = async (file: any, fileName: string) => {
           }
         };
 
-const PAGE_SIZE = 1000; // Recommended maximum page size for R2 ListObjectsV2 for efficiency
 
 /**
  * Fetches ALL object keys from the Cloudflare R2 bucket by automatically
