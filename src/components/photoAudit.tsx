@@ -43,7 +43,7 @@ const PhotoAuditTool = () => {
           ?.replace(/[^a-z0-9._-]/gi, '')
           .toLowerCase()
           .trim();
-      }).filter(k => k && k !== "");
+      }).filter((k): k is string => typeof k === 'string' && k !== '');
 
       const dbKeySet = new Set(dbKeys);
 
