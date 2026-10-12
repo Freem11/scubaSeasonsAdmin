@@ -17,9 +17,6 @@ jobs:
     name: Type Check
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Not blocking until the branch reaches 0 errors (plan P3). The job still
-    # shows the count in its log.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
