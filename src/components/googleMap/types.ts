@@ -4,7 +4,7 @@ export enum PointFeatureCategory {
 };
 
 export type ClusterProperty = {
-  id:           string | number
+  id:           number
   title:        string
   cluster:      boolean
   category:     PointFeatureCategory
