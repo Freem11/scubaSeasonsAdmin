@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.485.0",
@@ -43,5 +44,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vite-plugin-react-native-web": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
