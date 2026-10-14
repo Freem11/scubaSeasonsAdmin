@@ -1,5 +1,30 @@
 import { supabase } from "../supabase";
 import { Photo } from "../../entities/photo";
+import { GPSBounds } from "../../entities/GPSBubble";
+
+/**
+ * The photo columns insertphoto writes. The callers read them from a selected record through `?.`,
+ * so several can be undefined; supabase-js drops an undefined column from the payload. They also
+ * pass month (the second argument is written instead) and userName (not written).
+ */
+type PhotoInsert = {
+  photoFile: string | undefined
+  label:     string | undefined
+  dateTaken: string
+  latitude:  number | undefined
+  longitude: number | undefined
+  UserID:    string | undefined
+  image_id?: number | null
+  month?:    string
+  userName?: string | null
+};
+
+/** A photo search inside the four bounds. The legacy map helpers below have no caller in this repo. */
+type PhotoAnchorQuery = GPSBounds & { animalVal: string };
+type PhotoAnchorMultiQuery = GPSBounds & { animalVal: string[] };
+type PhotoAreaQuery = GPSBounds & { animal: string };
+/** `animals` is the species list of the multi-select; the shape is inferred from PhotoAnchorMultiQuery. */
+type HistogramQuery = GPSBounds & { animals?: string[] };
 
 export const getAnimalNames = async () => {
   const { data, error } = await supabase.from("photos").select("label");
@@ -14,7 +39,7 @@ export const getAnimalNames = async () => {
   }
 };
 
-export const insertphoto = async (values: any, monthID: number) => {
+export const insertphoto = async (values: PhotoInsert, monthID: number) => {
   const { data, error } = await supabase.from("photos").insert([
     {
       photoFile: values.photoFile,
@@ -62,7 +87,7 @@ export const getAnimalNamesThatFit = async (value: string): Promise<PhotoLabel[]
   return [];
 };
 
-export const getPhotosforAnchor = async (value: any) => {
+export const getPhotosforAnchor = async (value: PhotoAnchorQuery) => {
   const { data, error } = await supabase
     .from("photos")
     .select()
@@ -100,7 +125,7 @@ export const getAnimalMultiSelect = async (text: string) => {
   }
 };
 
-export const getPhotosforAnchorMulti = async (value: any) => {
+export const getPhotosforAnchorMulti = async (value: PhotoAnchorMultiQuery) => {
   let creatureList: string = "";
   value.animalVal.forEach((creature: string) => {
     if (creatureList === undefined) {
@@ -164,7 +189,7 @@ export const getPhotosforAnchorMulti = async (value: any) => {
   }
 };
 
-export const getPhotosforMapArea = async (value: any) => {
+export const getPhotosforMapArea = async (value: PhotoAreaQuery) => {
   const { data, error } = await supabase
     .from("photos")
     .select()
@@ -184,7 +209,7 @@ export const getPhotosforMapArea = async (value: any) => {
   }
 };
 
-export const getHistoData = async (values: any) => {
+export const getHistoData = async (values: HistogramQuery) => {
   if (values.animals) {
     const { data, error } = await supabase.rpc("histogram3", {
       animals: values.animals,
@@ -250,7 +275,7 @@ export const getAllPhotos = async () => {
   let from = 0;
   const PAGE_SIZE = 1000; 
 
-  while (true) {
+  for (;;) {
     const { data, error } = await supabase
       .from("photos")
       .select("*")

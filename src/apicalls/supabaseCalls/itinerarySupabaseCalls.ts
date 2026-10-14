@@ -24,7 +24,17 @@ export const getItineraryByIdRequest = async (id: number) => {
   return response.data as TripRequest[];
 };
 
-export const updateItinerary = async (itinerary: any) => {
+/**
+ * The itinerary fields updateItinerary and deleteItinerary read. The caller builds the object from an
+ * all-optional form, so every field can be undefined. It also passes created_at (a Date) and deleted_at;
+ * updateItinerary does not read them.
+ */
+type ItineraryChange = Partial<Omit<TripRequest, 'created_at'>> & {
+  created_at?: string | Date
+  deleted_at?: null
+};
+
+export const updateItinerary = async (itinerary: ItineraryChange) => {
   
   if (itinerary.requestType === "Edit") {
     const { data, error } = await supabase
@@ -67,7 +77,7 @@ export const updateItinerary = async (itinerary: any) => {
   }
 };
 
-export const deleteItinerary = async (itinerary: any) => {
+export const deleteItinerary = async (itinerary: ItineraryChange) => {
   
   if (itinerary.requestType === "Delete") {
     const { data, error } = await supabase

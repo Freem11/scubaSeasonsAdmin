@@ -16,7 +16,15 @@ export const diveSiteWaits = async () => {
   }
 };
 
-export const insertDiveSiteWaits = async (values: any) => {
+/** The form values of a new dive-site request, typed by the columns the insert writes. No caller in this repo. */
+type DiveSiteWaitInsert = {
+  Site:      string
+  Latitude:  number
+  Longitude: number
+  UserID:    string
+};
+
+export const insertDiveSiteWaits = async (values: DiveSiteWaitInsert) => {
   console.log("Supa got", values)
   const { data, error } = await supabase
   .from("diveSiteWait")

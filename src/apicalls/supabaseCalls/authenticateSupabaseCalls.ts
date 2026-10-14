@@ -1,3 +1,4 @@
+import { Provider } from '@supabase/supabase-js';
 import { supabase } from '../supabase';
 
 
@@ -119,7 +120,7 @@ export const sendPasswordResetEmail = async (email: string, url: string) => {
 };
 
 
-export const socialSignIn = async (provider: any) => {
+export const socialSignIn = async (provider: Provider) => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: provider,
     options: {
