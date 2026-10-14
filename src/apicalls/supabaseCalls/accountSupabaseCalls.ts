@@ -31,7 +31,7 @@ export const addDeletedAccountInfo = async (values: DeletedAccountInfo) => {
 };
 
 
-export const createProfile = async (values: { email: string, id: string }) => {
+export const createProfile = async (values: { email: string | undefined, id: string }) => {
   const { data, error } = await supabase
     .from('UserProfiles')
     .insert([
