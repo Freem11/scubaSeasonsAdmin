@@ -17,7 +17,7 @@ export type Option<T = object> = {
 export type onChangeEvent<T = object> = {
   target: {
     name:  string | undefined
-    value: Option<T> | Option<T>[] | string | string[]
+    value: Option<T> | Option<T>[] | string | string[] | null
   }
 };
 
@@ -25,8 +25,11 @@ export type InitialValue = Option | Option[] | string | string[] | undefined;
 
 export type SelectProps = Partial<typeof defaultProps> & {
   name?:     string
-  onChange?: (value: any) => void
+  onChange?: (event: onChangeEvent) => void
 };
+
+/** The default search does nothing. TODO: implement search by static options. */
+const noSearch: (search: string) => void = () => {};
 
 export type Values = Map<string, Option>;
 
@@ -35,7 +38,10 @@ const defaultProps = {
   allowCreate:        false as boolean,
   placeholder:        'Select' as string,
   disabled:           false as boolean,
-  error:              null as any,
+  /**
+   * Any truthy value marks the select as invalid. The select does not read it.
+   */
+  error:              null as unknown,
 
   /**
    * If true, the select is open and progress indicator is shown
@@ -110,9 +116,7 @@ const defaultProps = {
    */
   triggerOnChangeWhenReselect: false as boolean,
 
-  onSearch:           (_search: string) => {
-    // TODO: implement search by static options
-  },
+  onSearch:           noSearch,
 };
 
 const Select = React.forwardRef<HTMLInputElement, SelectProps>(function Select(_props: SelectProps, forwardedRef) {

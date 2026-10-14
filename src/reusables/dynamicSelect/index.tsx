@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Select, { Option, SelectProps } from '../select';
+import Select, { InitialValue, Option, SelectProps } from '../select';
 
 
 const defaultProps = {
@@ -8,9 +8,12 @@ const defaultProps = {
 
 export type GetMoreOptions = (search: string, limit: number, skip: number) => Promise<{ options: Option[] }>;
 
+/** Loads the options that match the current value, so a pre-selected value has its option. */
+export type GetSelectedOptions = (value: InitialValue) => Promise<{ options?: Option[] } | null | undefined>;
+
 type DynamicSelectProps = SelectProps & Partial<typeof defaultProps> & {
   getMoreOptions:      GetMoreOptions
-  getSelectedOptions?: (values: any) => Promise<any>
+  getSelectedOptions?: GetSelectedOptions
 };
 
 
