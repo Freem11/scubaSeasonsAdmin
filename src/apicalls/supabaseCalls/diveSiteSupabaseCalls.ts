@@ -20,7 +20,7 @@ export const getDiveSitesBasic = async (bubble: GPSBubble) => {
   return data as DiveSiteWithUserName[];
 };
 
-export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination) => {
+export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination): Promise<DiveSiteWithUserName[] | undefined> => {
   const builder = supabase.rpc('get_divesites_with_username', {
     max_lat: bubble.maxLat,
     min_lat: bubble.minLat,
