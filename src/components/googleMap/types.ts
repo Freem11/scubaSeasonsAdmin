@@ -1,7 +1,7 @@
 export enum PointFeatureCategory {
   DiveSite = 1,
   DiveShop = 2,
-};
+}
 
 export type ClusterProperty = {
   id:           number

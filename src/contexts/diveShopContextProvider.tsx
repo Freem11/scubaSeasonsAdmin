@@ -15,7 +15,7 @@ export type DiveShopContextType = {
   setSelectedShop: React.Dispatch<React.SetStateAction<DiveShop | null>>
 };
 
-export const DiveShopContextProvider = ({ children }: any) => {
+export const DiveShopContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { boundaries } = useContext(MapContext);
   const [collection, setCollection] = useState(new PagedCollection<DiveShop>());
   const [selectedShop, setSelectedShop] = useState<DiveShop | null>(null);

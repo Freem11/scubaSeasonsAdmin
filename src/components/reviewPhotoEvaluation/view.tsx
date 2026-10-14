@@ -5,7 +5,7 @@ import { Form, FormRules } from "./form";
 import style from './styles.module.scss';
 import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
 import { DiveSite } from "../../entities/diveSite";
-import DynamicSelect from "../../reusables/dynamicSelect";
+import DynamicSelect, { GetMoreOptions } from "../../reusables/dynamicSelect";
 import Icon from "../../icons/Icon";
 import { Option } from "../../reusables/select";
 import { cloudflareBucketUrl } from "../../globalVariables";
@@ -14,7 +14,7 @@ type SeaLifePhotoEvalViewProps = {
     values?:           Form
     photoRecord:       ReviewPhotoWithInfo | null
     diveSiteInfo:      DiveSite | null
-    getMoreAnimals:    (search: string, limit: number, skip: number) => Promise<any>
+    getMoreAnimals:    GetMoreOptions
     okPhoto:           (reviewPhotoId: number) => void;
     rejectPhoto:       (reviewPhotoId: number) => void;
     headerPromote:     (reviewPhoto: ReviewPhotoWithInfo, divesite_id: number, photoPath: string) => void;
