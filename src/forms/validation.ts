@@ -1,6 +1,6 @@
 export const validationEmail = {
   pattern: {
-    value:   /.+\@.+/,
+    value:   /.+@.+/,
     message: 'Please enter a valid email address',
   },
 };
