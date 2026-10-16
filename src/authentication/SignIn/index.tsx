@@ -14,16 +14,21 @@ export default function SignInPage() {
 
   const onSubmit = async (data: Form) => {
     const accessToken = await signInStandard(data);
-    if (accessToken && accessToken?.data?.session !== null) {
-      localStorage.setItem(
-        'token',
-        JSON.stringify(accessToken?.data.session.refresh_token),
-      );
-      setActiveSession(accessToken.data.session);
-    } else {
+
+    if (accessToken) {
+      if ('error' in accessToken) {
+        toast.error(screenData.SignInPage.signInError);
+      }
+      else if (accessToken.data?.session) {
+        localStorage.setItem('token', JSON.stringify(accessToken.data.session.refresh_token));
+        setActiveSession(accessToken.data.session);
+      } 
+    } 
+    else {
+      console.log("Missing expected token data:", accessToken);
       toast.error(screenData.SignInPage.signInError);
-      return;
     }
+
     await sessionCheck();
   };
 
