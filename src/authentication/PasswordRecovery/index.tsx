@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Form } from './form';
 import PasswordRecoveryView from './view';
 import { SliderContext } from '../../reusables/slider/context';

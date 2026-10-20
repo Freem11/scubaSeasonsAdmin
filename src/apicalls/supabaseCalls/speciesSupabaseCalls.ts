@@ -1,4 +1,5 @@
-import { Species } from "../../entities/species";
+import { Species, SpeciesWithImage } from "../../entities/species";
+import { Photo } from "../../entities/photo";
 import { supabase } from "../supabase";
 
 export const getSpecies = async () => {
@@ -29,14 +30,14 @@ export const getSingleSpecies = async (species: string) => {
   }
 
   if (data) {
-    return data as unknown as Species[];
+    return data as unknown as SpeciesWithImage[];
   }
   
   return [];
 };
 
 
-export const getSpeciesPhotos = async (species: string) => {
+export const getSpeciesPhotos = async (species: string): Promise<Photo[]> => {
   const { data, error } = await supabase
     .from("photos")
     .select()
@@ -50,10 +51,12 @@ export const getSpeciesPhotos = async (species: string) => {
   if (data) {
     return data;
   }
+  return [];
 };
 
 
-export const updateSpeciesImage = async (speciesId: number, imageId: number) => {
+/** `imageId` is null for a photo row that has no entry in public.images; the RPC receives it unchanged. */
+export const updateSpeciesImage = async (speciesId: number, imageId: number | null) => {
   const { data, error } = await supabase.rpc('update_species_and_return_with_variants', {
     p_species_id: speciesId,
     p_image_id: imageId     
@@ -64,5 +67,5 @@ export const updateSpeciesImage = async (speciesId: number, imageId: number) => 
     return [];
   }
 
-  return data as unknown as Species[];
+  return data as unknown as SpeciesWithImage[];
 };

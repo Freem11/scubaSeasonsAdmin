@@ -27,7 +27,7 @@ export type MapContextType = {
   setDraggablePoint: React.Dispatch<React.SetStateAction<google.maps.LatLngLiteral | null>>
 };
 
-export const MapContextProvider = ({ children }: any) => {
+export const MapContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [mapRef, setMapRef] = useState<google.maps.Map | null>(null);
   const [boundaries, setBoundaries] = useState<google.maps.LatLngBounds | null>(null);
   const [initialPoint, setInitialPoint] = useState<number[]>([49.316666, -123.066666]);

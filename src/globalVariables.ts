@@ -6,9 +6,9 @@ const prodAwsAccountId = import.meta.env.VITE_AWS_R2_ACCOUNT_ID
 const prodAwsAccessKeyId = import.meta.env.VITE_AWS_R2_ACCESS_KEY_ID
 const prodAwsSecretKey = import.meta.env.VITE_AWS_R2_SECRET_KEY
 
-const devAwsAccountId = import.meta.env.VIT_AWS_R2_DEV_ACCOUNT_ID
-const devAwsAccessKeyId = import.meta.env.VIT_AWS_R2_DEV_ACCESS_KEY_ID
-const devAwsSecretKey = import.meta.env.VIT_AWS_R2_DEV_SECRET_KEY
+const devAwsAccountId = import.meta.env.VITE_AWS_R2_DEV_ACCOUNT_ID
+const devAwsAccessKeyId = import.meta.env.VITE_AWS_R2_DEV_ACCESS_KEY_ID
+const devAwsSecretKey = import.meta.env.VITE_AWS_R2_DEV_SECRET_KEY
 
 let awsAccountId = devAwsAccountId;
 let awsAccessKeyId = devAwsAccessKeyId;

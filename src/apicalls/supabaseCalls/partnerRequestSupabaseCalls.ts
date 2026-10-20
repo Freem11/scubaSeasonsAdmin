@@ -27,7 +27,7 @@ export const grabPartnerRequestById = async (id: number): Promise<PartnerRequest
   throw new Error("[grabPartnerRequestById]:Smth went Wrong")
 };
 
-export const insertNewShop = async (values: any) => {
+export const insertNewShop = async (values: Pick<PartnerRequest, 'businessName' | 'latitude' | 'longitude' | 'userId'>) => {
   const { data, error } = await supabase.from("shops").insert([
     {
       orgName: values.businessName,

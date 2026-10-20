@@ -15,7 +15,17 @@ export const photoWaits = async () => {
   }
 };
 
-export const insertPhotoWaits = async (values: any) => {
+/** The form values of a new sea-life photo, typed by the columns the insert writes. No caller in this repo. */
+type PhotoWaitInsert = {
+  PicFile:   string
+  Animal:    string
+  PicDate:   string
+  Latitude:  number
+  Longitude: number
+  UserID:    string
+};
+
+export const insertPhotoWaits = async (values: PhotoWaitInsert) => {
   const { data, error } = await supabase
   .from("photoWait")
   .insert([

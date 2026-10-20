@@ -41,13 +41,16 @@ export class GPSBubble {
  * GPS bubble - some area on the map.
  * If GPS bubble crosses the IDL(International Date Line), we need to get items from both sides of the IDL
  * so we need to do two API request twice
+ * @param callable - API request to get items. Its first parameter is the bubble.
  * @param bubble GPS bubble
- * @param callable - API request to get items
- * @param args - arguments for API request
+ * @param rest - the other arguments of the API request
  * @returns
  */
-  static async getItemsInGpsBubble<T extends (...args: any[]) => any>(callable: T, ...args: Parameters<T>): Promise<ReturnType<T>> {
-    const [bubble, ...rest] = args as GPSBubble[];
+  static async getItemsInGpsBubble<TRest extends unknown[], TItem>(
+    callable: (bubble: GPSBubble, ...rest: TRest) => Promise<TItem[] | undefined>,
+    bubble: GPSBubble,
+    ...rest: TRest
+  ): Promise<TItem[] | undefined> {
     if (bubble.isIDL()) {
       const american = await callable(bubble.getAmericanBubble(), ...rest);
       const asian = await callable(bubble.getAsianBubble(), ...rest);
@@ -55,7 +58,7 @@ export class GPSBubble {
       return [
         ...(american ? american : []),
         ...(asian ? asian : []),
-      ] as ReturnType<T>;
+      ];
     } else {
       return await callable(bubble, ...rest);
     }
@@ -70,3 +73,15 @@ export class GPSBubble {
     });
   }
 }
+
+/** The four bounds of a GPSBubble, without its methods. */
+export type GPSBounds = Pick<GPSBubble, 'minLat' | 'maxLat' | 'minLng' | 'maxLng'>;
+
+/** A map region as the mobile app sends it: its south-west and north-east corners. */
+export type RegionCorners = {
+  southWest: { latitude: number, longitude: number }
+  northEast: { latitude: number, longitude: number }
+};
+
+/** The two area shapes the legacy query helpers accept. */
+export type MapArea = GPSBounds | RegionCorners;

@@ -34,7 +34,7 @@ const PhotoAuditTool = () => {
       // 3. Extract and normalize DB keys
       const rawDbResults = [...seaWait, ...seaLife, ...reviews, ...profiles, ...headers].flat(Infinity);
       
-      const dbKeys = rawDbResults.map((item: any) => {
+      const dbKeys = rawDbResults.map((item) => {
         const url = item.photoFile || item.photoPath || item.profilePhoto || item.diveSiteProfilePhoto || "";
         // Clean the URL to get the raw filename
         return decodeURIComponent(url)
@@ -43,7 +43,7 @@ const PhotoAuditTool = () => {
           ?.replace(/[^a-z0-9._-]/gi, '')
           .toLowerCase()
           .trim();
-      }).filter(k => k && k !== "");
+      }).filter((k): k is string => typeof k === 'string' && k !== '');
 
       const dbKeySet = new Set(dbKeys);
 

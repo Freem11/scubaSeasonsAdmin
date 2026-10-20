@@ -4,15 +4,18 @@ import { supabase } from "../supabase";
  * Helper function to bypass Supabase's 1000-record limit.
  * Iterates through pages until all records are retrieved.
  */
-const fetchAllRows = async (tableName, columnName) => {
-  let allData = [];
+/** One row with only the requested column: a text column that can be null. The table and the column are chosen at run time. */
+type LinkRow = Record<string, string | null>;
+
+const fetchAllRows = async (tableName: string, columnName: string): Promise<LinkRow[]> => {
+  let allData: LinkRow[] = [];
   let from = 0;
   const PAGE_SIZE = 1000;
 
-  while (true) {
+  for (;;) {
     const { data, error } = await supabase
       .from(tableName)
-      .select(columnName)
+      .select<string, LinkRow>(columnName)
       .range(from, from + PAGE_SIZE - 1)
       .order('id', { ascending: true });
 

@@ -1,3 +1,5 @@
+import { UserIdentity, UserMetadata } from '@supabase/supabase-js';
+
 export type ActiveSession = {
   access_token:  string
   user:          User
@@ -16,13 +18,13 @@ type User = {
   email?:              string
   email_confirmed_at?: string
   id:                  string
-  identities?:         any[]
+  identities?:         UserIdentity[]
   is_anonymous?:       boolean
   last_sign_in_at?:    string
   phone?:              string
   role?:               string
   updated_at?:         string
-  user_metadata:       any
+  user_metadata:       UserMetadata
 };
 
 type app_metadata = {

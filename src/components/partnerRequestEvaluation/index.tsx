@@ -32,7 +32,7 @@ export default function PartnerRequestEval() {
         setIsLoading(false);
       }
     }
-  }, [selectedPartnerRequest?.id, selectedPartnerRequest?.userId, setPartnerRequests, setSelectedPartnerRequest])
+  }, [selectedPartnerRequest?.id, setPartnerRequests, setSelectedPartnerRequest])
 
   const onReject = useCallback(async () => {
     if (selectedPartnerRequest?.id) {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SliderContext } from '../../reusables/slider/context';
 import { Form } from './form';
 import SignUpPageView from './view';

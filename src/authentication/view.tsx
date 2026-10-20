@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './style.module.scss';
 import SignUpPage from './SignUp';
 import LandingPage from './Landning';
