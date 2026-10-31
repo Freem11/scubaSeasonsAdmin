@@ -285,3 +285,20 @@ if (data) {
   console.log(data);
 }
 }
+
+
+export const updateDiveSitePhoto = async (dive_site_id: number, photoFile: string | undefined) => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .update({ "diveSiteProfilePhoto": photoFile, "image_id": null })
+    .eq('id', dive_site_id);
+
+  if (error) {
+    console.log('couldn\'t do it 3,', error);
+    return [];
+  } 
+
+  if (data) {
+    return data;
+  }
+};

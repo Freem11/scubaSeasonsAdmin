@@ -2,8 +2,9 @@
 import style from './styles.module.scss';
 
 import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
-import { cloudflareBucketUrl } from "../../globalVariables";
 import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
+import { updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { removePhotoVariants } from '../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
 
 type HeadersEvalViewProps = {
     headers:   DiveSiteWithHeader[] | null
@@ -13,19 +14,22 @@ type HeadersEvalViewProps = {
 
 export default function DiveSitesWithHeadersView({ currentPhoto, setCurrentPhoto, headers }: HeadersEvalViewProps) {
     const updateHeaderImageSelection = async(currentPhoto: DiveSiteWithHeader, newId: number) => {
-        await clearDiveSitesHeadersBySiteId(currentPhoto.dive_site_id)
+        currentPhoto.dive_site_id && await clearDiveSitesHeadersBySiteId(currentPhoto.dive_site_id)
         const newHEader = await updateHeaderPhoto(newId)
         setCurrentPhoto(newHEader)
+        removePhotoVariants(currentPhoto.photo_path)
+        updateDiveSitePhoto(currentPhoto.dive_site_id, newHEader?.photo_path)
     };
 
+    console.log('currentPhoto', currentPhoto)
        return (
         <> 
     <h3>Selected Species Header Image</h3>
-        {currentPhoto && currentPhoto && currentPhoto.photo_path&&
+        {currentPhoto && currentPhoto.photo_path&&
             <div className={style.cardMain} onClick={() => null}>
             <div className={style.pic}>
                 <img
-                    src={`${cloudflareBucketUrl}/${currentPhoto.photo_path.split("/").pop()}`}
+                    src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${currentPhoto.photo_path.split("/").pop()}`}
                     width={200}
                     style={{borderRadius: "5%"}}
                 />
