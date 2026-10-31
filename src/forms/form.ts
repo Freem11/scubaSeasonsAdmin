@@ -1,7 +1,7 @@
-import { FieldValues, RegisterOptions } from 'react-hook-form';
+import { FieldValues, Path, RegisterOptions } from 'react-hook-form';
 
 export type FormValidationRules<T extends FieldValues> = {
-  [K in keyof T]?:  RegisterOptions<T, any> | undefined;
+  [K in keyof T]?:  RegisterOptions<T, Extract<K, Path<T>>> | undefined;
 };
 
 // export const formField = getFormField<Form>(FormRules);

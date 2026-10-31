@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './style.module.scss';
 import Icon from '../../icons/Icon';
 import { DiveSiteWithUserName } from '../../entities/diveSite';

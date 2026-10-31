@@ -1,5 +1,5 @@
 import { DiveSiteWithUserName } from "../../entities/diveSite";
-import { GPSBubble } from "../../entities/GPSBubble";
+import { GPSBubble, MapArea } from "../../entities/GPSBubble";
 import { Pagination } from "../../entities/pagination";
 import { supabase } from "../supabase";
 
@@ -20,7 +20,7 @@ export const getDiveSitesBasic = async (bubble: GPSBubble) => {
   return data as DiveSiteWithUserName[];
 };
 
-export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination) => {
+export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<DiveSiteWithUserName>, pagination?: Pagination): Promise<DiveSiteWithUserName[] | undefined> => {
   const builder = supabase.rpc('get_divesites_with_username', {
     max_lat: bubble.maxLat,
     min_lat: bubble.minLat,
@@ -46,20 +46,20 @@ export const getDiveSitesWithUser = async (bubble: GPSBubble, filter?: Partial<D
   }
 };
 
-export const diveSites = async (GPSBubble: any) => {
+export const diveSites = async (area: MapArea) => {
 
   let minLatx, maxLatx, minLngx, maxLngx;
 
-  if (GPSBubble.minLat) {
-    minLatx = GPSBubble.minLat;
-    maxLatx = GPSBubble.maxLat;
-    minLngx = GPSBubble.minLng;
-    maxLngx = GPSBubble.maxLng;
+  if ('minLat' in area) {
+    minLatx = area.minLat;
+    maxLatx = area.maxLat;
+    minLngx = area.minLng;
+    maxLngx = area.maxLng;
   } else {
-    minLatx = GPSBubble.southWest.latitude;
-    maxLatx = GPSBubble.northEast.latitude;
-    minLngx = GPSBubble.southWest.longitude;
-    maxLngx = GPSBubble.northEast.longitude;
+    minLatx = area.southWest.latitude;
+    maxLatx = area.northEast.latitude;
+    minLngx = area.southWest.longitude;
+    maxLngx = area.northEast.longitude;
   }
 
   const { data, error } = await supabase
@@ -80,7 +80,7 @@ if (data) {
 }
 };
 
-export const getSiteNamesThatFit = async (GPSBubble: any, value: string) => {
+export const getSiteNamesThatFit = async (area: MapArea, value: string) => {
 
   if(value === "") {
     return [];
@@ -88,16 +88,16 @@ export const getSiteNamesThatFit = async (GPSBubble: any, value: string) => {
 
   let minLatx, maxLatx, minLngx, maxLngx;
 
-  if (GPSBubble.minLat) {
-    minLatx = GPSBubble.minLat;
-    maxLatx = GPSBubble.maxLat;
-    minLngx = GPSBubble.minLng;
-    maxLngx = GPSBubble.maxLng;
+  if ('minLat' in area) {
+    minLatx = area.minLat;
+    maxLatx = area.maxLat;
+    minLngx = area.minLng;
+    maxLngx = area.maxLng;
   } else {
-    minLatx = GPSBubble.southWest.latitude;
-    maxLatx = GPSBubble.northEast.latitude;
-    minLngx = GPSBubble.southWest.longitude;
-    maxLngx = GPSBubble.northEast.longitude;
+    minLatx = area.southWest.latitude;
+    maxLatx = area.northEast.latitude;
+    minLngx = area.southWest.longitude;
+    maxLngx = area.northEast.longitude;
   }
 
   const { data, error } = await supabase
@@ -120,7 +120,15 @@ export const getSiteNamesThatFit = async (GPSBubble: any, value: string) => {
 };
 
 
-export const insertDiveSite = async (values: any) => {
+/** The columns insertDiveSite writes. The caller passes the first row of an untyped RPC result. */
+type DiveSiteInsert = {
+  name:   string
+  lat:    number
+  lng:    number
+  UserID: string
+};
+
+export const insertDiveSite = async (values: DiveSiteInsert) => {
 
   const { data, error } = await supabase
   .from("diveSites")

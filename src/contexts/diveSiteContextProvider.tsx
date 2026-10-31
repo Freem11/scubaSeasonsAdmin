@@ -23,7 +23,7 @@ export type DiveSiteContextType = {
   setSelectedDiveSite: React.Dispatch<React.SetStateAction<DiveSiteWithUserName | null>>
 };
 
-export const DiveSiteContextProvider = ({ children }: any) => {
+export const DiveSiteContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { boundaries } = useContext(MapContext);
   const [basicCollection, setBasicCollection] = useState(new PagedCollection<DiveSiteBasic>());
   const [collection, setCollection] = useState(new PagedCollection<DiveSiteWithUserName>());

@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { Provider } from '@supabase/supabase-js';
 import Button from '../../reusables/button';
 import blackManta from '../../assets/blackManta.png';
 import googleIcon from '../../assets/google-color.png';
@@ -13,7 +14,7 @@ import WavyBlock from '../../reusables/wavyBlock';
 type LandingPageProps = {
   goToSlide:    (pageNumber: number) => void
   setProfile:   Dispatch<SetStateAction<ActiveProfile | null>>
-  socialSignIn: (provider: any) => void
+  socialSignIn: (provider: Provider) => void
 };
 
 export default function LandingPageView(props: LandingPageProps) {

@@ -1,6 +1,6 @@
 import { Pagination } from './pagination';
 
-const getNewHasMore = (items: any[], ipp?: number) => {
+const getNewHasMore = <T>(items: T[] | null | undefined, ipp?: number) => {
   ipp = ipp || Pagination.defaultIpp;
   if (!items) {
     return false;
@@ -16,7 +16,7 @@ const getNewHasMore = (items: any[], ipp?: number) => {
   return true;
 };
 
-const getNewItems = (items: any[] | null, prevItems: any[] | null, reset: boolean) => {
+const getNewItems = <T>(items: T[] | null | undefined, prevItems: T[] | null, reset: boolean) => {
   if (!items?.length) {
     return reset ? [] : prevItems;
   }
@@ -43,7 +43,7 @@ export class PagedCollection<T> {
     this.pagination = props.pagination || new Pagination();
   }
 
-  static updateItems(prev: PagedCollection<any>, items: any[], reset: boolean = false, pagination?: Pagination): PagedCollection<any> {
+  static updateItems<T>(prev: PagedCollection<T>, items: T[] | null | undefined, reset: boolean = false, pagination?: Pagination): PagedCollection<T> {
     // reset means we dont have to append items to the list
     // for example reset true means that boundaries changed and we have completely new list ofitems
     // reset false means that boundaries did not change and we have to append items to the list because pagination changed

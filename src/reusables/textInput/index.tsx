@@ -4,7 +4,8 @@ import './style.scss';
 export type TextInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   iconLeft?:  React.ReactNode
   iconRight?: React.ReactNode
-  error?:     any
+  /** Any truthy value marks the input as invalid. The input does not read it. */
+  error?:     unknown
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(function TextInput(props: TextInputProps, ref) {

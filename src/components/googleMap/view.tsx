@@ -75,7 +75,8 @@ export default function MapView(props: MapViewProps) {
     }
   };
 
-  const clusterConfig = useMemo<UseSuperclusterArgument<ClusterProperty, Supercluster.AnyProps>>(() => {
+  // `ClusterProperty` models both feature kinds (`cluster`, `point_count?`), so it is also the cluster-props type.
+  const clusterConfig = useMemo<UseSuperclusterArgument<ClusterProperty, ClusterProperty>>(() => {
     const bounds = map?.getBounds();
     const zoom = map?.getZoom();
 

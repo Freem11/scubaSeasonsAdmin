@@ -2,12 +2,12 @@ import { aws3 } from "../aws";
 import {
     PutObjectCommand,
     DeleteObjectCommand,
-    paginateListObjectsV2,
     ListObjectsV2CommandInput,
-    ListObjectsV2Command
+    ListObjectsV2Command,
+    PutObjectCommandInput
   } from "@aws-sdk/client-s3";
 
-export const uploadphoto = async (file: any, fileName: string) => {
+export const uploadphoto = async (file: PutObjectCommandInput['Body'], fileName: string) => {
     const input = {
         "Body": file,
         "Bucket": "scubaseasons",
@@ -23,9 +23,15 @@ export const uploadphoto = async (file: any, fileName: string) => {
     }
   };
   
-  export const removePhoto = async (values: any) => {
+  /** The photo to delete. `fileName` is the bucket key or its public URL. `filePath` is passed by one caller and not read. */
+  type RemovePhotoValues = {
+    fileName:  string | undefined
+    filePath?: string
+  };
 
-    const shortPath = values.fileName.split('/').pop();
+  export const removePhoto = async (values: RemovePhotoValues) => {
+
+    const shortPath = values.fileName?.split('/').pop();
 
     if(shortPath){
         const input = {
@@ -87,7 +93,6 @@ export const uploadphoto = async (file: any, fileName: string) => {
           }
         };
 
-const PAGE_SIZE = 1000; // Recommended maximum page size for R2 ListObjectsV2 for efficiency
 
 /**
  * Fetches ALL object keys from the Cloudflare R2 bucket by automatically

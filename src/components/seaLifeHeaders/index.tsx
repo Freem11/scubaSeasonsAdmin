@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { getSingleSpecies, getSpeciesPhotos } from "../../apicalls/supabaseCalls/speciesSupabaseCalls";
 import { SpeciesContext } from "../../contexts/seaLifeHeaders/speciesContext";
 import SpeceisHeaderSelectionView from "./view";
-import { Species } from "../../entities/species";
-import { SeaLifePhoto } from "../../entities/seaLifePhoto";
+import { SpeciesWithImage } from "../../entities/species";
+import { Photo } from "../../entities/photo";
 
 export default function SeaLifeHeadersEval( ) {
     const { species } = useContext(SpeciesContext)
-    const [currentPhoto, setCurrentPhoto] = useState<Species[]| null>(null);
-    const [photoList, setPhotoList] = useState<SeaLifePhoto[] | null>(null);
+    const [currentPhoto, setCurrentPhoto] = useState<SpeciesWithImage[]| null>(null);
+    const [photoList, setPhotoList] = useState<Photo[] | null>(null);
 
     const getSpeciesInfo = async(headerlessSpecies: string) => {
         const species = await getSingleSpecies(headerlessSpecies)

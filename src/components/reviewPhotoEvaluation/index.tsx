@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 export default function ReviewPhotoEval() {
   const { selectedReviewPhoto, setSelectedReviewPhoto } = useContext(SelectedPendingReviewPhotoContext)
-  const { pendingReviewPhotos, setPendingReviewPhotos } = useContext(PendingReviewPhotosContext)
+  const { setPendingReviewPhotos } = useContext(PendingReviewPhotosContext)
     
   const [diveSite, setDiveSite] = useState<DiveSite | null>(null)
 
