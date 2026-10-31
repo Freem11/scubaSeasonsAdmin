@@ -6,6 +6,8 @@ import {
     ListObjectsV2Command,
     PutObjectCommandInput
   } from "@aws-sdk/client-s3";
+import { supabase } from "../supabase";
+import { toast } from 'react-toastify';
 
 export const uploadphoto = async (file: PutObjectCommandInput['Body'], fileName: string) => {
     const input = {
@@ -150,3 +152,32 @@ export const fetchAllBucketKeys = async (): Promise<string[]> => {
 
     return allKeys;
 };
+
+
+export const removePhotoVars = async (fileName: string) => {
+  try {
+    const name = fileName.split("/").pop();
+    if (!name) return;
+    const key = name.replace(/\.[^/.]+$/, '') + '.webp';
+
+    // Execute server-side batch deletion directly via Supabase Edge Function
+    const { data, error } = await supabase.functions.invoke(
+      "r2-signer-variants",
+      {
+        body: { key },
+      },
+    );
+
+    if (error) {
+      throw new Error(error.message || "Failed to delete photo variants");
+    }
+
+    console.log(`Deletion of photo variants for ${key} was successful`, data);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    toast.error(`Deletion failed: ${message}`);
+  }
+};
+
+export const removePhotoVariants = (fileName: string) =>
+  removePhotoVars(fileName);

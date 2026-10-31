@@ -55,7 +55,8 @@ if (error) {
 };
 
 
-export const getExistingHeader = async (id: number) => {
+/** The selected header row of a dive site, or null when the site has none. */
+export const getExistingHeader = async (id: number): Promise<DiveSiteWithHeader | null> => {
 
   const { data, error } = await supabase
     .from("diveSiteHeaderPhotos")
@@ -68,8 +69,8 @@ export const getExistingHeader = async (id: number) => {
     return null;
   }
 
-  if (data) {
-    return data as unknown as DiveSiteWithHeader;
+  if (data && data.length > 0) {
+    return data[0] as unknown as DiveSiteWithHeader;
   }
     return null;
 };

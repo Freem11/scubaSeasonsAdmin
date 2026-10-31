@@ -34,6 +34,7 @@ export default function DiveSiteWithHeaders() {
 
     return (
         <DiveSitesWithHeadersView
+        diveSiteId={diveSiteId}
         headers={headers}
         setCurrentPhoto={setCurrentPhoto}
         currentPhoto={currentPhoto}
