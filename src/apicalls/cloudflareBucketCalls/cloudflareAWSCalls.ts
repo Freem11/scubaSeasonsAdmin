@@ -149,10 +149,13 @@ export const fetchAllBucketKeys = async (): Promise<string[]> => {
 };
 
 
-export const removePhotoVars = async (fileName: string) => {
+/** Deletes the sm/md/lg/xl variants of a photo through the Edge Function
+ *  `r2-signer-variants` (the bucket is pinned server side). Returns true when
+ *  the function answered 2xx; a failure shows a toast and returns false. */
+export const removePhotoVariants = async (fileName: string): Promise<boolean> => {
   try {
     const key = fileName.split("/").pop();
-    if (!key) return;
+    if (!key) return false;
 
     // Execute server-side batch deletion directly via Supabase Edge Function
     const { data, error } = await supabase.functions.invoke(
@@ -167,11 +170,10 @@ export const removePhotoVars = async (fileName: string) => {
     }
 
     console.log(`Deletion of photo variants for ${key} was successful`, data);
+    return true;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     toast.error(`Deletion failed: ${message}`);
+    return false;
   }
 };
-
-export const removePhotoVariants = (fileName: string) =>
-  removePhotoVars(fileName);

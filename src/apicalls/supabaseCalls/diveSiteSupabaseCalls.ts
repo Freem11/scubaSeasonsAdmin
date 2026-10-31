@@ -287,18 +287,19 @@ if (data) {
 }
 
 
-export const updateDiveSitePhoto = async (dive_site_id: number, photoFile: string | undefined) => {
+/** Points a dive site at a new header photo. `image_id` is cleared so the app
+ *  stops showing the old photo's variants. Returns true when one row changed. */
+export const updateDiveSitePhoto = async (dive_site_id: number, photoFile: string): Promise<boolean> => {
   const { data, error } = await supabase
     .from('diveSites')
     .update({ "diveSiteProfilePhoto": photoFile, "image_id": null })
-    .eq('id', dive_site_id);
+    .eq('id', dive_site_id)
+    .select('id');
 
   if (error) {
-    console.log('couldn\'t do it 3,', error);
-    return [];
-  } 
-
-  if (data) {
-    return data;
+    console.error('updateDiveSitePhoto failed:', error);
+    return false;
   }
+
+  return !!data && data.length > 0;
 };
