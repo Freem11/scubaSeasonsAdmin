@@ -3,6 +3,7 @@ import style from './styles.module.scss';
 import { toast } from 'react-toastify';
 
 import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { cloudflareBucketUrl } from "../../globalVariables";
 import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
 import { updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
 import { removePhotoVariants } from '../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
@@ -35,15 +36,14 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
         if (currentPhoto) await removePhotoVariants(currentPhoto.photo_path)
     };
 
-    console.log('currentPhoto', currentPhoto)
        return (
         <> 
-    <h3>Selected Species Header Image</h3>
+    <h3>Selected Header Image</h3>
         {currentPhoto && currentPhoto.photo_path&&
             <div className={style.cardMain} onClick={() => null}>
             <div className={style.pic}>
                 <img
-                    src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${currentPhoto.photo_path.split("/").pop()}`}
+                    src={`${cloudflareBucketUrl}${currentPhoto.photo_path.split("/").pop()}`}
                     width={200}
                     style={{borderRadius: "5%"}}
                 />
@@ -59,7 +59,7 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
             </div>
         </div>}
           
-        <h3>Species Header Image Options</h3>
+        <h3>Header Image Options</h3>
 
             {headers && headers.map((record) => {
                 const photoName = record.photo_path.split('/').pop();
@@ -68,7 +68,7 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
                     <div className={style.cardMain} key={record.id} onClick={() => updateHeaderImageSelection(record)}>
                         <div className={style.pic}>
                             <img
-                                src={`https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/${photoName}`}
+                                src={`${cloudflareBucketUrl}${photoName}`}
                                 width={200}
                                 className={currentPhoto && currentPhoto.id === record.id ? style.imageSelected :  style.image}
                             />
