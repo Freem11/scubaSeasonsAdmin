@@ -151,8 +151,9 @@ export const fetchAllBucketKeys = async (): Promise<string[]> => {
 
 export const removePhotoVars = async (fileName: string) => {
   try {
-    const key = fileName.split("/").pop().replace(/\.[^/.]+$/, '') + '.webp';
-    if (!key) return;
+    const name = fileName.split("/").pop();
+    if (!name) return;
+    const key = name.replace(/\.[^/.]+$/, '') + '.webp';
 
     // Execute server-side batch deletion directly via Supabase Edge Function
     const { data, error } = await supabase.functions.invoke(
