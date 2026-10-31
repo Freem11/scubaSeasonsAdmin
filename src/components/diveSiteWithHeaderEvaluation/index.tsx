@@ -14,7 +14,7 @@ export default function DiveSiteWithHeaders() {
 
         const getSelectedHeader = async(diveSiteId: number) => {
             const existingHeader = await getExistingHeader(diveSiteId)
-            setCurrentPhoto(existingHeader[0])
+            setCurrentPhoto(existingHeader)
          };
 
     useEffect(() => {
