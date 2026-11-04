@@ -1,22 +1,22 @@
 import { useMemo, useState } from 'react';
 import Tabs, { TabItem } from '../../reusables/tabs';
-import DiveSiteEval from '../diveSiteEvaluation';
-import UnverifiedDiveSiteEval from "../diveSiteEvaluationNew";
-import DiveSiteList from '../diveSiteList';
-import UnverfiedDiveSiteList from '../diveSiteListNew';
-import PartnerRequestList from '../partnerRequestList';
-import PartnerRequestEval from '../partnerRequestEvaluation';
-import SeaLifePhotoEval from '../seaLifePhotoEvaluation';
-import SeaLifePhotoList from '../seaLifePhotoList';
-import TripRequestList from "../tripRequestList";
-import TripRequestEval from "../tripRequestEvaluation";
-import ReviewPhotoList from '../reviewPhotoList';
-import ReviewPhotoEval from '../reviewPhotoEvaluation';
-import PhotoAuditTool from '../photoAudit';
-import SeaLifeHeadersList from '../seaLifeHeadersList';
-import SeaLifeHeadersEval from '../seaLifeHeaders';
-import DiveSiteHeadersList from '../diveSitesWithHeadersList';
-import DiveSiteWithHeaders from '../diveSiteWithHeaderEvaluation';
+import DiveSiteEval from '../../components/diveSiteEvaluation';
+import UnverifiedDiveSiteEval from "../../components/diveSiteEvaluationNew";
+import DiveSiteList from '../../components/diveSiteList';
+import UnverfiedDiveSiteList from '../../components/diveSiteListNew';
+import PartnerRequestList from '../../components/partnerRequestList';
+import PartnerRequestEval from '../../components/partnerRequestEvaluation';
+import SeaLifePhotoEval from '../../components/seaLifePhotoEvaluation';
+import SeaLifePhotoList from '../../components/seaLifePhotoList';
+import TripRequestList from "../../components/tripRequestList";
+import TripRequestEval from "../../components/tripRequestEvaluation";
+import ReviewPhotoList from '../../components/reviewPhotoList';
+import ReviewPhotoEval from '../../components/reviewPhotoEvaluation';
+import PhotoAuditTool from '../../components/photoAudit';
+import SeaLifeHeadersList from '../../components/seaLifeHeadersList';
+import SeaLifeHeadersEval from '../../components/seaLifeHeaders';
+import DiveSiteHeadersList from '../../components/diveSitesWithHeadersList';
+import DiveSiteWithHeaders from '../../components/diveSiteWithHeaderEvaluation';
 
 
 export default function LayoutMainView() {
