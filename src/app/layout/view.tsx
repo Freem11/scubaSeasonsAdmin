@@ -13,8 +13,8 @@ import TripRequestEval from "../../components/tripRequestEvaluation";
 import ReviewPhotoList from '../../components/reviewPhotoList';
 import ReviewPhotoEval from '../../components/reviewPhotoEvaluation';
 import PhotoAuditTool from '../../components/photoAudit';
-import SeaLifeHeadersList from '../../components/seaLifeHeadersList';
-import SeaLifeHeadersEval from '../../components/seaLifeHeaders';
+import SeaLifeHeadersList from '../../features/seaLifeHeaders/seaLifeHeadersList';
+import SeaLifeHeadersEval from '../../features/seaLifeHeaders/seaLifeHeaders';
 import DiveSiteHeadersList from '../../components/diveSitesWithHeadersList';
 import DiveSiteWithHeaders from '../../components/diveSiteWithHeaderEvaluation';
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import style from './styles.module.scss';
-import { Species } from "../../shared/entities/species";
-import { SpeciesContext } from "../../state/seaLifeHeaders/speciesContext";
+import { Species } from "../../../shared/entities/species";
+import { SpeciesContext } from "../../../state/seaLifeHeaders/speciesContext";
 
 type SeaLifeHEadersListProps = {
     headerlessSpecies: Species[] | null

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { getSingleSpecies, getSpeciesPhotos } from "../../api/supabase/speciesSupabaseCalls";
-import { SpeciesContext } from "../../state/seaLifeHeaders/speciesContext";
+import { getSingleSpecies, getSpeciesPhotos } from "../../../api/supabase/speciesSupabaseCalls";
+import { SpeciesContext } from "../../../state/seaLifeHeaders/speciesContext";
 import SpeceisHeaderSelectionView from "./view";
-import { SpeciesWithImage } from "../../shared/entities/species";
-import { Photo } from "../../shared/entities/photo";
+import { SpeciesWithImage } from "../../../shared/entities/species";
+import { Photo } from "../../../shared/entities/photo";
 
 export default function SeaLifeHeadersEval( ) {
     const { species } = useContext(SpeciesContext)
