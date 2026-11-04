@@ -21,6 +21,10 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
     // the chain, so the dive site never points at deleted files.
     const updateHeaderImageSelection = async(record: DiveSiteWithHeader) => {
         if (!diveSiteId || currentPhoto?.id === record.id) return;
+        if (record.dive_site_id !== diveSiteId) {
+            toast.warn("The dive site changed. Click the photo again.");
+            return;
+        }
         const siteUpdated = await updateDiveSitePhoto(diveSiteId, record.photo_path)
         if (!siteUpdated) {
             toast.error("Dive site not updated");
