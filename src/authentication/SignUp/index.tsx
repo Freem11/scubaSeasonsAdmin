@@ -4,7 +4,7 @@ import { Form } from './form';
 import SignUpPageView from './view';
 import { register, sessionCheck } from '../../api/supabase/authenticateSupabaseCalls';
 import { createProfile } from '../../api/supabase/accountSupabaseCalls';
-import { SessionContext } from '../../contexts/sessionContext';
+import { SessionContext } from '../../state/sessionContext';
 import { toast } from 'react-toastify';
 import screenData from '../../shared/strings.json';
 

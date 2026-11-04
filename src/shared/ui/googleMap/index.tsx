@@ -1,9 +1,9 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { MapContext } from './mapContext';
-import { DiveSiteContext } from '../../../contexts/diveSiteContext';
-import { DiveShopContext } from '../../../contexts/diveShopContext';
-import { SitesArrayContext } from '../../../contexts/sitesArrayContext';
-import { ShopsArrayContext } from '../../../contexts/shopsArrayContext';
+import { DiveSiteContext } from '../../../state/diveSiteContext';
+import { DiveShopContext } from '../../../state/diveShopContext';
+import { SitesArrayContext } from '../../../state/sitesArrayContext';
+import { ShopsArrayContext } from '../../../state/shopsArrayContext';
 import { debounce } from '../../helpers/debounce';
 import MapView from './view';
 

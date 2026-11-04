@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SliderContext } from '../../shared/ui/slider/context';
 import { Form } from './form';
 import { sessionCheck, signInStandard } from '../../api/supabase/authenticateSupabaseCalls';
-import { SessionContext } from '../../contexts/sessionContext';
+import { SessionContext } from '../../state/sessionContext';
 import SignInPageView from './view';
 import { toast } from 'react-toastify';
 import screenData from '../../shared/strings.json';

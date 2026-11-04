@@ -1,8 +1,8 @@
 import {useCallback, useContext, useEffect} from "react";
 
-import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext"
-import { SitesArrayContext } from "../../contexts/sitesArrayContext";
-import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
+import { SelectedPendingDiveSiteContext } from "../../state/diveSiteEvals/selectedDiveSiteContext"
+import { SitesArrayContext } from "../../state/sitesArrayContext";
+import { ShopsArrayContext } from '../../state/shopsArrayContext';
 import { MapContext } from "../../shared/ui/googleMap/mapContext";
 import { DiveSite } from "../../shared/entities/diveSite";
 import style from './styles.module.scss';

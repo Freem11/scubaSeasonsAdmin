@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { DiveSitesWithHeadersContext } from "../../contexts/diveSitesWithHeaders/diveSitesWithHeadersContext";
+import { DiveSitesWithHeadersContext } from "../../state/diveSitesWithHeaders/diveSitesWithHeadersContext";
 import { getDiveSitesWithHeaders } from "../../api/supabase/diveSiteHeadersSupabaseCalls";
 import DiveSiteWithHeadersView from "./view";
 

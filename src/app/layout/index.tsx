@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosContext";
-import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
-import { UnverifiedDiveSitesContext} from "../../contexts/unverifieddiveSiteEvals/diveSitesContext";
-import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
-import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
+import { SeaLifePhotosContext } from "../../state/seaLifeEvals/seaLifePhotosContext";
+import { PendingDiveSitesContext } from "../../state/diveSiteEvals/diveSitesContext";
+import { UnverifiedDiveSitesContext} from "../../state/unverifieddiveSiteEvals/diveSitesContext";
+import { PartnerRequestsContext } from '../../state/partnerRequestEvals/partnerRequestsContext';
+import { TripRequestsContext } from "../../state/tripRequestEvals/tripRequestContext";
 import { SeaLifePhoto } from "../../shared/entities/seaLifePhoto";
 import LayoutMainView from "./view";
 import { DiveSite } from "../../shared/entities/diveSite";
-import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider";
+import { DiveSiteContextProvider } from "../../state/diveSiteContextProvider";
 import { PartnerRequest } from '../../shared/entities/partnerRequest';
-import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider';
+import { DiveShopContextProvider } from '../../state/diveShopContextProvider';
 import { TripRequest } from "../../shared/entities/tripRequest";
 import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
-import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
-import { DiveSitesWithHeadersContext } from "../../contexts/diveSitesWithHeaders/diveSitesWithHeadersContext";
+import { PendingReviewPhotosContext } from "../../state/reviewPhotoEvals/reviewPhotoContext";
+import { DiveSitesWithHeadersContext } from "../../state/diveSitesWithHeaders/diveSitesWithHeadersContext";
 import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 
 export default function LayoutMain() {
