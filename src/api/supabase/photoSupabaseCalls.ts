@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import { supabase } from "./supabase";
 import { Photo } from "../../shared/entities/photo";
 import { GPSBounds } from "../../shared/entities/GPSBubble";
 

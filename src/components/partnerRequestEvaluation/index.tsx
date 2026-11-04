@@ -4,7 +4,7 @@ import {
   partnerRequests,
   updateValidatePartnerRequestByUserId,
   updateProfileByUserId
-} from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
+} from '../../api/supabase/partnerRequestSupabaseCalls';
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
 import { useCallback, useContext, useEffect, useState } from 'react';

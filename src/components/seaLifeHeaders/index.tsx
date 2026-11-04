@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { getSingleSpecies, getSpeciesPhotos } from "../../apicalls/supabaseCalls/speciesSupabaseCalls";
+import { getSingleSpecies, getSpeciesPhotos } from "../../api/supabase/speciesSupabaseCalls";
 import { SpeciesContext } from "../../contexts/seaLifeHeaders/speciesContext";
 import SpeceisHeaderSelectionView from "./view";
 import { SpeciesWithImage } from "../../shared/entities/species";

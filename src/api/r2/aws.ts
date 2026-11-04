@@ -1,7 +1,7 @@
 import {
   S3Client,
 } from "@aws-sdk/client-s3";
-import { awsAccessKeyId, awsAccountId, awsSecretKey } from "../globalVariables";
+import { awsAccessKeyId, awsAccountId, awsSecretKey } from "./globalVariables";
 
 export const aws3 = new S3Client({
     region: "auto",

@@ -1,5 +1,5 @@
 import { Provider } from '@supabase/supabase-js';
-import { supabase } from '../supabase';
+import { supabase } from './supabase';
 
 
 export const sessionCheck = async () => {

@@ -3,8 +3,8 @@ import { Provider } from '@supabase/supabase-js';
 import { SessionContext } from '../../contexts/sessionContext';
 import LandingPageView from './view';
 import { SliderContext } from '../../shared/ui/slider/context';
-import { socialSignIn } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
-import { createProfile, grabProfileById } from '../../apicalls/supabaseCalls/accountSupabaseCalls';
+import { socialSignIn } from '../../api/supabase/authenticateSupabaseCalls';
+import { createProfile, grabProfileById } from '../../api/supabase/accountSupabaseCalls';
 import { UserProfileContext } from '../../contexts/userProfileContext';
 import { ActiveSession } from '../../shared/entities/session';
 

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { insertHeatPoint } from "../../apicalls/supabaseCalls/heatPointSupabaseCalls";
-import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
+import { insertHeatPoint } from "../../api/supabase/heatPointSupabaseCalls";
+import { insertphoto } from "../../api/supabase/photoSupabaseCalls";
 import revertedDate from "../../shared/helpers/revertedDate";
-import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
-import { getUnverifiedDiveSitesByID } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { removePhoto } from "../../api/r2/cloudflareAWSCalls";
+import { getUnverifiedDiveSitesByID } from "../../api/supabase/diveSiteSupabaseCalls";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
-import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
+import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../api/supabase/diveSiteReviewSupabaseCalls";
 import ReviewPhotoEvalView from "./view";
 import { DiveSite } from "../../shared/entities/diveSite";
 import { DynamicSelectOptionsAnimals } from "../../shared/entities/DynamicSelectOptionsAnimals";

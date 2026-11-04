@@ -6,7 +6,7 @@ import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEval
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
-import { cloudflareBucketUrl } from "../../globalVariables";
+import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
 
 type ReviewPhotoListProps = {
     photoRecords: ReviewPhotoWithInfo[] | null

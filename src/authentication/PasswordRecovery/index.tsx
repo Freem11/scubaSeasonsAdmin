@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Form } from './form';
 import PasswordRecoveryView from './view';
 import { SliderContext } from '../../shared/ui/slider/context';
-import { sendPasswordResetEmail } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
+import { sendPasswordResetEmail } from '../../api/supabase/authenticateSupabaseCalls';
 import { toast } from 'react-toastify';
 import screenData from '../../shared/strings.json';
 
