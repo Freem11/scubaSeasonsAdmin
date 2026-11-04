@@ -1,4 +1,4 @@
-import { FormValidationRules } from "../../forms/form";
+import { FormValidationRules } from "../../shared/forms/form";
 
 export interface Form {
   email:    string

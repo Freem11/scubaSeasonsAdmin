@@ -1,6 +1,6 @@
-import { FormValidationRules } from "../../forms/form";
-import { validationEmail } from "../../forms/validation";
-import screenData from '../../screenData.json';
+import { FormValidationRules } from "../../shared/forms/form";
+import { validationEmail } from "../../shared/forms/validation";
+import screenData from '../../shared/strings.json';
 
 export interface Form {
   email: string

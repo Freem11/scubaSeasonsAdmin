@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
-import { DiveSite } from "../../entities/diveSite";
-import Button from "../../reusables/button";
-import TextInput from "../../reusables/textInput";
-import MapLoader from "../googleMap";
+import { DiveSite } from "../../shared/entities/diveSite";
+import Button from "../../shared/ui/button";
+import TextInput from "../../shared/ui/textInput";
+import MapLoader from "../../shared/ui/googleMap";
 import style from './styles.module.scss';
 import { Form, FormRules } from "./form";
 

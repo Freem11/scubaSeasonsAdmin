@@ -1,4 +1,4 @@
-import { GPSBounds, MapArea } from "../../entities/GPSBubble";
+import { GPSBounds, MapArea } from "../../shared/entities/GPSBubble";
 import { supabase } from "../supabase";
 
 /** A heat-point lookup: one species and one month inside the four bounds. No caller in this repo. */

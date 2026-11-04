@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { Form, FormRules } from './form';
-import Button from '../../reusables/button';
-import Icon from '../../icons/Icon';
-import ButtonIcon from '../../reusables/buttonIcon';
-import screenData from '../../screenData.json';
-import SecureTextInput from '../../reusables/secureTextInput';
-import TextInput from '../../reusables/textInput';
+import Button from '../../shared/ui/button';
+import Icon from '../../shared/icons/Icon';
+import ButtonIcon from '../../shared/ui/buttonIcon';
+import screenData from '../../shared/strings.json';
+import SecureTextInput from '../../shared/ui/secureTextInput';
+import TextInput from '../../shared/ui/textInput';
 
 type SignInPageProps = {
   goToSlide: (pageNumber: number) => void

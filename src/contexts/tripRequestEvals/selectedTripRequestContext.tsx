@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { TripRequest } from '../../entities/tripRequest';
+import { TripRequest } from '../../shared/entities/tripRequest';
 
 type SelectedTripRequestContextType = {
   selectedTripRequest: TripRequest | null;

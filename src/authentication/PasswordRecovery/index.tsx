@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Form } from './form';
 import PasswordRecoveryView from './view';
-import { SliderContext } from '../../reusables/slider/context';
+import { SliderContext } from '../../shared/ui/slider/context';
 import { sendPasswordResetEmail } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
 import { toast } from 'react-toastify';
-import screenData from '../../screenData.json';
+import screenData from '../../shared/strings.json';
 
 export default function PasswordRecoveryPage() {
   const { goToSlide } = useContext(SliderContext);

@@ -1,6 +1,6 @@
-import { DiveSiteWithUserName } from "../../entities/diveSite";
-import { GPSBubble, MapArea } from "../../entities/GPSBubble";
-import { Pagination } from "../../entities/pagination";
+import { DiveSiteWithUserName } from "../../shared/entities/diveSite";
+import { GPSBubble, MapArea } from "../../shared/entities/GPSBubble";
+import { Pagination } from "../../shared/entities/pagination";
 import { supabase } from "../supabase";
 
 export const getDiveSitesBasic = async (bubble: GPSBubble) => {

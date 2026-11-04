@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { DiveSite } from "../../entities/diveSite";
+import { DiveSite } from "../../shared/entities/diveSite";
 
 type UnverifiedDiveSitesContextType = {
   unverifiedDiveSites: DiveSite[] | null;
