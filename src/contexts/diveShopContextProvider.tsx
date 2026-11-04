@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { MapContext } from '../components/googleMap/mapContext';
-import { DiveShop } from '../entities/diveShop';
+import { MapContext } from '../shared/ui/googleMap/mapContext';
+import { DiveShop } from '../shared/entities/diveShop';
 import { DiveShopContext } from './diveShopContext';
 import { getDiveShops } from '../apicalls/supabaseCalls/diveShopSupabaseCalls';
-import { GPSBubble } from '../entities/GPSBubble';
-import { PagedCollection } from '../entities/pagedCollection';
+import { GPSBubble } from '../shared/entities/GPSBubble';
+import { PagedCollection } from '../shared/entities/pagedCollection';
 
 
 export type DiveShopContextType = {

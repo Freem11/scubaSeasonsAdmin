@@ -1,4 +1,4 @@
-import { PartnerRequest } from '../../entities/partnerRequest';
+import { PartnerRequest } from '../../shared/entities/partnerRequest';
 import { supabase } from "../supabase";
 
 export const partnerRequests = async () => {

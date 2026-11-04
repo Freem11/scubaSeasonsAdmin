@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { MapContext } from '../components/googleMap/mapContext';
-import { PagedCollection } from '../entities/pagedCollection';
-import { DiveSiteBasic, DiveSiteWithUserName } from '../entities/diveSite';
+import { MapContext } from '../shared/ui/googleMap/mapContext';
+import { PagedCollection } from '../shared/entities/pagedCollection';
+import { DiveSiteBasic, DiveSiteWithUserName } from '../shared/entities/diveSite';
 import { DiveSiteContext } from './diveSiteContext';
-import { GPSBubble } from '../entities/GPSBubble';
+import { GPSBubble } from '../shared/entities/GPSBubble';
 import { getDiveSitesBasic, getDiveSitesWithUser } from '../apicalls/supabaseCalls/diveSiteSupabaseCalls';
-import { Pagination } from '../entities/pagination';
+import { Pagination } from '../shared/entities/pagination';
 
 
 export type DiveSiteContextType = {

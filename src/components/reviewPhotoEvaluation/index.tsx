@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { insertHeatPoint } from "../../apicalls/supabaseCalls/heatPointSupabaseCalls";
 import { insertphoto } from "../../apicalls/supabaseCalls/photoSupabaseCalls";
-import revertedDate from "../../helpers/revertedDate";
+import revertedDate from "../../shared/helpers/revertedDate";
 import { removePhoto } from "../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls";
 import { getUnverifiedDiveSitesByID } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
 import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../apicalls/supabaseCalls/diveSiteReviewSupabaseCalls";
 import ReviewPhotoEvalView from "./view";
-import { DiveSite } from "../../entities/diveSite";
-import { DynamicSelectOptionsAnimals } from "../../entities/DynamicSelectOptionsAnimals";
-import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
-import { Option } from "../../reusables/select";
+import { DiveSite } from "../../shared/entities/diveSite";
+import { DynamicSelectOptionsAnimals } from "../../shared/entities/DynamicSelectOptionsAnimals";
+import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
+import { Option } from "../../shared/ui/select";
 import { toast } from "react-toastify";
 
 export default function ReviewPhotoEval() {

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Provider } from '@supabase/supabase-js';
 import { SessionContext } from '../../contexts/sessionContext';
 import LandingPageView from './view';
-import { SliderContext } from '../../reusables/slider/context';
+import { SliderContext } from '../../shared/ui/slider/context';
 import { socialSignIn } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
 import { createProfile, grabProfileById } from '../../apicalls/supabaseCalls/accountSupabaseCalls';
 import { UserProfileContext } from '../../contexts/userProfileContext';
-import { ActiveSession } from '../../entities/session';
+import { ActiveSession } from '../../shared/entities/session';
 
 /**
  * The shape handleSupabaseSetup reads: a session, or a session that carries a nested `session`.

@@ -2,7 +2,7 @@
 import style from './styles.module.scss';
 import { toast } from 'react-toastify';
 
-import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 import { cloudflareBucketUrl } from "../../globalVariables";
 import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
 import { getDiveSiteImageId, updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';

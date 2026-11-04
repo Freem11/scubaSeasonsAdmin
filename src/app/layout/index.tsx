@@ -4,17 +4,17 @@ import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesC
 import { UnverifiedDiveSitesContext} from "../../contexts/unverifieddiveSiteEvals/diveSitesContext";
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
-import { SeaLifePhoto } from "../../entities/seaLifePhoto";
+import { SeaLifePhoto } from "../../shared/entities/seaLifePhoto";
 import LayoutMainView from "./view";
-import { DiveSite } from "../../entities/diveSite";
+import { DiveSite } from "../../shared/entities/diveSite";
 import { DiveSiteContextProvider } from "../../contexts/diveSiteContextProvider";
-import { PartnerRequest } from '../../entities/partnerRequest';
+import { PartnerRequest } from '../../shared/entities/partnerRequest';
 import { DiveShopContextProvider } from '../../contexts/diveShopContextProvider';
-import { TripRequest } from "../../entities/tripRequest";
-import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
+import { TripRequest } from "../../shared/entities/tripRequest";
+import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
 import { PendingReviewPhotosContext } from "../../contexts/reviewPhotoEvals/reviewPhotoContext";
 import { DiveSitesWithHeadersContext } from "../../contexts/diveSitesWithHeaders/diveSitesWithHeadersContext";
-import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 
 export default function LayoutMain() {
   const [photoRecords, setPhotoRecords] = useState<SeaLifePhoto[] | null>(null)

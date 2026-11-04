@@ -1,10 +1,10 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { MapContext } from './mapContext';
-import { DiveSiteContext } from '../../contexts/diveSiteContext';
-import { DiveShopContext } from '../../contexts/diveShopContext';
-import { SitesArrayContext } from '../../contexts/sitesArrayContext';
-import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
-import { debounce } from '../../reusables/_helpers/debounce';
+import { DiveSiteContext } from '../../../contexts/diveSiteContext';
+import { DiveShopContext } from '../../../contexts/diveShopContext';
+import { SitesArrayContext } from '../../../contexts/sitesArrayContext';
+import { ShopsArrayContext } from '../../../contexts/shopsArrayContext';
+import { debounce } from '../../helpers/debounce';
 import MapView from './view';
 
 

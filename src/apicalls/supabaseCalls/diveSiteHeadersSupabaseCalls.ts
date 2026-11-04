@@ -1,4 +1,4 @@
-import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 import { supabase } from "../supabase";
 
 export const getDiveSitesWithHeaders = async () => {

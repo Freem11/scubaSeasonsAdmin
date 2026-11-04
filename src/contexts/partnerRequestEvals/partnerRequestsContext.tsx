@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { PartnerRequest } from '../../entities/partnerRequest';
+import { PartnerRequest } from '../../shared/entities/partnerRequest';
 
 type PartnerRequestsContextType = {
   partnerRequests: PartnerRequest[] | null;

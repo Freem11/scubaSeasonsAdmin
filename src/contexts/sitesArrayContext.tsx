@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { DiveSiteBasic } from '../entities/diveSite';
+import { DiveSiteBasic } from '../shared/entities/diveSite';
 
 type SitesArrayContextType = {
   sitesArray:    DiveSiteBasic[]

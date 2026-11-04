@@ -1,5 +1,5 @@
-import { FormValidationRules } from "../../forms/form";
-import { validationEmail, validationPassword } from "../../forms/validation";
+import { FormValidationRules } from "../../shared/forms/form";
+import { validationEmail, validationPassword } from "../../shared/forms/validation";
 
 
 export interface Form {

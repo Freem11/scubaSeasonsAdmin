@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import Tabs, { TabItem } from '../../reusables/tabs';
+import Tabs, { TabItem } from '../../shared/ui/tabs';
 import DiveSiteEval from '../../components/diveSiteEvaluation';
 import UnverifiedDiveSiteEval from "../../components/diveSiteEvaluationNew";
 import DiveSiteList from '../../components/diveSiteList';

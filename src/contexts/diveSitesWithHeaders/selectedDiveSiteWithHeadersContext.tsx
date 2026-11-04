@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 
 type SelectedDiveSiteWithHeadersContextType = {
   selectedDiveSiteWithHeaders: DiveSiteWithHeader | null;

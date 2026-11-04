@@ -1,5 +1,5 @@
 
-import { TripRequest } from '../../entities/tripRequest';
+import { TripRequest } from '../../shared/entities/tripRequest';
 import { supabase } from '../supabase';
 
 

@@ -1,6 +1,6 @@
 import { supabase } from "../supabase";
-import { Photo } from "../../entities/photo";
-import { GPSBounds } from "../../entities/GPSBubble";
+import { Photo } from "../../shared/entities/photo";
+import { GPSBounds } from "../../shared/entities/GPSBubble";
 
 /**
  * The photo columns insertphoto writes. The callers read them from a selected record through `?.`,

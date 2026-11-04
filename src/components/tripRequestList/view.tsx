@@ -1,5 +1,5 @@
 import style from './styles.module.scss';
-import { TripRequest } from "../../entities/tripRequest";
+import { TripRequest } from "../../shared/entities/tripRequest";
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
 import { useContext, useEffect } from 'react';
 

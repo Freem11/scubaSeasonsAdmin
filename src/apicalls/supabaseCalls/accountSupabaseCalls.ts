@@ -1,4 +1,4 @@
-import { ActiveProfile } from '../../entities/profile';
+import { ActiveProfile } from '../../shared/entities/profile';
 import { supabase } from '../supabase';
 
 type DeletedAccountInfo = {

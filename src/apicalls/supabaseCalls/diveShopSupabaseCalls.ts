@@ -1,5 +1,5 @@
-import { DiveShop } from '../../entities/diveShop';
-import { GPSBubble } from '../../entities/GPSBubble';
+import { DiveShop } from '../../shared/entities/diveShop';
+import { GPSBubble } from '../../shared/entities/GPSBubble';
 import { supabase } from '../supabase';
 
 export const getDiveShops = async (values: GPSBubble) => {
