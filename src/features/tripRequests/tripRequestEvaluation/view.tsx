@@ -1,12 +1,12 @@
 import {  useState } from "react";
 import { Form } from "./form";
-import { TripRequest } from "../../shared/entities/tripRequest";
+import { TripRequest } from "../../../shared/entities/tripRequest";
 import styles from './styles.module.scss';
 import {  Label } from "reactstrap";
-import Button from "../../shared/ui/button";
+import Button from "../../../shared/ui/button";
 import { useForm, FieldErrors } from "react-hook-form";
-import Icon from "../../shared/icons/Icon";
-import SiteSelector from "../../shared/ui/siteSelector";
+import Icon from "../../../shared/icons/Icon";
+import SiteSelector from "../../../shared/ui/siteSelector";
 
 type TripRequestEvalViewProps = {
     updatedValues?: Form

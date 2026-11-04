@@ -1,12 +1,12 @@
 
 import { useContext, useEffect, useState } from "react";
 
-import { SelectedTripRequestContext } from "../../state/tripRequestEvals/selectedTripRequestContext";
-import { deleteItinerary, getItineraryByIdRequest, updateItinerary } from "../../api/supabase/itinerarySupabaseCalls";
-import { TripRequest } from "../../shared/entities/tripRequest";
-import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../api/supabase/itineraryRequestSupabaseCalls";
-import { TripRequestsContext } from "../../state/tripRequestEvals/tripRequestContext";
-import { UserProfileContext } from "../../state/userProfileContext";
+import { SelectedTripRequestContext } from "../../../state/tripRequestEvals/selectedTripRequestContext";
+import { deleteItinerary, getItineraryByIdRequest, updateItinerary } from "../../../api/supabase/itinerarySupabaseCalls";
+import { TripRequest } from "../../../shared/entities/tripRequest";
+import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../../api/supabase/itineraryRequestSupabaseCalls";
+import { TripRequestsContext } from "../../../state/tripRequestEvals/tripRequestContext";
+import { UserProfileContext } from "../../../state/userProfileContext";
 import TripRequestEvalView from "./view";
 import { Form } from "./form";
 
