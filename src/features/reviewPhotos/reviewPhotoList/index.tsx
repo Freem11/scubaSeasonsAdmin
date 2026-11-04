@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import ReveiwPhotoListView from "./view";
-import { getAllReviewPhotosWithReviewInfo } from "../../api/supabase/diveSiteReviewSupabaseCalls";
-import { PendingReviewPhotosContext } from "../../state/reviewPhotoEvals/reviewPhotoContext";
+import { getAllReviewPhotosWithReviewInfo } from "../../../api/supabase/diveSiteReviewSupabaseCalls";
+import { PendingReviewPhotosContext } from "../../../state/reviewPhotoEvals/reviewPhotoContext";
 
 export default function ReviewPhotoList() {
     const {pendingReviewPhotos, setPendingReviewPhotos} = useContext(PendingReviewPhotosContext)

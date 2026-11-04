@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { insertHeatPoint } from "../../api/supabase/heatPointSupabaseCalls";
-import { insertphoto } from "../../api/supabase/photoSupabaseCalls";
-import revertedDate from "../../shared/helpers/revertedDate";
-import { removePhoto } from "../../api/r2/cloudflareAWSCalls";
-import { getUnverifiedDiveSitesByID } from "../../api/supabase/diveSiteSupabaseCalls";
-import { SelectedPendingReviewPhotoContext } from "../../state/reviewPhotoEvals/selectedReviewPhotoContext";
-import { PendingReviewPhotosContext } from "../../state/reviewPhotoEvals/reviewPhotoContext";
-import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../api/supabase/diveSiteReviewSupabaseCalls";
+import { insertHeatPoint } from "../../../api/supabase/heatPointSupabaseCalls";
+import { insertphoto } from "../../../api/supabase/photoSupabaseCalls";
+import revertedDate from "../../../shared/helpers/revertedDate";
+import { removePhoto } from "../../../api/r2/cloudflareAWSCalls";
+import { getUnverifiedDiveSitesByID } from "../../../api/supabase/diveSiteSupabaseCalls";
+import { SelectedPendingReviewPhotoContext } from "../../../state/reviewPhotoEvals/selectedReviewPhotoContext";
+import { PendingReviewPhotosContext } from "../../../state/reviewPhotoEvals/reviewPhotoContext";
+import { deleteReviewPhoto, getAllReviewPhotosWithReviewInfo, updateDiveSitePhoto, updateWithDecision } from "../../../api/supabase/diveSiteReviewSupabaseCalls";
 import ReviewPhotoEvalView from "./view";
-import { DiveSite } from "../../shared/entities/diveSite";
-import { DynamicSelectOptionsAnimals } from "../../shared/entities/DynamicSelectOptionsAnimals";
-import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
-import { Option } from "../../shared/ui/select";
+import { DiveSite } from "../../../shared/entities/diveSite";
+import { DynamicSelectOptionsAnimals } from "../../../shared/entities/DynamicSelectOptionsAnimals";
+import { ReviewPhotoWithInfo } from "../../../shared/entities/reviewPhotoWithInfo";
+import { Option } from "../../../shared/ui/select";
 import { toast } from "react-toastify";
 
 export default function ReviewPhotoEval() {
