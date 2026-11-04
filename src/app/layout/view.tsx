@@ -12,7 +12,7 @@ import TripRequestList from "../../features/tripRequests/tripRequestList";
 import TripRequestEval from "../../features/tripRequests/tripRequestEvaluation";
 import ReviewPhotoList from '../../features/reviewPhotos/reviewPhotoList';
 import ReviewPhotoEval from '../../features/reviewPhotos/reviewPhotoEvaluation';
-import PhotoAuditTool from '../../components/photoAudit';
+import PhotoAuditTool from '../../features/photoAudit/index';
 import SeaLifeHeadersList from '../../features/seaLifeHeaders/seaLifeHeadersList';
 import SeaLifeHeadersEval from '../../features/seaLifeHeaders/seaLifeHeaders';
 import DiveSiteHeadersList from '../../features/diveSiteHeaders/diveSitesWithHeadersList';
