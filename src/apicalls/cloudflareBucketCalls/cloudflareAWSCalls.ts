@@ -159,12 +159,16 @@ export const removePhotoVars = async (fileName: string) => {
     const name = fileName.split("/").pop();
     if (!name) return;
     const key = name.replace(/\.[^/.]+$/, '') + '.webp';
+    // The root `<base>.webp` goes with the variants only when the original has
+    // another extension. A `.webp` original has the same name as that root key,
+    // and the app falls back to the original once the variants are gone.
+    const includeRoot = !/\.webp$/i.test(name);
 
     // Execute server-side batch deletion directly via Supabase Edge Function
     const { data, error } = await supabase.functions.invoke(
       "r2-signer-variants",
       {
-        body: { key },
+        body: { key, includeRoot },
       },
     );
 
