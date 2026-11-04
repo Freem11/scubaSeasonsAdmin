@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
 import { cloudflareBucketUrl } from "../../globalVariables";
 import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
-import { updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { getDiveSiteImageId, updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { deleteImageRecord } from '../../apicalls/supabaseCalls/imageSupabaseCalls';
 import { removePhotoVariants } from '../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
 
 type HeadersEvalViewProps = {
@@ -21,12 +22,24 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
     // the chain, so the dive site never points at deleted files.
     const updateHeaderImageSelection = async(record: DiveSiteWithHeader) => {
         if (!diveSiteId || currentPhoto?.id === record.id) return;
+        if (record.dive_site_id !== diveSiteId) {
+            toast.warn("The dive site changed. Click the photo again.");
+            return;
+        }
+        // The outgoing header's images row: read it before the update nulls the pointer.
+        // Only a header chosen in this tool owns its row; a header promoted from a
+        // review photo shares the row with that photo and keeps it.
+        const outgoingImageId = currentPhoto ? await getDiveSiteImageId(diveSiteId) : null;
         const siteUpdated = await updateDiveSitePhoto(diveSiteId, record.photo_path)
         if (!siteUpdated) {
             toast.error("Dive site not updated");
             return;
         }
-        await clearDiveSitesHeadersBySiteId(diveSiteId)
+        const cleared = await clearDiveSitesHeadersBySiteId(diveSiteId)
+        if (!cleared) {
+            toast.error("Header photos not cleared");
+            return;
+        }
         const newHeader = await updateHeaderPhoto(record.id)
         if (!newHeader) {
             toast.error("Header photo not marked as selected");
@@ -34,6 +47,10 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
         }
         setCurrentPhoto(newHeader)
         if (currentPhoto) await removePhotoVariants(currentPhoto.photo_path)
+        if (outgoingImageId !== null) {
+            const removed = await deleteImageRecord(outgoingImageId);
+            if (!removed) toast.warn("Old image record not removed");
+        }
     };
 
        return (
