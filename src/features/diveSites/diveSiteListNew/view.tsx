@@ -1,11 +1,11 @@
 import {useCallback, useContext, useEffect} from "react";
 
-import { SitesArrayContext } from "../../state/sitesArrayContext";
-import { ShopsArrayContext } from '../../state/shopsArrayContext';
-import { MapContext } from "../../shared/ui/googleMap/mapContext";
-import { DiveSite } from "../../shared/entities/diveSite";
+import { SitesArrayContext } from "../../../state/sitesArrayContext";
+import { ShopsArrayContext } from '../../../state/shopsArrayContext';
+import { MapContext } from "../../../shared/ui/googleMap/mapContext";
+import { DiveSite } from "../../../shared/entities/diveSite";
 import style from './styles.module.scss';
-import { SelectedUnverifiedDiveSiteContext } from "../../state/unverifieddiveSiteEvals/selectedDiveSiteContext";
+import { SelectedUnverifiedDiveSiteContext } from "../../../state/unverifieddiveSiteEvals/selectedDiveSiteContext";
 
 type UnverifiedDiveSiteListProps = {
     unverifiedDiveSitesList: DiveSite[] | null

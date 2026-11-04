@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
-import { DiveSite } from "../../shared/entities/diveSite";
-import Button from "../../shared/ui/button";
-import TextInput from "../../shared/ui/textInput";
-import MapLoader from "../../shared/ui/googleMap";
+import { DiveSite } from "../../../shared/entities/diveSite";
+import Button from "../../../shared/ui/button";
+import TextInput from "../../../shared/ui/textInput";
+import MapLoader from "../../../shared/ui/googleMap";
 import style from './styles.module.scss';
 import { Form, FormRules } from "./form";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form
     diveSite:          DiveSite | null
-    approveDiveSite:  (id: number | undefined) => void;
+    validateDiveSite:  (id: number | undefined, formData: Form) => void;
     rejectDiveSite:    (id: number | undefined) => void;
   };   
 
-export default function UnverifiedDiveSiteEvalView(props: SeaLifePhotoEvalViewProps) {
+export default function DiveSiteEvalView(props: SeaLifePhotoEvalViewProps) {
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<Form>({
         values: props.values,
       });
@@ -31,9 +31,9 @@ export default function UnverifiedDiveSiteEvalView(props: SeaLifePhotoEvalViewPr
         // });
       };
     
-      const onSubmit = () => {
+      const onSubmit = (data: Form) => {
         // toast.dismiss();
-        {buttonPressed === 1 &&  props.approveDiveSite(props.diveSite?.id)} 
+        {buttonPressed === 1 &&  props.validateDiveSite(props.diveSite?.id, data)} 
         {buttonPressed === 2 &&  props.rejectDiveSite(props.diveSite?.id)}
       };
 

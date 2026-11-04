@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import Tabs, { TabItem } from '../../shared/ui/tabs';
-import DiveSiteEval from '../../components/diveSiteEvaluation';
-import UnverifiedDiveSiteEval from "../../components/diveSiteEvaluationNew";
-import DiveSiteList from '../../components/diveSiteList';
-import UnverfiedDiveSiteList from '../../components/diveSiteListNew';
+import DiveSiteEval from '../../features/diveSites/diveSiteEvaluation';
+import UnverifiedDiveSiteEval from "../../features/diveSites/diveSiteEvaluationNew";
+import DiveSiteList from '../../features/diveSites/diveSiteList';
+import UnverfiedDiveSiteList from '../../features/diveSites/diveSiteListNew';
 import PartnerRequestList from '../../components/partnerRequestList';
 import PartnerRequestEval from '../../components/partnerRequestEvaluation';
 import SeaLifePhotoEval from '../../features/seaLifePhotos/seaLifePhotoEvaluation';
