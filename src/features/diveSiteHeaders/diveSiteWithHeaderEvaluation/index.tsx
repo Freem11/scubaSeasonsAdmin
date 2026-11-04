@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 
 import DiveSitesWithHeadersView from "./view";
-import { SelectedDiveSiteWithHeadersContext } from "../../state/diveSitesWithHeaders/selectedDiveSiteWithHeadersContext";
-import { getDiveSitesHeadersBySiteId, getExistingHeader } from "../../api/supabase/diveSiteHeadersSupabaseCalls";
-import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
+import { SelectedDiveSiteWithHeadersContext } from "../../../state/diveSitesWithHeaders/selectedDiveSiteWithHeadersContext";
+import { getDiveSitesHeadersBySiteId, getExistingHeader } from "../../../api/supabase/diveSiteHeadersSupabaseCalls";
+import { DiveSiteWithHeader } from "../../../shared/entities/diveSiteWithHeader";
 
 export default function DiveSiteWithHeaders() {
     const { selectedDiveSiteWithHeaders } = useContext(SelectedDiveSiteWithHeadersContext)
