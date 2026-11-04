@@ -41,7 +41,8 @@ export const getDiveSitesHeadersBySiteId = async (diveSiteId: number) => {
   }
 };
 
-export const clearDiveSitesHeadersBySiteId = async (diveSiteId: number) => {
+/** Clears the selected flag on every header row of a dive site. Returns true when the update ran. */
+export const clearDiveSitesHeadersBySiteId = async (diveSiteId: number): Promise<boolean> => {
 const { error } = await supabase
   .from('diveSiteHeaderPhotos')
   .update({ selected: false })
@@ -49,9 +50,10 @@ const { error } = await supabase
 
 if (error) {
   console.error('Error updating photos:', error);
-} else {
-  console.log('Successfully set selected to false for dive site:', diveSiteId);
+  return false;
 }
+console.log('Successfully set selected to false for dive site:', diveSiteId);
+return true;
 };
 
 

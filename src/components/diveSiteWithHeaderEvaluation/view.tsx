@@ -26,7 +26,11 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
             toast.error("Dive site not updated");
             return;
         }
-        await clearDiveSitesHeadersBySiteId(diveSiteId)
+        const cleared = await clearDiveSitesHeadersBySiteId(diveSiteId)
+        if (!cleared) {
+            toast.error("Header photos not cleared");
+            return;
+        }
         const newHeader = await updateHeaderPhoto(record.id)
         if (!newHeader) {
             toast.error("Header photo not marked as selected");
