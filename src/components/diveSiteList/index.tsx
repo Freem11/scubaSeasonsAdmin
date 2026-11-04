@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { getAllDiveSiteWaits } from "../../api/supabase/diveSiteWaitSupabaseCalls";
 import DiveSiteListView from "./view";
-import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
+import { PendingDiveSitesContext } from "../../state/diveSiteEvals/diveSitesContext";
 
 export default function DiveSiteList() {
     const { pendingDiveSites, setPendingDiveSites } = useContext(PendingDiveSitesContext)

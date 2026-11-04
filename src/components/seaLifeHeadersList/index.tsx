@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { getSpecies } from "../../api/supabase/speciesSupabaseCalls";
-import { SeaLifeHeadersContext } from "../../contexts/seaLifeHeaders/seaLifeHeaderContext";
+import { SeaLifeHeadersContext } from "../../state/seaLifeHeaders/seaLifeHeaderContext";
 import SeaLifeHeadersView from "./view";
 
 export default function SeaLifeHeadersList() {

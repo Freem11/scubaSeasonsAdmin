@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Provider } from '@supabase/supabase-js';
-import { SessionContext } from '../../contexts/sessionContext';
+import { SessionContext } from '../../state/sessionContext';
 import LandingPageView from './view';
 import { SliderContext } from '../../shared/ui/slider/context';
 import { socialSignIn } from '../../api/supabase/authenticateSupabaseCalls';
 import { createProfile, grabProfileById } from '../../api/supabase/accountSupabaseCalls';
-import { UserProfileContext } from '../../contexts/userProfileContext';
+import { UserProfileContext } from '../../state/userProfileContext';
 import { ActiveSession } from '../../shared/entities/session';
 
 /**

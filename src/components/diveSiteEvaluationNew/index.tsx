@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 
 import { deleteDiveSite, getUnverifiedDiveSites, validateDiveSite } from "../../api/supabase/diveSiteSupabaseCalls";
 
-import { SelectedUnverifiedDiveSiteContext } from "../../contexts/unverifieddiveSiteEvals/selectedDiveSiteContext";
-import { UnverifiedDiveSitesContext } from "../../contexts/unverifieddiveSiteEvals/diveSitesContext";
+import { SelectedUnverifiedDiveSiteContext } from "../../state/unverifieddiveSiteEvals/selectedDiveSiteContext";
+import { UnverifiedDiveSitesContext } from "../../state/unverifieddiveSiteEvals/diveSitesContext";
 import UnverifiedDiveSiteEvalView from "./view";
 
 export default function UnverifiedDiveSiteEval() {
