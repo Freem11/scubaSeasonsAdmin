@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
 import { cloudflareBucketUrl } from "../../globalVariables";
 import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
-import { updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { getDiveSiteImageId, updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { deleteImageRecord } from '../../apicalls/supabaseCalls/imageSupabaseCalls';
 import { removePhotoVariants } from '../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
 
 type HeadersEvalViewProps = {
@@ -25,6 +26,10 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
             toast.warn("The dive site changed. Click the photo again.");
             return;
         }
+        // The outgoing header's images row: read it before the update nulls the pointer.
+        // Only a header chosen in this tool owns its row; a header promoted from a
+        // review photo shares the row with that photo and keeps it.
+        const outgoingImageId = currentPhoto ? await getDiveSiteImageId(diveSiteId) : null;
         const siteUpdated = await updateDiveSitePhoto(diveSiteId, record.photo_path)
         if (!siteUpdated) {
             toast.error("Dive site not updated");
@@ -42,6 +47,10 @@ export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, set
         }
         setCurrentPhoto(newHeader)
         if (currentPhoto) await removePhotoVariants(currentPhoto.photo_path)
+        if (outgoingImageId !== null) {
+            const removed = await deleteImageRecord(outgoingImageId);
+            if (!removed) toast.warn("Old image record not removed");
+        }
     };
 
        return (

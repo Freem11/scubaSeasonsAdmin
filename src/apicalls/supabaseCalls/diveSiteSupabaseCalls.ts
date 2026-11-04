@@ -311,3 +311,18 @@ export const updateDiveSitePhoto = async (dive_site_id: number, photoFile: strin
 
   return !!data && data.length > 0;
 };
+
+/** The images row a dive site points at, or null when it has none. */
+export const getDiveSiteImageId = async (dive_site_id: number): Promise<number | null> => {
+  const { data, error } = await supabase
+    .from('diveSites')
+    .select('image_id')
+    .eq('id', dive_site_id)
+    .maybeSingle();
+
+  if (error) {
+    console.error('getDiveSiteImageId failed:', error);
+    return null;
+  }
+  return data?.image_id ?? null;
+};
