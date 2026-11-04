@@ -8,7 +8,7 @@ import { DiveSite } from "../../shared/entities/diveSite";
 import DynamicSelect, { GetMoreOptions } from "../../shared/ui/dynamicSelect";
 import Icon from "../../shared/icons/Icon";
 import { Option } from "../../shared/ui/select";
-import { cloudflareBucketUrl } from "../../globalVariables";
+import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form

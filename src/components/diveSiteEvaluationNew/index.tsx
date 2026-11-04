@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { deleteDiveSite, getUnverifiedDiveSites, validateDiveSite } from "../../apicalls/supabaseCalls/diveSiteSupabaseCalls";
+import { deleteDiveSite, getUnverifiedDiveSites, validateDiveSite } from "../../api/supabase/diveSiteSupabaseCalls";
 
 import { SelectedUnverifiedDiveSiteContext } from "../../contexts/unverifieddiveSiteEvals/selectedDiveSiteContext";
 import { UnverifiedDiveSitesContext } from "../../contexts/unverifieddiveSiteEvals/diveSitesContext";

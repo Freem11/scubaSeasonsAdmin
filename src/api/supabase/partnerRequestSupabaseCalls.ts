@@ -1,5 +1,5 @@
 import { PartnerRequest } from '../../shared/entities/partnerRequest';
-import { supabase } from "../supabase";
+import { supabase } from "./supabase";
 
 export const partnerRequests = async () => {
   const response = await supabase.rpc("get_partnerrequests_with_useremail");

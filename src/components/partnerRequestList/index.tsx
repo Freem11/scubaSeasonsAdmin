@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { partnerRequests as getAllPartnerRequests } from '../../apicalls/supabaseCalls/partnerRequestSupabaseCalls';
+import { partnerRequests as getAllPartnerRequests } from '../../api/supabase/partnerRequestSupabaseCalls';
 import PartnerRequestListView from './view';
 import { PartnerRequestsContext } from '../../contexts/partnerRequestEvals/partnerRequestsContext';
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { getAllPhotoWaits } from "../../apicalls/supabaseCalls/photoWaitSupabaseCalls";
+import { getAllPhotoWaits } from "../../api/supabase/photoWaitSupabaseCalls";
 import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosContext";
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
 import SeaLifePhotoListView from "./view";

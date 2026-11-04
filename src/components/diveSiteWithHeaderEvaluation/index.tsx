@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import DiveSitesWithHeadersView from "./view";
 import { SelectedDiveSiteWithHeadersContext } from "../../contexts/diveSitesWithHeaders/selectedDiveSiteWithHeadersContext";
-import { getDiveSitesHeadersBySiteId, getExistingHeader } from "../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls";
+import { getDiveSitesHeadersBySiteId, getExistingHeader } from "../../api/supabase/diveSiteHeadersSupabaseCalls";
 import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 
 export default function DiveSiteWithHeaders() {

@@ -2,9 +2,9 @@
 import { useContext, useEffect, useState } from "react";
 
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
-import { deleteItinerary, getItineraryByIdRequest, updateItinerary } from "../../apicalls/supabaseCalls/itinerarySupabaseCalls";
+import { deleteItinerary, getItineraryByIdRequest, updateItinerary } from "../../api/supabase/itinerarySupabaseCalls";
 import { TripRequest } from "../../shared/entities/tripRequest";
-import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
+import {  approvedItineraryRequest, deleteItineraryRequest, getAllItineraryRequest } from "../../api/supabase/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
 import { UserProfileContext } from "../../contexts/userProfileContext";
 import TripRequestEvalView from "./view";
