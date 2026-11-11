@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { ActiveProfile } from '../entities/profile';
+import { ActiveProfile } from '../shared/entities/profile';
 
 type UserProfileContextType = {
   profile:    ActiveProfile | null

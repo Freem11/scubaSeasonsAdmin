@@ -1,7 +1,7 @@
 import React from "react";
 import style from './styles.module.scss';
-import { SpeciesWithImage } from "../../entities/species";
-import { Photo } from "../../entities/photo";
+import { SpeciesWithImage } from "../../shared/entities/species";
+import { Photo } from "../../shared/entities/photo";
 import { updateSpeciesImage } from "../../apicalls/supabaseCalls/speciesSupabaseCalls";
 
 type SpeceisHeaderSelectionViewProps = {

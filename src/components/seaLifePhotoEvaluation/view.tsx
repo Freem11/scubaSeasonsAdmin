@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 
-import { SeaLifePhoto } from "../../entities/seaLifePhoto";
-import TextInput from "../../reusables/textInput";
-import Button from "../../reusables/button";
+import { SeaLifePhoto } from "../../shared/entities/seaLifePhoto";
+import TextInput from "../../shared/ui/textInput";
+import Button from "../../shared/ui/button";
 import style from './styles.module.scss';
 import { Form, FormRules } from "./form";
 

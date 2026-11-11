@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { ActiveSession } from '../entities/session';
+import { ActiveSession } from '../shared/entities/session';
 
 type SessionContextType = {
   activeSession:    ActiveSession | null

@@ -4,7 +4,7 @@ import style from './styles.module.scss';
 import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
 import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
 import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
-import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
+import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
 import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
 import { cloudflareBucketUrl } from "../../globalVariables";
 

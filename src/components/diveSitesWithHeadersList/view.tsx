@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import style from './styles.module.scss';
-import { DiveSiteWithHeader } from "../../entities/diveSiteWithHeader";
+import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
 import { SelectedDiveSiteWithHeadersContext } from "../../contexts/diveSitesWithHeaders/selectedDiveSiteWithHeadersContext";
 
 type SeaLifeHEadersListProps = {

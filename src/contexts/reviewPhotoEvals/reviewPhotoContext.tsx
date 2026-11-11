@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ReviewPhotoWithInfo } from "../../entities/reviewPhotoWithInfo";
+import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
 
 type PendingReviewPhotosContextType = {
   pendingReviewPhotos: ReviewPhotoWithInfo[] | null;

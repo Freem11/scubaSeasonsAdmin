@@ -1,7 +1,7 @@
-import { PartnerRequest } from '../../entities/partnerRequest';
-import Button from "../../reusables/button";
+import { PartnerRequest } from '../../shared/entities/partnerRequest';
+import Button from "../../shared/ui/button";
 import style from './styles.module.scss';
-import MapLoader from "../googleMap";
+import MapLoader from "../../shared/ui/googleMap";
 
 interface ComponentViewProps {
   isLoading: boolean

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { SliderContext } from '../../reusables/slider/context';
+import { SliderContext } from '../../shared/ui/slider/context';
 import { Form } from './form';
 import { sessionCheck, signInStandard } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
 import { SessionContext } from '../../contexts/sessionContext';
 import SignInPageView from './view';
 import { toast } from 'react-toastify';
-import screenData from '../../screenData.json';
+import screenData from '../../shared/strings.json';
 
 
 export default function SignInPage() {

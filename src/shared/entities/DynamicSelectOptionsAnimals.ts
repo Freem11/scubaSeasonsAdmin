@@ -1,6 +1,6 @@
-import { getAnimalNamesThatFit, PhotoLabel } from '../apicalls/supabaseCalls/photoSupabaseCalls';
-import { DynamicSelectOptions } from '../reusables/dynamicSelect/DynamicSelectOptions';
-import { Option } from '../reusables/select';
+import { getAnimalNamesThatFit, PhotoLabel } from '../../apicalls/supabaseCalls/photoSupabaseCalls';
+import { DynamicSelectOptions } from '../ui/dynamicSelect/DynamicSelectOptions';
+import { Option } from '../ui/select';
 
 export class DynamicSelectOptionsAnimals extends DynamicSelectOptions<PhotoLabel> {
   convertItem(item: PhotoLabel): Option {

@@ -1,5 +1,5 @@
-import { Species, SpeciesWithImage } from "../../entities/species";
-import { Photo } from "../../entities/photo";
+import { Species, SpeciesWithImage } from "../../shared/entities/species";
+import { Photo } from "../../shared/entities/photo";
 import { supabase } from "../supabase";
 
 export const getSpecies = async () => {

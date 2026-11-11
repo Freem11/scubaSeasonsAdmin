@@ -3,7 +3,7 @@ import SignUpPage from './SignUp';
 import LandingPage from './Landning';
 import SignInPage from './SignIn';
 import PasswordRecoveryPage from './PasswordRecovery';
-import Slider from '../reusables/slider';
+import Slider from '../shared/ui/slider';
 
 export default function AuthnticationPageView() {
   return (

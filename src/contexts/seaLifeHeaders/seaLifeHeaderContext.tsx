@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Species } from "../../entities/species";
+import { Species } from "../../shared/entities/species";
 
 type SeaLifeHeadersContextType = {
   headerlessSpecies: Species[] | null;

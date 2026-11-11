@@ -1,5 +1,5 @@
 import {  useEffect, useState } from 'react';
-import {  getDiveSitesByIDs } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import {  getDiveSitesByIDs } from '../../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
 import { DiveSiteWithUserName } from '../../entities/diveSite';
 import SiteSelectorView from './view';
 

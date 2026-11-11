@@ -12,7 +12,7 @@ import useSupercluster, { UseSuperclusterArgument } from 'use-supercluster';
 import { MarkerDiveSite } from './marker/markerDiveSite';
 import { MarkerDiveShop } from './marker/markerDiveShop';
 import { diveShopToPointFeature } from './dto/diveShopToPointFeature';
-import RoundButtonIcon from '../../reusables/roundButton';
+import RoundButtonIcon from '../roundButton';
 import Icon from '../../icons/Icon';
 
 const libraries: Libraries = ['places', 'visualization'];

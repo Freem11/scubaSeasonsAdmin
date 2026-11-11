@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Marker } from '@react-google-maps/api';
-import icon from '../../../../assets/AnchorCluster.png';
+import icon from '../../../../../assets/AnchorCluster.png';
 import { MapContext } from '../../mapContext';
 
 type MarkerDiveSiteClusterProps = {

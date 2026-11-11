@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { DiveShopBasic } from '../entities/diveShop';
+import { DiveShopBasic } from '../shared/entities/diveShop';
 
 type ShopsArrayContextType = {
   shopsArray:    DiveShopBasic[]
