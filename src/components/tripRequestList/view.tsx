@@ -1,6 +1,6 @@
 import style from './styles.module.scss';
 import { TripRequest } from "../../shared/entities/tripRequest";
-import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+import { SelectedTripRequestContext } from "../../state/tripRequestEvals/selectedTripRequestContext";
 import { useContext, useEffect } from 'react';
 
 type TripRequestListProps = {

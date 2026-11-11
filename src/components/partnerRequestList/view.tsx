@@ -3,9 +3,9 @@ import { useCallback, useContext, useEffect } from 'react';
 import style from './styles.module.scss';
 import { PartnerRequest } from '../../shared/entities/partnerRequest';
 import { MapContext } from '../../shared/ui/googleMap/mapContext';
-import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
-import { ShopsArrayContext } from '../../contexts/shopsArrayContext';
-import { SitesArrayContext } from '../../contexts/sitesArrayContext';
+import { SelectedPartnerRequestContext } from '../../state/partnerRequestEvals/selectedPartnerRequestContext';
+import { ShopsArrayContext } from '../../state/shopsArrayContext';
+import { SitesArrayContext } from '../../state/sitesArrayContext';
 
 
 type PartnerRequestListProps = {

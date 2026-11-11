@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 
 import { deleteDiveSiteWait, getAllDiveSiteWaits, grabDiveSiteWaitById } from "../../api/supabase/diveSiteWaitSupabaseCalls";
-import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
+import { SelectedPendingDiveSiteContext } from "../../state/diveSiteEvals/selectedDiveSiteContext";
 import { insertDiveSite } from "../../api/supabase/diveSiteSupabaseCalls";
-import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
+import { PendingDiveSitesContext } from "../../state/diveSiteEvals/diveSitesContext";
 import DiveSiteEvalView from "./view";
 
 export default function DiveSiteEval() {

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
+import { SelectedSeaLifeContext } from "../../state/seaLifeEvals/selectedSeaLifePhotoContext";
 import { deletePhotoWait, getAllPhotoWaits } from "../../api/supabase/photoWaitSupabaseCalls";
 import { insertHeatPoint } from "../../api/supabase/heatPointSupabaseCalls";
 import readableDate from "../../shared/helpers/readableDate";
 import { insertphoto } from "../../api/supabase/photoSupabaseCalls";
-import { SeaLifePhotosContext } from "../../contexts/seaLifeEvals/seaLifePhotosContext";
+import { SeaLifePhotosContext } from "../../state/seaLifeEvals/seaLifePhotosContext";
 import revertedDate from "../../shared/helpers/revertedDate";
 import { removePhoto } from "../../api/r2/cloudflareAWSCalls";
 import { updateDiveSite } from "../../api/supabase/diveSiteSupabaseCalls";

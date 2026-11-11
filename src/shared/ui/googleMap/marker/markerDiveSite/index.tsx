@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Marker } from '@react-google-maps/api';
 import icon from '../../../../../assets/AnchorBlue1.png';
 import iconGold from '../../../../../assets/AnchorGold.png';
-import { SitesArrayContext } from '../../../../../contexts/sitesArrayContext';
+import { SitesArrayContext } from '../../../../../state/sitesArrayContext';
 
 type MarkerDiveSiteProps = {
   id:       number

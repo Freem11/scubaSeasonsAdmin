@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { SelectedSeaLifeContext } from "../../contexts/seaLifeEvals/selectedSeaLifePhotoContext";
+import { SelectedSeaLifeContext } from "../../state/seaLifeEvals/selectedSeaLifePhotoContext";
 import style from './styles.module.scss';
-import { SelectedPendingDiveSiteContext } from "../../contexts/diveSiteEvals/selectedDiveSiteContext";
-import { SelectedPartnerRequestContext } from '../../contexts/partnerRequestEvals/selectedPartnerRequestContext';
-import { SelectedTripRequestContext } from "../../contexts/tripRequestEvals/selectedTripRequestContext";
+import { SelectedPendingDiveSiteContext } from "../../state/diveSiteEvals/selectedDiveSiteContext";
+import { SelectedPartnerRequestContext } from '../../state/partnerRequestEvals/selectedPartnerRequestContext';
+import { SelectedTripRequestContext } from "../../state/tripRequestEvals/selectedTripRequestContext";
 import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
-import { SelectedPendingReviewPhotoContext } from "../../contexts/reviewPhotoEvals/selectedReviewPhotoContext";
+import { SelectedPendingReviewPhotoContext } from "../../state/reviewPhotoEvals/selectedReviewPhotoContext";
 import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
 
 type ReviewPhotoListProps = {
