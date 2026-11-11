@@ -1,5 +1,5 @@
 import './loadingScreen.css';
-import MantaRay from './assets/Matt_Manta_White.png';
+import MantaRay from '../assets/Matt_Manta_White.png';
 
 const LoadingScreen = () => (
     <div className="screenDiv">
