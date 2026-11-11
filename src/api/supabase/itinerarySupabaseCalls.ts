@@ -1,6 +1,6 @@
 
 import { TripRequest } from '../../shared/entities/tripRequest';
-import { supabase } from '../supabase';
+import { supabase } from './supabase';
 
 
 export const getTripRequests = async () => {

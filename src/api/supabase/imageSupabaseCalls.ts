@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import { supabase } from "./supabase";
 
 /** Deletes one images row. Returns true when exactly one row went. */
 export const deleteImageRecord = async (id: number): Promise<boolean> => {

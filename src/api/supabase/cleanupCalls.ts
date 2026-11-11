@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import { supabase } from "./supabase";
 
 /**
  * Helper function to bypass Supabase's 1000-record limit.

@@ -4,7 +4,7 @@ import { PagedCollection } from '../shared/entities/pagedCollection';
 import { DiveSiteBasic, DiveSiteWithUserName } from '../shared/entities/diveSite';
 import { DiveSiteContext } from './diveSiteContext';
 import { GPSBubble } from '../shared/entities/GPSBubble';
-import { getDiveSitesBasic, getDiveSitesWithUser } from '../apicalls/supabaseCalls/diveSiteSupabaseCalls';
+import { getDiveSitesBasic, getDiveSitesWithUser } from '../api/supabase/diveSiteSupabaseCalls';
 import { Pagination } from '../shared/entities/pagination';
 
 

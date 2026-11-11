@@ -1,6 +1,6 @@
 import { Species, SpeciesWithImage } from "../../shared/entities/species";
 import { Photo } from "../../shared/entities/photo";
-import { supabase } from "../supabase";
+import { supabase } from "./supabase";
 
 export const getSpecies = async () => {
 

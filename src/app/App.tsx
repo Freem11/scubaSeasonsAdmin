@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { SessionContext } from '../contexts/sessionContext';
 import './App.css'
-import { supabase } from '../apicalls/supabase';
-import { sessionCheck, sessionRefresh } from '../apicalls/supabaseCalls/authenticateSupabaseCalls';
+import { supabase } from '../api/supabase/supabase';
+import { sessionCheck, sessionRefresh } from '../api/supabase/authenticateSupabaseCalls';
 import { ActiveSession } from '../shared/entities/session';
 import LoadingScreen from './LoadingScreen';
 import { UserProfileContext } from '../contexts/userProfileContext';

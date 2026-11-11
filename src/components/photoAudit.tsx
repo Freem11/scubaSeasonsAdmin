@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAllBucketKeys } from '../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
+import { fetchAllBucketKeys } from '../api/r2/cloudflareAWSCalls';
 import { 
   getSeaLifeWaitPhotoLinks,
   getSeaLifePhotoLinks,
   getDiveSiteReviewPhotoLinks,
   getProfilePhotoLinks,
   getDiveSiteHeaderPhotoLinks
-} from '../apicalls/supabaseCalls/cleanupCalls';
+} from '../api/supabase/cleanupCalls';
 
 const PUBLIC_BASE_URL = 'https://pub-c089cae46f7047e498ea7f80125058d5.r2.dev/';
 

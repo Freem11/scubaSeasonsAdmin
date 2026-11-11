@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { getAllItineraryRequest } from "../../apicalls/supabaseCalls/itineraryRequestSupabaseCalls";
+import { getAllItineraryRequest } from "../../api/supabase/itineraryRequestSupabaseCalls";
 import { TripRequestsContext } from "../../contexts/tripRequestEvals/tripRequestContext";
 import TripRequestListView from "./view";
 import {toast} from 'react-toastify';

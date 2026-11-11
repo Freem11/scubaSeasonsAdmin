@@ -3,11 +3,11 @@ import style from './styles.module.scss';
 import { toast } from 'react-toastify';
 
 import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
-import { cloudflareBucketUrl } from "../../globalVariables";
-import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../apicalls/supabaseCalls/diveSiteHeadersSupabaseCalls';
-import { getDiveSiteImageId, updateDiveSitePhoto } from '../../apicalls/supabaseCalls/diveSiteSupabaseCalls';
-import { deleteImageRecord } from '../../apicalls/supabaseCalls/imageSupabaseCalls';
-import { removePhotoVariants } from '../../apicalls/cloudflareBucketCalls/cloudflareAWSCalls';
+import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
+import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../api/supabase/diveSiteHeadersSupabaseCalls';
+import { getDiveSiteImageId, updateDiveSitePhoto } from '../../api/supabase/diveSiteSupabaseCalls';
+import { deleteImageRecord } from '../../api/supabase/imageSupabaseCalls';
+import { removePhotoVariants } from '../../api/r2/cloudflareAWSCalls';
 
 type HeadersEvalViewProps = {
     diveSiteId: number | undefined

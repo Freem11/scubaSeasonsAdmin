@@ -1,4 +1,4 @@
-import { aws3 } from "../aws";
+import { aws3 } from "./aws";
 import {
     PutObjectCommand,
     DeleteObjectCommand,
@@ -6,7 +6,7 @@ import {
     ListObjectsV2Command,
     PutObjectCommandInput
   } from "@aws-sdk/client-s3";
-import { supabase } from "../supabase";
+import { supabase } from "../supabase/supabase";
 import { toast } from 'react-toastify';
 
 export const uploadphoto = async (file: PutObjectCommandInput['Body'], fileName: string) => {

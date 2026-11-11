@@ -1,6 +1,6 @@
 import { DiveShop } from '../../shared/entities/diveShop';
 import { GPSBubble } from '../../shared/entities/GPSBubble';
-import { supabase } from '../supabase';
+import { supabase } from './supabase';
 
 export const getDiveShops = async (values: GPSBubble) => {
   const { data, error } = await supabase.rpc('get_diveshops', {

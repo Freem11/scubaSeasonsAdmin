@@ -1,4 +1,4 @@
-import { getAnimalNamesThatFit, PhotoLabel } from '../../apicalls/supabaseCalls/photoSupabaseCalls';
+import { getAnimalNamesThatFit, PhotoLabel } from '../../api/supabase/photoSupabaseCalls';
 import { DynamicSelectOptions } from '../ui/dynamicSelect/DynamicSelectOptions';
 import { Option } from '../ui/select';
 

@@ -1,5 +1,5 @@
 import { ActiveProfile } from '../../shared/entities/profile';
-import { supabase } from '../supabase';
+import { supabase } from './supabase';
 
 type DeletedAccountInfo = {
   firstName: string

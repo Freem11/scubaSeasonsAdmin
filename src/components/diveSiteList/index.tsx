@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { getAllDiveSiteWaits } from "../../apicalls/supabaseCalls/diveSiteWaitSupabaseCalls";
+import { getAllDiveSiteWaits } from "../../api/supabase/diveSiteWaitSupabaseCalls";
 import DiveSiteListView from "./view";
 import { PendingDiveSitesContext } from "../../contexts/diveSiteEvals/diveSitesContext";
 
