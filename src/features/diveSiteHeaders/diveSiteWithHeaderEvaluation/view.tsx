@@ -2,12 +2,12 @@
 import style from './styles.module.scss';
 import { toast } from 'react-toastify';
 
-import { DiveSiteWithHeader } from "../../shared/entities/diveSiteWithHeader";
-import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
-import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../api/supabase/diveSiteHeadersSupabaseCalls';
-import { getDiveSiteImageId, updateDiveSitePhoto } from '../../api/supabase/diveSiteSupabaseCalls';
-import { deleteImageRecord } from '../../api/supabase/imageSupabaseCalls';
-import { removePhotoVariants } from '../../api/r2/cloudflareAWSCalls';
+import { DiveSiteWithHeader } from "../../../shared/entities/diveSiteWithHeader";
+import { cloudflareBucketUrl } from "../../../api/r2/globalVariables";
+import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../../api/supabase/diveSiteHeadersSupabaseCalls';
+import { getDiveSiteImageId, updateDiveSitePhoto } from '../../../api/supabase/diveSiteSupabaseCalls';
+import { deleteImageRecord } from '../../../api/supabase/imageSupabaseCalls';
+import { removePhotoVariants } from '../../../api/r2/cloudflareAWSCalls';
 
 type HeadersEvalViewProps = {
     diveSiteId: number | undefined

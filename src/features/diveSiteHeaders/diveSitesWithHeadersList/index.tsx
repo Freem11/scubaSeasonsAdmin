@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { DiveSitesWithHeadersContext } from "../../state/diveSitesWithHeaders/diveSitesWithHeadersContext";
-import { getDiveSitesWithHeaders } from "../../api/supabase/diveSiteHeadersSupabaseCalls";
+import { DiveSitesWithHeadersContext } from "../../../state/diveSitesWithHeaders/diveSitesWithHeadersContext";
+import { getDiveSitesWithHeaders } from "../../../api/supabase/diveSiteHeadersSupabaseCalls";
 import DiveSiteWithHeadersView from "./view";
 
 export default function DiveSiteHeadersList() {

@@ -15,8 +15,8 @@ import ReviewPhotoEval from '../../components/reviewPhotoEvaluation';
 import PhotoAuditTool from '../../components/photoAudit';
 import SeaLifeHeadersList from '../../features/seaLifeHeaders/seaLifeHeadersList';
 import SeaLifeHeadersEval from '../../features/seaLifeHeaders/seaLifeHeaders';
-import DiveSiteHeadersList from '../../components/diveSitesWithHeadersList';
-import DiveSiteWithHeaders from '../../components/diveSiteWithHeaderEvaluation';
+import DiveSiteHeadersList from '../../features/diveSiteHeaders/diveSitesWithHeadersList';
+import DiveSiteWithHeaders from '../../features/diveSiteHeaders/diveSiteWithHeaderEvaluation';
 
 
 export default function LayoutMainView() {
