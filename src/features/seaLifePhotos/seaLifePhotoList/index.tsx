@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import { getAllPhotoWaits } from "../../api/supabase/photoWaitSupabaseCalls";
-import { SeaLifePhotosContext } from "../../state/seaLifeEvals/seaLifePhotosContext";
-import { PendingDiveSitesContext } from "../../state/diveSiteEvals/diveSitesContext";
+import { getAllPhotoWaits } from "../../../api/supabase/photoWaitSupabaseCalls";
+import { SeaLifePhotosContext } from "../../../state/seaLifeEvals/seaLifePhotosContext";
+import { PendingDiveSitesContext } from "../../../state/diveSiteEvals/diveSitesContext";
 import SeaLifePhotoListView from "./view";
 
 export default function SeaLifeHeaderList() {

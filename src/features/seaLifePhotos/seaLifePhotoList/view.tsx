@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from "react";
-import { SelectedSeaLifeContext } from "../../state/seaLifeEvals/selectedSeaLifePhotoContext";
-import { SeaLifePhoto } from "../../shared/entities/seaLifePhoto";
+import { SelectedSeaLifeContext } from "../../../state/seaLifeEvals/selectedSeaLifePhotoContext";
+import { SeaLifePhoto } from "../../../shared/entities/seaLifePhoto";
 import style from './styles.module.scss';
 
 type SeaLifePhotoListProps = {
