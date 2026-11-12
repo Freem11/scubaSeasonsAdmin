@@ -1,5 +1,5 @@
-import { FormValidationRules } from "../../shared/forms/form";
-import { Option } from '../../shared/ui/select';
+import { FormValidationRules } from "../../../shared/forms/form";
+import { Option } from '../../../shared/ui/select';
 
 export interface Form {
   animal?:          Option

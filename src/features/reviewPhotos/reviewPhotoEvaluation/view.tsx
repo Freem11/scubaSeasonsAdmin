@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm, Controller, FieldErrors } from "react-hook-form";
-import Button from "../../shared/ui/button";
+import Button from "../../../shared/ui/button";
 import { Form, FormRules } from "./form";
 import style from './styles.module.scss';
-import { ReviewPhotoWithInfo } from "../../shared/entities/reviewPhotoWithInfo";
-import { DiveSite } from "../../shared/entities/diveSite";
-import DynamicSelect, { GetMoreOptions } from "../../shared/ui/dynamicSelect";
-import Icon from "../../shared/icons/Icon";
-import { Option } from "../../shared/ui/select";
-import { cloudflareBucketUrl } from "../../api/r2/globalVariables";
+import { ReviewPhotoWithInfo } from "../../../shared/entities/reviewPhotoWithInfo";
+import { DiveSite } from "../../../shared/entities/diveSite";
+import DynamicSelect, { GetMoreOptions } from "../../../shared/ui/dynamicSelect";
+import Icon from "../../../shared/icons/Icon";
+import { Option } from "../../../shared/ui/select";
+import { cloudflareBucketUrl } from "../../../api/r2/globalVariables";
 
 type SeaLifePhotoEvalViewProps = {
     values?:           Form

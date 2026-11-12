@@ -10,8 +10,8 @@ import SeaLifePhotoEval from '../../features/seaLifePhotos/seaLifePhotoEvaluatio
 import SeaLifePhotoList from '../../features/seaLifePhotos/seaLifePhotoList';
 import TripRequestList from "../../features/tripRequests/tripRequestList";
 import TripRequestEval from "../../features/tripRequests/tripRequestEvaluation";
-import ReviewPhotoList from '../../components/reviewPhotoList';
-import ReviewPhotoEval from '../../components/reviewPhotoEvaluation';
+import ReviewPhotoList from '../../features/reviewPhotos/reviewPhotoList';
+import ReviewPhotoEval from '../../features/reviewPhotos/reviewPhotoEvaluation';
 import PhotoAuditTool from '../../components/photoAudit';
 import SeaLifeHeadersList from '../../features/seaLifeHeaders/seaLifeHeadersList';
 import SeaLifeHeadersEval from '../../features/seaLifeHeaders/seaLifeHeaders';
