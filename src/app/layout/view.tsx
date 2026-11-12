@@ -8,8 +8,8 @@ import PartnerRequestList from '../../features/partnerRequests/partnerRequestLis
 import PartnerRequestEval from '../../features/partnerRequests/partnerRequestEvaluation';
 import SeaLifePhotoEval from '../../features/seaLifePhotos/seaLifePhotoEvaluation';
 import SeaLifePhotoList from '../../features/seaLifePhotos/seaLifePhotoList';
-import TripRequestList from "../../components/tripRequestList";
-import TripRequestEval from "../../components/tripRequestEvaluation";
+import TripRequestList from "../../features/tripRequests/tripRequestList";
+import TripRequestEval from "../../features/tripRequests/tripRequestEvaluation";
 import ReviewPhotoList from '../../components/reviewPhotoList';
 import ReviewPhotoEval from '../../components/reviewPhotoEvaluation';
 import PhotoAuditTool from '../../components/photoAudit';

@@ -1,4 +1,4 @@
-// import { FormValidationRules } from "../../shared/forms/form";
+// import { FormValidationRules } from "../../../shared/forms/form";
 
 export interface Form {
   id?: number
