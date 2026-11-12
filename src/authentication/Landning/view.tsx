@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Provider } from '@supabase/supabase-js';
-import Button from '../../reusables/button';
+import Button from '../../shared/ui/button';
 import blackManta from '../../assets/blackManta.png';
 import googleIcon from '../../assets/google-color.png';
 import facebookIcon from '../../assets/facebook-color.png';
 import appleIcon from '../../assets/apple.png';
 import style from './style.module.scss';
-import screenData from '../../screenData.json';
-import { ActiveProfile } from '../../entities/profile';
-import ButtonIcon from '../../reusables/buttonIcon';
-import WavyBlock from '../../reusables/wavyBlock';
+import screenData from '../../shared/strings.json';
+import { ActiveProfile } from '../../shared/entities/profile';
+import ButtonIcon from '../../shared/ui/buttonIcon';
+import WavyBlock from '../../shared/ui/wavyBlock';
 
 type LandingPageProps = {
   goToSlide:    (pageNumber: number) => void

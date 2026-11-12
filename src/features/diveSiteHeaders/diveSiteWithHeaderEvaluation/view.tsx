@@ -1,0 +1,98 @@
+
+import style from './styles.module.scss';
+import { toast } from 'react-toastify';
+
+import { DiveSiteWithHeader } from "../../../shared/entities/diveSiteWithHeader";
+import { cloudflareBucketUrl } from "../../../api/r2/globalVariables";
+import { clearDiveSitesHeadersBySiteId, updateHeaderPhoto } from '../../../api/supabase/diveSiteHeadersSupabaseCalls';
+import { getDiveSiteImageId, updateDiveSitePhoto } from '../../../api/supabase/diveSiteSupabaseCalls';
+import { deleteImageRecord } from '../../../api/supabase/imageSupabaseCalls';
+import { removePhotoVariants } from '../../../api/r2/cloudflareAWSCalls';
+
+type HeadersEvalViewProps = {
+    diveSiteId: number | undefined
+    headers:   DiveSiteWithHeader[] | null
+    setCurrentPhoto: React.Dispatch<React.SetStateAction<DiveSiteWithHeader | null>>
+    currentPhoto: DiveSiteWithHeader | null
+  };   
+
+export default function DiveSitesWithHeadersView({ diveSiteId, currentPhoto, setCurrentPhoto, headers }: HeadersEvalViewProps) {
+    // Order: point the dive site at the new photo first, then mark the row as
+    // selected, then delete the outgoing photo's variants. A failed step stops
+    // the chain, so the dive site never points at deleted files.
+    const updateHeaderImageSelection = async(record: DiveSiteWithHeader) => {
+        if (!diveSiteId || currentPhoto?.id === record.id) return;
+        if (record.dive_site_id !== diveSiteId) {
+            toast.warn("The dive site changed. Click the photo again.");
+            return;
+        }
+        // The outgoing header's images row: read it before the update nulls the pointer.
+        // Only a header chosen in this tool owns its row; a header promoted from a
+        // review photo shares the row with that photo and keeps it.
+        const outgoingImageId = currentPhoto ? await getDiveSiteImageId(diveSiteId) : null;
+        const siteUpdated = await updateDiveSitePhoto(diveSiteId, record.photo_path)
+        if (!siteUpdated) {
+            toast.error("Dive site not updated");
+            return;
+        }
+        const cleared = await clearDiveSitesHeadersBySiteId(diveSiteId)
+        if (!cleared) {
+            toast.error("Header photos not cleared");
+            return;
+        }
+        const newHeader = await updateHeaderPhoto(record.id)
+        if (!newHeader) {
+            toast.error("Header photo not marked as selected");
+            return;
+        }
+        setCurrentPhoto(newHeader)
+        if (currentPhoto) await removePhotoVariants(currentPhoto.photo_path)
+        if (outgoingImageId !== null) {
+            const removed = await deleteImageRecord(outgoingImageId);
+            if (!removed) toast.warn("Old image record not removed");
+        }
+    };
+
+       return (
+        <> 
+    <h3>Selected Header Image</h3>
+        {currentPhoto && currentPhoto.photo_path&&
+            <div className={style.cardMain} onClick={() => null}>
+            <div className={style.pic}>
+                <img
+                    src={`${cloudflareBucketUrl}${currentPhoto.photo_path.split("/").pop()}`}
+                    width={200}
+                    style={{borderRadius: "5%"}}
+                />
+            </div>
+        </div>}
+
+        {!currentPhoto &&
+            <div className={style.cardMain} onClick={() => null}>
+            <div className={style.pic}>
+            </div>
+            <div className="full-height flex-column">
+                <div>No Image Selected</div>
+            </div>
+        </div>}
+          
+        <h3>Header Image Options</h3>
+
+            {headers && headers.map((record) => {
+                const photoName = record.photo_path.split('/').pop();
+
+                return (
+                    <div className={style.cardMain} key={record.id} onClick={() => updateHeaderImageSelection(record)}>
+                        <div className={style.pic}>
+                            <img
+                                src={`${cloudflareBucketUrl}${photoName}`}
+                                width={200}
+                                className={currentPhoto && currentPhoto.id === record.id ? style.imageSelected :  style.image}
+                            />
+                        </div>
+                    </div>
+                );
+            })}
+        </>
+    );
+}

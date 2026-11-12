@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { SliderContext } from '../../reusables/slider/context';
+import { SliderContext } from '../../shared/ui/slider/context';
 import { Form } from './form';
 import SignUpPageView from './view';
-import { register, sessionCheck } from '../../apicalls/supabaseCalls/authenticateSupabaseCalls';
-import { createProfile } from '../../apicalls/supabaseCalls/accountSupabaseCalls';
-import { SessionContext } from '../../contexts/sessionContext';
+import { register, sessionCheck } from '../../api/supabase/authenticateSupabaseCalls';
+import { createProfile } from '../../api/supabase/accountSupabaseCalls';
+import { SessionContext } from '../../state/sessionContext';
 import { toast } from 'react-toastify';
-import screenData from '../../screenData.json';
+import screenData from '../../shared/strings.json';
 
 export default function SignUpPage() {
   const { setActiveSession } = useContext(SessionContext);
