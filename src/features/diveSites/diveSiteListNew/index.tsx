@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
-import { getUnverifiedDiveSites } from "../../api/supabase/diveSiteSupabaseCalls";
+import { getUnverifiedDiveSites } from "../../../api/supabase/diveSiteSupabaseCalls";
 import UnverifiedDiveSiteListView from "./view";
-import { UnverifiedDiveSitesContext } from "../../state/unverifieddiveSiteEvals/diveSitesContext";
+import { UnverifiedDiveSitesContext } from "../../../state/unverifieddiveSiteEvals/diveSitesContext";
 
 export default function UnverfiedDiveSiteList() {
     const { unverifiedDiveSites, setUnverifiedDiveSites} = useContext(UnverifiedDiveSitesContext)
