@@ -1,11 +1,11 @@
 import { useCallback, useContext, useEffect } from 'react';
 
 import style from './styles.module.scss';
-import { PartnerRequest } from '../../shared/entities/partnerRequest';
-import { MapContext } from '../../shared/ui/googleMap/mapContext';
-import { SelectedPartnerRequestContext } from '../../state/partnerRequestEvals/selectedPartnerRequestContext';
-import { ShopsArrayContext } from '../../state/shopsArrayContext';
-import { SitesArrayContext } from '../../state/sitesArrayContext';
+import { PartnerRequest } from '../../../shared/entities/partnerRequest';
+import { MapContext } from '../../../shared/ui/googleMap/mapContext';
+import { SelectedPartnerRequestContext } from '../../../state/partnerRequestEvals/selectedPartnerRequestContext';
+import { ShopsArrayContext } from '../../../state/shopsArrayContext';
+import { SitesArrayContext } from '../../../state/sitesArrayContext';
 
 
 type PartnerRequestListProps = {
